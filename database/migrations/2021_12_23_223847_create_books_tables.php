@@ -13,8 +13,22 @@ class CreateBooksTables extends Migration
      */
     public function up()
     {
-        Schema::create('books_tables', function (Blueprint $table) {
+        Schema::create('books', function (Blueprint $table) {
             $table->id();
+            //staff
+            $table->string('username');
+            $table->integer('staff_nip');
+            $table->text('installation');
+
+            //book
+            $table->string('date');
+            $table->string('time');
+            $table->string('topic');
+            $table->integer('entrant');
+            $table->string('type_meeting');
+            $table->integer('room_id');
+            $table->integer('staff_id');
+            $table->boolean('approved')->default(false);
             $table->timestamps();
         });
     }
@@ -26,6 +40,6 @@ class CreateBooksTables extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('books_tables');
+        Schema::dropIfExists('books');
     }
 }
