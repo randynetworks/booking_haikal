@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BookController;
+use App\Http\Controllers\HomeController;
 
 
 /*
@@ -28,7 +29,8 @@ Route::get('/', function () {
 });
 
 Route::post('/books', [BookController::class, 'store']);
+Route::get('/books/{book}', [BookController::class, 'show_visitor']);
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/dashboard', [HomeController::class, 'index']);

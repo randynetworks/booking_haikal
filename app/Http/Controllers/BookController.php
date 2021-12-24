@@ -54,7 +54,7 @@ class BookController extends Controller
         $book->staff_nip = $request->staff_nip;
         $book->installation = $request->installation;
         $book->date = $request->date;
-        $book->time = $request->time_awal . '-' .$request->time_akhir  ;
+        $book->time = $request->time_awal . '-' . $request->time_akhir;
         $book->topic = $request->topic;
         $book->entrant = $request->entrant;
         $book->type_meeting = $request->type_meeting;
@@ -74,6 +74,12 @@ class BookController extends Controller
     public function show(Book $book)
     {
         //
+    }
+
+    public function show_visitor(Book $book)
+    {
+        
+        return view('books.show', compact('book'));
     }
 
     /**
