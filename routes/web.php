@@ -1,6 +1,12 @@
 <?php
 
+use App\Models\Book;
+use App\Models\Room;
+use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\BookController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -14,8 +20,14 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    $data = [
+        'rooms' => Room::all(),
+        'books' => Book::all(),
+    ];
+    return view('books.welcome', $data);
 });
+
+Route::post('/books', [BookController::class, 'store']);
 
 Auth::routes();
 

@@ -27,7 +27,6 @@ class CreateBooksTables extends Migration
             $table->integer('entrant');
             $table->string('type_meeting');
             $table->integer('room_id');
-            $table->integer('staff_id');
             $table->boolean('approved')->default(false);
             $table->timestamps();
         });
