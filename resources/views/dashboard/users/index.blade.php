@@ -16,27 +16,23 @@
                     <thead>
                         <tr>
                             <th>#</th>
-                            <th>NIPP</th>
+                            <th>Email</th>
                             <th>Nama</th>
-                            <th>Jabatan</th>
                             <th>Level</th>
                             <th>Aksi</th>
                         </tr>
                     </thead>
-                    
+
                     <tbody>
                         @foreach ($users as $user)
                             <tr>
                                 <td>{{ $loop->iteration }}</td>
-                                <td>{{ $user->nip }}</td>
+                                <td>{{ $user->email }}</td>
                                 <td>{{ $user->name }}</td>
-                                <td>{{ $user->office }}</td>
-                                @if ($user->role === 1)
-                                    <td>Admin</td>
-                                @elseif ($user->role === 2)
-                                    <td>Manager</td>
-                                @else
-                                    <td>User</td>
+                                @if ($user->role === 0)
+                                    <td>Tidak Aktif</td>
+                                @elseif ($user->role === 1)
+                                    <td>Aktif/Admin</td>
                                 @endif
                                 <td>
                                     <a href="/dashboard/users/{{ $user->id }}" class="badge badge-primary">Detail</a>

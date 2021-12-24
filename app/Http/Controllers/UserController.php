@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Room;
+use App\Models\User;
 use Illuminate\Http\Request;
 
-class RoomController extends Controller
+class UserController extends Controller
 {
+
     public function __construct()
     {
         $this->middleware('checkAdmin');
@@ -18,9 +19,8 @@ class RoomController extends Controller
      */
     public function index()
     {
-
-        $rooms = Room::all();
-        return view('dashboard.rooms.index', compact('rooms'));
+        $users = User::all();
+        return view('dashboard.users.index', compact('users'));
     }
 
     /**
@@ -41,71 +41,60 @@ class RoomController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
-            'name' => 'required',
-        ]);
-
-        $room = new Room;
-        $room->name = $request->name;
-        $room->save();
-
-        return redirect('/dashboard/rooms')->with('status', 'Data Ruangan Ditambahkan!!');
+        //
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Room  $room
+     * @param  \App\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function show(Room $room)
+    public function show(User $user)
     {
-
-        return view('dashboard.rooms.show', compact('room'));
+        return view('dashboard.users.show', compact('user'));
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Room  $room
+     * @param  \App\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function edit(Room $room)
+    public function edit(User $user)
     {
-        return view('dashboard.rooms.edit', compact('room'));
+        return view('dashboard.users.edit', compact('user'));
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Room  $room
+     * @param  \App\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Room $room)
+    public function update(Request $request, User $user)
     {
-
         $request->validate([
-            'name' => 'required',
+            'role' => 'required',
         ]);
 
-        $room = Room::find($request->id);
-        $room->name = $request->name;
-        $room->save();
+        $user = User::find($request->id);
+        $user->role = $request->role;
+        $user->save();
 
-        return redirect('/dashboard/rooms')->with('status', 'Data Ruangan Diubah!!');
+        return redirect('/dashboard/users')->with('status', 'Data User Diupdate!!');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Room  $room
+     * @param  \App\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Room $room)
+    public function destroy(User $user)
     {
-
-        Room::destroy($room->id);
-        return redirect('/dashboard/rooms')->with('status', 'Data Ruangan Dihapus!!');
+        User::destroy($user->id);
+        return redirect('/dashboard/users')->with('status', 'Data User Dihapus!!');
     }
 }

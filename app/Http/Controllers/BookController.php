@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Book;
+use App\Models\Room;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -15,7 +16,12 @@ class BookController extends Controller
      */
     public function index()
     {
-        //
+        $data = [
+            'rooms' => Room::all(),
+            'books' => Book::all()
+        ];
+
+        return view('dashboard.books.index', $data);
     }
 
     /**
@@ -73,12 +79,12 @@ class BookController extends Controller
      */
     public function show(Book $book)
     {
-        //
+        return view('dashboard.books.show', compact('book'));
     }
 
     public function show_visitor(Book $book)
     {
-        
+
         return view('books.show', compact('book'));
     }
 
@@ -90,7 +96,7 @@ class BookController extends Controller
      */
     public function edit(Book $book)
     {
-        //
+        return view('dashboard.books.edit', compact('book'));
     }
 
     /**
@@ -102,7 +108,15 @@ class BookController extends Controller
      */
     public function update(Request $request, Book $book)
     {
-        //
+        $request->validate([
+            'approved' => 'required',
+        ]);
+
+        $book = Book::find($request->id);
+        $book->approved = $request->approved;
+        $book->save();
+
+        return redirect('/dashboard/books')->with('status', 'Data Pengajuan Diubah!!');
     }
 
     /**
@@ -113,6 +127,7 @@ class BookController extends Controller
      */
     public function destroy(Book $book)
     {
-        //
+        Book::destroy($book->id);
+        return redirect('/dashboard/books')->with('status', 'Data Pengajuan Dihapus!!');
     }
 }

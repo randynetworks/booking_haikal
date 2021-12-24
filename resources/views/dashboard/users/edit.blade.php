@@ -19,14 +19,9 @@
                     <input type="hidden" class="form-control" id="role" name="id" value="{{ $user->id }}">
                     <select id="role" class="form-control" name="role">
                         <option selected>Pilih...</option>
-                        <option value="0">User</option>
-                        <option value="1">Admin</option>
-                        <option value="2">Manager</option>
+                        <option value="0">Tidak Aktif</option>
+                        <option value="1">Aktif/Admin</option>
                     </select>
-                </div>
-                <div class="form-group">
-                    <label for="">Jabatan Staff</label>
-                    <input type="text" class="form-control" id="office" name="office" value="{{ $user->office }}">
                 </div>
                 <button type="submit" class="btn btn-primary">Edit Data</button>
                 <a href="/dashboard/users/{{ $user->id }}" class="btn btn-success">Kembali</a>

@@ -13,7 +13,7 @@
         <div class="card-body">
             <div class="table-responsive">
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                    <thead>
+                    <thead class="thead-light">
                         <tr>
                             <th scope="col">#</th>
                             <th scope="col">Tanggal</th>
@@ -22,7 +22,6 @@
                             <th scope="col">Jumlah Peserta</th>
                             <th scope="col">Ruangan</th>
                             <th scope="col">Yang Mengajukan</th>
-                            <th scope="col">Jabatan</th>
                             <th scope="col">Status Penyetujuan</th>
                             <th scope="col">Detail</th>
                         </tr>
@@ -36,8 +35,7 @@
                                 <td>{{ $book->topic }}</td>
                                 <td>{{ $book->entrant }}</td>
                                 <td>{{ $book->room->name }}</td>
-                                <td>{{ $book->user->name }}</td>
-                                <td>{{ $book->user->office }}</td>
+                                <td>{{ $book->username }}</td>
                                 @if ($book->approved)
                                     <td class="bg-success text-white">Di Setujui</td>
                                 @else

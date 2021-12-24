@@ -7,7 +7,8 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BookController;
 use App\Http\Controllers\HomeController;
-
+use App\Http\Controllers\RoomController;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -34,3 +35,12 @@ Route::get('/books/{book}', [BookController::class, 'show_visitor']);
 Auth::routes();
 
 Route::get('/dashboard', [HomeController::class, 'index']);
+
+
+Route::group(['middleware' => ['auth', 'checkRole']], function () {
+    Route::resources([
+        '/dashboard/books' => BookController::class,
+        '/dashboard/users' => UserController::class,
+        '/dashboard/rooms' => RoomController::class,
+    ]);
+});
