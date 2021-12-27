@@ -37,6 +37,7 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.css">
 
+    <script src="https://kit.fontawesome.com/86937c1494.js" crossorigin="anonymous"></script>
 
     <script>
         $(function() {
@@ -144,7 +145,7 @@
                 </li>
             @endif
             <li class="nav-item">
-                <a class="nav-link" href="/" target="_blank">
+                <a class="nav-link" href="/">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Ke Pengajuan</span></a>
             </li>
@@ -291,7 +292,7 @@
             <footer class="sticky-footer bg-white">
                 <div class="container my-auto">
                     <div class="copyright text-center my-auto">
-                        <span>Copyright &copy; SIBMR 2021</span>
+                        <span>Copyright &copy; {{ config('app.name', 'Laravel') }} 2021</span>
                     </div>
                 </div>
             </footer>

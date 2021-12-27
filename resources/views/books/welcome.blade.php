@@ -7,7 +7,9 @@
         <a class="btn btn-success" href="/books/create">Ajukan Ruangan</a>
     </div>
     <div class="card shadow mb-4 p-3">
-        <h3 class="my-3">Daftar Pengajuan Rapat</h3>
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">Daftar Pengajuan Ruangan</h6>
+        </div>
         @if (session('status'))
             <div class="alert alert-success" role="alert">
                 {{ session('status') }}
