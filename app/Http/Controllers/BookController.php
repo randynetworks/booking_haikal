@@ -31,7 +31,8 @@ class BookController extends Controller
      */
     public function create()
     {
-        //
+        $rooms = Room::all();
+        return view('books.create', compact('rooms'));
     }
 
     /**

@@ -10,32 +10,49 @@
     <meta name="author" content="">
 
     <title> {{ config('app.name', 'Laravel') }}</title>
-
-    <!-- Custom fonts for this template-->
-    <link href="{{ asset('vendor/fontawesome-free/css/all.min.css') }}" rel="stylesheet" type="text/css">
+    <link rel="dns-prefetch" href="//fonts.gstatic.com">
+    <link href="//fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
     <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
-    <link
-        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
-        rel="stylesheet">
 
-    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.css">
-    <!-- Custom styles for this template-->
+    <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
     <link href="{{ asset('css/sb-admin-2.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/jquery.dataTables.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/dataTables.bootstrap4.min.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="{{ asset('css/jquery-ui.css') }}">
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.13.0/themes/base/jquery-ui.css">
+    <script src="https://code.jquery.com/ui/1.13.0/jquery-ui.js"></script>
+
+
+
+
+    <!-- Scripts -->
+
+    <script src="{{ asset('js/jquery.validate.js') }}"></script>
+    <script src="{{ asset('js/jquery-1.10.2.js') }}"></script>
+    <script src="{{ asset('js/jquery-ui.js') }}"></script>
+    <script src="{{ asset('js/dataTables.bootstrap4.min.js') }}"></script>
+    <script src="{{ asset('js/jquery.dataTables.min.js') }}"></script>
+    <script src="{{ asset('js/bootstrap.min.js') }}"></script>
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.css">
+
 
     <script>
-        $('.timepicker').timepicker({
-            timeFormat: 'h:mm',
-            interval: 60,
-            minTime: '10',
-            maxTime: '6:00pm',
-            defaultTime: '11',
-            startTime: '07:00',
-            dynamic: false,
-            dropdown: true,
-            scrollbar: true
+        $(function() {
+            $("#datepicker").datepicker({
+                dateFormat: "yy-mm-dd",
+                changeMonth: true,
+                changeYear: true
+            });
+            $('.timepicker').timepicker({
+                timeFormat: 'HH:mm',
+                dynamic: true,
+                dropdown: true,
+                scrollbar: true
+            });
         });
     </script>
-
     <style>
         .my-custom-scrollbar {
             position: relative;
@@ -50,6 +67,10 @@
         .scroll {
             max-height: 400px;
             overflow-y: auto;
+        }
+
+        #datepicker {
+            z-index: 1151 !important;
         }
 
     </style>
@@ -72,7 +93,7 @@
             <!-- Divider -->
             <hr class="sidebar-divider my-0">
 
-            @if (Auth::user()->role != 0)
+            @if (Auth::user() !== null && Auth::user()->role != 0)
                 <!-- Nav Item - Dashboard -->
                 <li class="nav-item active">
                     <a class="nav-link" href="/dashboard">
@@ -88,7 +109,7 @@
                     Manajemen
                 </div>
 
-                @if (Auth::user()->role === 1)
+                @if (Auth::user() !== null && Auth::user()->role === 1)
                     <!-- Nav Item - Pages Collapse Menu -->
                     <li class="nav-item">
                         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
@@ -130,6 +151,22 @@
 
             <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block">
+
+            @if (Auth::user() !== null)
+                <li class="nav-item">
+                    <a class="nav-link" href="#" data-toggle="modal" data-target="#logoutModal">
+                        <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                        Logout
+                    </a>
+                </li>
+            @else
+                <li class="nav-item">
+                    <a class="nav-link" href="/login">
+                        <i class="fas fa-sign-in-alt fa-sm fa-fw mr-2 text-gray-400" aria-hidden="true"></i>
+                        Login
+                    </a>
+                </li>
+            @endif
 
             <!-- Sidebar Toggler (Sidebar) -->
             <div class="text-center d-none d-md-inline">
@@ -191,17 +228,30 @@
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span
-                                    class="mr-2 d-none d-lg-inline text-gray-600 small">{{ Auth::user()->name }}</span>
+                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">
+                                    @if (Auth::user() !== null)
+                                        {{ Auth::user()->name }}
+                                    @else
+                                        Pengaju
+                                    @endif
+                                </span>
                                 <img class="img-profile rounded-circle" src="{{ asset('img/undraw_profile.svg') }}">
                             </a>
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
                                 aria-labelledby="userDropdown">
-                                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
-                                    <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Logout
-                                </a>
+                                @if (Auth::user() !== null)
+                                    <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
+                                        <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                                        Logout
+                                    </a>
+                                @else
+                                    <a class="dropdown-item" href="/login">
+                                        <i class="fas fa-sign-in-alt fa-sm fa-fw mr-2 text-gray-400"
+                                            aria-hidden="true"></i>
+                                        Login
+                                    </a>
+                                @endif
                             </div>
                         </li>
 
@@ -213,7 +263,7 @@
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
 
-                    @if (Auth::user()->role == 0)
+                    @if (Auth::user() && Auth::user()->role == 0)
                         <div class="alert alert-danger" role="alert">
                             <h4 class="alert-heading">Maaf!</h4>
                             <p>Maaf Akun anda masih belum bisa digunakan, silahkan konfirmasi ke Admin agar di
@@ -288,21 +338,22 @@
 
 
     <!-- Bootstrap core JavaScript-->
-    <script src="{{ asset('vendor/jquery/jquery.min.js') }}"></script>
     <script src="{{ asset('vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
-
-    <!-- Core plugin JavaScript-->
-    <script src="{{ asset('vendor/jquery-easing/jquery.easing.min.js') }}"></script>
 
     <!-- Custom scripts for all pages-->
     <script src="{{ asset('js/sb-admin-2.min.js') }}"></script>
 
-    <!-- Page level plugins -->
-    <script src="{{ asset('vendor/chart.js/Chart.min.js') }}"></script>
 
-    <!-- Page level custom scripts -->
-    <script src="{{ asset('js/demo/chart-area-demo.js') }}"></script>
-    <script src="{{ asset('js/demo/chart-pie-demo.js') }}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.js"></script>
+
+
+    <script>
+        $('.select2').select2({
+            placeholder: "Pilih...",
+            allowClear: true
+        });
+    </script>
 
 
 </body>

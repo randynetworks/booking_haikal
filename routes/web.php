@@ -29,6 +29,7 @@ Route::get('/', function () {
     return view('books.welcome', $data);
 });
 
+ROute::get('books/create', [BookController::class, 'create']);
 Route::post('/books', [BookController::class, 'store']);
 Route::get('/books/{book}', [BookController::class, 'show_visitor']);
 
