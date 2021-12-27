@@ -10,11 +10,6 @@
         <div class="card-header py-3">
             <h6 class="m-0 font-weight-bold text-primary">Daftar Pengajuan Ruangan</h6>
         </div>
-        @if (session('status'))
-            <div class="alert alert-success" role="alert">
-                {{ session('status') }}
-            </div>
-        @endif
         <table class="table">
             <thead class="thead-light">
                 <tr>
