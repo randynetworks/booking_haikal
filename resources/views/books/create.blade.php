@@ -6,24 +6,44 @@
         <h1 class="h3 mb-0 text-gray-800">Form Pengajuan R. Rapat</h1>
     </div>
     <div class="card shadow mb-4 p-3">
+        <div class="row">
+            <div class="col-md-4">
+
+                <button class="btn btn-success" data-toggle="modal" data-target="#exampleModal">Tambahkan data
+                    Pengaju</button>
+            </div>
+        </div>
         <form class="p-3" action="/books" method="POST" enctype="multipart/form-data">
             @csrf
+            <!-- Modal -->
+            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content p-3">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Tambah Pengaju</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
 
-            <div class="from-group">
-                <h3>Pengaju</h3>
+                        <div class="form-group">
+                            <label for="username">Nama Lengkap</label>
+                            <input type="text" class="form-control" id="username" name="username">
+                        </div>
+                        <div class="form-group">
+                            <label for="staff_nip">Nomor Induk Staff</label>
+                            <input type="text" class="form-control" id="staff_nip" name="staff_nip">
+                        </div>
+                        <div class="form-group">
+                            <label for="installation">Instalasi</label>
+                            <input type="text" class="form-control" id="installation" name="installation">
+                        </div>
+                        <button type="button" class="btn btn-primary" data-dismiss="modal">Tambah</button>
+                    </div>
+                </div>
             </div>
-            <div class="form-group">
-                <label for="username">Nama Lengkap</label>
-                <input type="text" class="form-control" id="username" name="username">
-            </div>
-            <div class="form-group">
-                <label for="staff_nip">Nomor Induk Staff</label>
-                <input type="text" class="form-control" id="staff_nip" name="staff_nip">
-            </div>
-            <div class="form-group">
-                <label for="installation">Instalasi</label>
-                <input type="text" class="form-control" id="installation" name="installation">
-            </div>
+
             <div class="from-group mt-3">
                 <h3>Pengajuan Ruangan</h3>
             </div>
