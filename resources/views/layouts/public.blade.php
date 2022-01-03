@@ -185,6 +185,19 @@
         </div>
     </nav>
     <div class="p-3 mt-3">
+
+        <div class="container">
+            @if (session('status'))
+                <div class="alert alert-success" role="alert">
+                    {{ session('status') }}
+                </div>
+            @endif
+            @if (session('status-error'))
+                <div class="alert alert-danger" role="alert">
+                    {{ session('status-error') }}
+                </div>
+            @endif
+        </div>
         @yield('content')
     </div>
 

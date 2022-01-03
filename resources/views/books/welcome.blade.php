@@ -48,7 +48,7 @@
                         <tr>
                             <th scope="row">{{ $loop->iteration }}</th>
                             <td>{{ $book->date }}</td>
-                            <td>{{ $book->time }}</td>
+                            <td>{{ $book->time_start . '-' . $book->time_end }}</td>
                             <td>{{ $book->topic }}</td>
                             <td>{{ $book->entrant }}</td>
                             <td>{{ $book->room->name }}</td>

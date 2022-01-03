@@ -25,7 +25,7 @@
 
             <h3 class="mt-3">Pengajuan Ruangan</h3>
             <h5>Tanggal Rapat : {{ $book->date }}</h5>
-            <h5>Waktu Rapat : {{ $book->time }}</h5>
+            <h5>Waktu Rapat : {{ $book->time_start . '-' . $book->time_end }}</h5>
             <h5>Topik Rapat : {{ $book->topic }}</h5>
             <h5>Jumlah Peserta : {{ $book->entrant }}</h5>
             <h5>Jenis Rapat : {{ $book->type_meeting }}</h5>

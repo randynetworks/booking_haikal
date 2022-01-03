@@ -44,7 +44,7 @@
                     </div>
                     <div class="form-group col-md-6">
                         <label for="time">Waktu</label>
-                        <input type="text" class="form-control" id="time" name="time" value="{{ $book->time }}" disabled>
+                        <input type="text" class="form-control" id="time" name="time" value="{{ $book->time_start . '-' . $book->time_end }}" disabled>
                     </div>
                 </div>
                 <div class="form-group">

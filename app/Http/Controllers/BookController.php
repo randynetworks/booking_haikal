@@ -18,7 +18,7 @@ class BookController extends Controller
     {
         $data = [
             'rooms' => Room::all(),
-            'books' => Book::all()
+            'books' => Book::where('date', '>=', now())->get()
         ];
 
         return view('dashboard.books.index', $data);
@@ -48,7 +48,7 @@ class BookController extends Controller
             'username' => 'required',
             'staff_nip' => 'required',
             'installation' => 'required',
-            'date' => 'required',
+            'date' => 'required|',
             'time_awal' => 'required',
             'time_akhir' => 'required',
             'topic' => 'required',
@@ -57,20 +57,35 @@ class BookController extends Controller
             'room_id' => 'required',
         ]);
 
-        $book = new Book;
-        $book->username = $request->username;
-        $book->staff_nip = $request->staff_nip;
-        $book->installation = $request->installation;
-        $book->date = $request->date;
-        $book->time = $request->time_awal . '-' . $request->time_akhir;
-        $book->topic = $request->topic;
-        $book->entrant = $request->entrant;
-        $book->type_meeting = $request->type_meeting;
-        $book->room_id = $request->room_id;
-        $book->approved = false;
-        $book->save();
 
-        return redirect('/')->with('status', 'Pengajuan Di ajukan!!');
+        $bookExist = Book::where('room_id', $request->room_id)
+            ->where('date', '=', $request->date)
+            ->where('time_start', '>=', $request->time_awal)
+            ->where('time_end', '<=', $request->time_akhir)->exists();
+
+        if ($bookExist) {
+            return redirect('/')->with('status-error', 'Pengajuan Gagal diajukan, Jadwal bentrok!!');
+        } else {
+
+            $book = new Book;
+            $book->username = $request->username;
+            $book->staff_nip = $request->staff_nip;
+            $book->installation = $request->installation;
+            $book->date = $request->date;
+            $book->time_start = $request->time_awal;
+            $book->time_end = $request->time_akhir;
+            $book->topic = $request->topic;
+            $book->entrant = $request->entrant;
+            $book->type_meeting = $request->type_meeting;
+            $book->room_id = $request->room_id;
+            $book->approved = false;
+            $book->save();
+
+            return redirect('/')->with('status', 'Pengajuan Di ajukan!!');
+        }
+
+
+
     }
 
     /**
