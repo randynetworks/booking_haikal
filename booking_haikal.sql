@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Jan 03, 2022 at 07:23 AM
+-- Generation Time: Jan 04, 2022 at 12:18 AM
 -- Server version: 10.4.18-MariaDB
 -- PHP Version: 7.4.16
 
@@ -32,8 +32,9 @@ CREATE TABLE `books` (
   `username` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `staff_nip` int(11) NOT NULL,
   `installation` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `date` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `time` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `date` date NOT NULL,
+  `time_start` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `time_end` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `topic` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `entrant` int(11) NOT NULL,
   `type_meeting` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -48,11 +49,9 @@ CREATE TABLE `books` (
 -- Dumping data for table `books`
 --
 
-INSERT INTO `books` (`id`, `username`, `staff_nip`, `installation`, `date`, `time`, `topic`, `entrant`, `type_meeting`, `room_id`, `approved`, `created_at`, `updated_at`, `reject_note`) VALUES
-(1, 'Randy', 231312, 'COE', '2021-12-03', '15:30-22:00', 'oke', 200, 'Internal', 2, 1, '2021-12-24 03:21:06', '2021-12-24 03:32:26', NULL),
-(2, 'Paul McCartney', 2312312, 'Gawat Darurat', '2021-12-27', '16:30-17:00', 'bebas sih', 100, 'Eksternal', 2, 0, '2021-12-26 17:45:13', '2021-12-26 17:45:13', NULL),
-(3, 'Paul McCartney', 21314, 'OKe', '2021-12-27', '00:30-02:00', 'sfd', 123, 'Eksternal', 2, 0, '2021-12-27 02:37:05', '2021-12-27 02:37:05', NULL),
-(4, 'Paul', 2313, 'Oke', '2022-01-03', '01:00-02:30', '-', 100, 'Internal', 6, 2, '2022-01-02 21:56:41', '2022-01-02 22:54:31', 'Tidak Ada topik pembahasan!');
+INSERT INTO `books` (`id`, `username`, `staff_nip`, `installation`, `date`, `time_start`, `time_end`, `topic`, `entrant`, `type_meeting`, `room_id`, `approved`, `created_at`, `updated_at`, `reject_note`) VALUES
+(1, 'Udin', 43234, 'rwer', '2022-01-04', '00:00', '00:30', 'oke', 13, 'Internal', 1, 2, '2022-01-03 16:11:58', '2022-01-03 16:15:49', 'ngapain? gabut?'),
+(2, 'fsfs', 34324, 'fs', '2022-01-04', '02:00', '02:30', 'sffs', 343, 'Internal', 1, 0, '2022-01-03 16:14:10', '2022-01-03 16:14:10', NULL);
 
 -- --------------------------------------------------------
 
@@ -87,14 +86,15 @@ CREATE TABLE `migrations` (
 --
 
 INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
-(13, '2014_10_12_000000_create_users_table', 1),
-(14, '2014_10_12_100000_create_password_resets_table', 1),
-(15, '2019_08_19_000000_create_failed_jobs_table', 1),
-(16, '2019_12_14_000001_create_personal_access_tokens_table', 1),
-(17, '2021_12_23_223847_create_books_tables', 1),
-(18, '2021_12_23_224348_create_rooms_table', 1),
-(19, '2022_01_03_043157_add_img_to_rooms_table', 2),
-(20, '2022_01_03_052910_add_reject_to_books_table', 3);
+(22, '2014_10_12_000000_create_users_table', 1),
+(23, '2014_10_12_100000_create_password_resets_table', 1),
+(24, '2019_08_19_000000_create_failed_jobs_table', 1),
+(25, '2019_12_14_000001_create_personal_access_tokens_table', 1),
+(26, '2021_12_23_223847_create_books_tables', 1),
+(27, '2021_12_23_224348_create_rooms_table', 1),
+(28, '2022_01_03_043157_add_img_to_rooms_table', 1),
+(29, '2022_01_03_052910_add_reject_to_books_table', 1),
+(30, '2022_01_03_221715_update_date_in_books_table', 1);
 
 -- --------------------------------------------------------
 
@@ -145,11 +145,7 @@ CREATE TABLE `rooms` (
 --
 
 INSERT INTO `rooms` (`id`, `name`, `created_at`, `updated_at`, `img`) VALUES
-(2, 'Cimannuk', '2021-12-24 03:18:45', '2021-12-24 03:18:45', NULL),
-(3, 'Papandayan', '2022-01-02 17:56:19', '2022-01-02 17:56:19', NULL),
-(4, 'Manglayang', '2022-01-02 17:56:53', '2022-01-02 17:56:53', NULL),
-(5, 'Cisadea', '2022-01-02 18:13:22', '2022-01-02 18:13:22', NULL),
-(6, 'Cicalengka 2', '2022-01-02 21:42:17', '2022-01-02 21:56:06', '20220103045606.jpg');
+(1, 'Papandayan', '2022-01-03 16:11:18', '2022-01-03 16:11:18', '20220103231118.JPG');
 
 -- --------------------------------------------------------
 
@@ -174,7 +170,8 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `role`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'Randy Ramadhan', 'randyramadhan1973@gmail.com', NULL, '$2y$10$s6sJjC5XGzWHLXV7ohqMyu/cTAcQarNGGwbJYpPGDmgbfVWE4HIg2', 1, NULL, '2021-12-24 03:04:28', '2021-12-24 03:17:32');
+(1, 'Randy Ramadhan', 'randyramadhan1973@gmail.com', NULL, '$2y$10$3OZND1fJRd9y7GnGi9BQzuTxjEXW7Hb4MpjSZc/38DK7AB/c.mhti', 1, NULL, '2022-01-03 16:10:42', '2022-01-03 16:10:42'),
+(2, 'Admin', 'admin@admin.com', NULL, '$2y$10$am9pJfAJ5YVVna19GJYAIemS8qAeUSwuyStC7D3586MY5l4TV3eQ2', 1, NULL, '2022-01-03 16:17:48', '2022-01-03 16:17:48');
 
 --
 -- Indexes for dumped tables
@@ -234,7 +231,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `books`
 --
 ALTER TABLE `books`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `failed_jobs`
@@ -246,7 +243,7 @@ ALTER TABLE `failed_jobs`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 
 --
 -- AUTO_INCREMENT for table `personal_access_tokens`
@@ -258,13 +255,13 @@ ALTER TABLE `personal_access_tokens`
 -- AUTO_INCREMENT for table `rooms`
 --
 ALTER TABLE `rooms`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
