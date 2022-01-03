@@ -131,15 +131,10 @@
                             </div>
                             <div class="form-group col-md-6">
                                 <label for="room_id">Ruangan</label>
-                                <select id="room_id"
-                                    class="@error('room_id') is-invalid
-                                @enderror form-control"
+                                <input value="{{ $room->name }}" type="text" class="form-control" id="room_id"
+                                    name="room_id" disabled>
+                                <input value="{{ $room->id }}" type="hidden" class="form-control" id="room_id"
                                     name="room_id">
-                                    <option selected>Pilih...</option>
-                                    @foreach ($rooms as $room)
-                                        <option value="{{ $room->id }}">{{ $room->name }}</option>
-                                    @endforeach
-                                </select>
                                 @error('room_id')
                                     <div class="mt-2 text-danger">{{ $message }}</div>
                                 @enderror

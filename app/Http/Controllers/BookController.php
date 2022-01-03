@@ -29,10 +29,11 @@ class BookController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
-        $rooms = Room::all();
-        return view('books.create', compact('rooms'));
+        $room_id = $request->get('room_id');
+        $room = Room::find($room_id);
+        return view('books.create', compact('room'));
     }
 
     /**
