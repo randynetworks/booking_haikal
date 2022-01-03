@@ -50,7 +50,8 @@ class RoomController extends Controller
 
         if ($files = $request->file('img')) {
             // Define upload path
-            $destinationPath = public_path('/storage/img'); // upload path
+            $destinationPath = public_path('/storage/img'); // upload path unix
+            // $destinationPath = public_path('\storage\img'); // upload path windows
             // Upload Orginal Image
             $fileUpload = date('YmdHis') . "." . $files->getClientOriginalExtension();
             $files->move($destinationPath, $fileUpload);
@@ -104,7 +105,8 @@ class RoomController extends Controller
 
         if ($files = $request->file('img')) {
             // Define upload path
-            $destinationPath = public_path('/storage/img'); // upload path
+            // $destinationPath = public_path('/storage/img'); // upload path unix
+            $destinationPath = public_path('\storage\img'); // upload path windows
             // Upload Orginal Image
             $fileUpload = date('YmdHis') . "." . $files->getClientOriginalExtension();
             $files->move($destinationPath, $fileUpload);
