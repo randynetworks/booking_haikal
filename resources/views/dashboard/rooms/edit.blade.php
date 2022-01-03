@@ -11,13 +11,26 @@
             <h6 class="m-0 font-weight-bold text-primary">Daftar Ruangan</h6>
         </div>
         <div class="card-body">
-            <form action="/dashboard/rooms/{{ $room->id }}" method="POST">
+            <form action="/dashboard/rooms/{{ $room->id }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 @method('PUT')
                 <div class="form-group">
                     <label for="name">Nama Lengkap Ruangan</label>
                     <input type="hidden" class="form-control" id="name" name="id" value="{{ $room->id }}">
                     <input type="text" class="form-control" id="name" name="name" value="{{ $room->name }}">
+                </div>
+
+                <div class="form-group">
+                    <label for="file_upload">Upload File</label>
+                    <input type="file" class="form-control-file" id="file" name="img">
+                </div>
+
+                <div class="from-group mb-3">
+                    @if ($room->img)
+                        <img width="200px" src="{{ asset('storage/img/' . $room->img) }}" alt="">
+                    @else
+                        <img width="200px" src="{{ asset('images/nocontentyet.jpg') }}" alt="">
+                    @endif
                 </div>
                 <button type="submit" class="btn btn-primary">Edit Data</button>
                 <a href="/dashboard/rooms/{{ $room->id }}" class="btn btn-success">Kembali</a>

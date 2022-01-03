@@ -47,6 +47,16 @@ class RoomController extends Controller
 
         $room = new Room;
         $room->name = $request->name;
+
+        if ($files = $request->file('img')) {
+            // Define upload path
+            $destinationPath = public_path('/storage/img'); // upload path
+            // Upload Orginal Image
+            $fileUpload = date('YmdHis') . "." . $files->getClientOriginalExtension();
+            $files->move($destinationPath, $fileUpload);
+            $room->img = $fileUpload;
+        }
+
         $room->save();
 
         return redirect('/dashboard/rooms')->with('status', 'Data Ruangan Ditambahkan!!');
@@ -91,6 +101,16 @@ class RoomController extends Controller
 
         $room = Room::find($request->id);
         $room->name = $request->name;
+
+        if ($files = $request->file('img')) {
+            // Define upload path
+            $destinationPath = public_path('/storage/img'); // upload path
+            // Upload Orginal Image
+            $fileUpload = date('YmdHis') . "." . $files->getClientOriginalExtension();
+            $files->move($destinationPath, $fileUpload);
+            $room->img = $fileUpload;
+        }
+
         $room->save();
 
         return redirect('/dashboard/rooms')->with('status', 'Data Ruangan Diubah!!');

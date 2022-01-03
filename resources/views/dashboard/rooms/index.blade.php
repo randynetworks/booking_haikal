@@ -18,6 +18,7 @@
                         <tr>
                             <th>#</th>
                             <th>Nama</th>
+                            <th>Gambar</th>
                             <th>Aksi</th>
                         </tr>
                     </thead>
@@ -27,6 +28,13 @@
                             <tr>
                                 <td>{{ $loop->iteration }}</td>
                                 <td>{{ $room->name }}</td>
+                                <td>
+                                    @if ($room->img)
+                                        <img width="100px" src="{{ asset('storage/img/' . $room->img) }}" alt="">
+                                    @else
+                                        <img width="100px" src="{{ asset('images/nocontentyet.jpg') }}" alt="">
+                                    @endif
+                                </td>
                                 <td>
                                     <a href="/dashboard/rooms/{{ $room->id }}" class="badge badge-primary">Detail</a>
                                 </td>
@@ -49,12 +57,16 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <form action="/dashboard/rooms" method="POST">
+                <form action="/dashboard/rooms" method="POST" enctype="multipart/form-data">
                     @csrf
                     <div class="modal-body">
                         <div class="form-group">
                             <label for="name">Nama Ruangan</label>
                             <input type="text" class="form-control" id="name" name="name">
+                        </div>
+                        <div class="form-group">
+                            <label for="file_upload">Upload File</label>
+                            <input type="file" class="form-control-file" id="file" name="img">
                         </div>
                     </div>
                     <div class="modal-footer">

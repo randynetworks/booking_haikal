@@ -11,7 +11,13 @@
             <h6 class="m-0 font-weight-bold text-primary">Detail Ruangan</h6>
         </div>
         <div class="card-body">
-            <h5>Nama ruangan : {{ $room->name }}</h5>
+            @if ($room->img)
+                <img width="200px" src="{{ asset('storage/img/' . $room->img) }}" alt="">
+            @else
+                <img width="200px" src="{{ asset('images/nocontentyet.jpg') }}" alt="">
+            @endif
+
+            <h5 class="mt-3">Nama ruangan : {{ $room->name }}</h5>
 
             <form action="" method="POST">
                 @csrf

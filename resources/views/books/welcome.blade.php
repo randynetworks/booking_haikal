@@ -7,13 +7,17 @@
         <h2 class="font-weight-light text-center">Daftar R. Rapat</h2>
     </div>
     <div class="row justify-content-center mb-5">
-
         @foreach ($rooms as $room)
             <div class="col-md-2">
                 <div class="card card-body text-center">
-                    <img class="img-fluid" src="https://www.ayoboga.com/img/logo.png">
-                    <p class="text-dark mt-2">{{ $room->name }}</p>
-                    <a class="btn btn-success" href="/books/create?room_id={{ $room->id }}">Ajukan Ruangan</a>
+                    @if ($room->img === null)
+                        <img class="card-img-top rounded" src="{{ asset('images/nocontentyet.jpg') }}">
+                    @else
+                        <img class="card-img-top rounded" src="{{ asset('storage/img/' . $room->img) }}" alt="">
+                    @endif
+                    <h5 class="text-dark mt-2">{{ $room->name }}</h5>
+                    <a class="btn btn-success" href="/books/create?room_id={{ $room->id }}">Ajukan Ruangan di
+                        <br>{{ $room->name }}</a>
                 </div>
             </div>
         @endforeach
