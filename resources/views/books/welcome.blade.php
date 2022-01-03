@@ -4,7 +4,7 @@
 
     <!-- Page Heading -->
     <div class=" align-items-center justify-content-between mb-4">
-        <h2 class="font-weight-light text-center">Daftar R. Rapat</h2>
+        <h2 class="text-white text-center">Daftar R. Rapat</h2>
     </div>
     <div class="row justify-content-center mb-5">
         @foreach ($rooms as $room)
@@ -25,7 +25,7 @@
     <!-- Page Heading -->
     <div class="align-items-center justify-content-between mb-4">
 
-        <h2 class="font-weight-light text-center">Daftar Pengajuan R. Rapat</h2>
+        <h2 class="text-white text-center">Daftar Pengajuan R. Rapat</h2>
     </div>
     <div class="row justify-content-center">
         <div class="col-md-10">

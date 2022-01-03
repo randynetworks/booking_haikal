@@ -2,7 +2,7 @@
 
 @section('content')
     <!-- Page Heading -->
-    <div class="d-sm-flex align-items-center justify-content-between mb-4"> 
+    <div class="d-sm-flex align-items-center justify-content-between mb-4">
         <h1 class="h3 mb-0 text-gray-800">{{ $title }}</h1>
     </div>
 
@@ -22,7 +22,7 @@
                         @foreach ($rooms as $room)
                             <td>
                                 @foreach ($books as $book)
-                                    @if ($book->approved && $book->room_id == $room->id)
+                                    @if ($book->approved == 1 && $book->room_id == $room->id)
                                         <a href="/books/{{ $book->id }}">{{ $book->topic }} | {{ $book->date }}
                                             {{ $book->time }}</a><br>
                                     @else
