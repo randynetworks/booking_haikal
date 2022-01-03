@@ -28,15 +28,33 @@
                         </div>
                         <div class="form-group">
                             <label for="username">Nama Lengkap</label>
-                            <input type="text" class="form-control" id="username" name="username">
+                            <input value="{{ old('username') }}" type="text"
+                                class="@error('username') is-invalid
+                            @enderror form-control"
+                                id="username" name="username">
+                            @error('username')
+                                <div class="mt-2 text-danger">{{ $message }}</div>
+                            @enderror
                         </div>
                         <div class="form-group">
                             <label for="staff_nip">Nomor Induk Staff</label>
-                            <input type="text" class="form-control" id="staff_nip" name="staff_nip">
+                            <input value="{{ old('staff_nip') }}" type="text"
+                                class="@error('staff_nip') is-invalid
+                            @enderror form-control"
+                                id="staff_nip" name="staff_nip">
+                            @error('staff_nip')
+                                <div class="mt-2 text-danger">{{ $message }}</div>
+                            @enderror
                         </div>
                         <div class="form-group">
                             <label for="installation">Instalasi</label>
-                            <input type="text" class="form-control" id="installation" name="installation">
+                            <input value="{{ old('installation') }}" type="text"
+                                class="@error('installation') is-invalid
+                            @enderror form-control"
+                                id="installation" name="installation">
+                            @error('installation')
+                                <div class="mt-2 text-danger">{{ $message }}</div>
+                            @enderror
                         </div>
                     </div>
 
@@ -47,43 +65,84 @@
                         <div class="form-row ">
                             <div class="form-group col-md-6">
                                 <label for="datepicker">Tanggal</label>
-                                <input type="text" class="form-control" id="datepicker" name="date">
+                                <input value="{{ old('date') }}" type="text"
+                                    class="@error('date') is-invalid
+                                @enderror form-control"
+                                    id="datepicker" name="date">
+                                @error('date')
+                                    <div class="mt-2 text-danger">{{ $message }}</div>
+                                @enderror
                             </div>
                             <div class="form-group col-md-3">
                                 <label for="time-awal">Waktu Awal</label>
-                                <input type="text" class="form-control timepicker" id="timepicker" name="time_awal">
+                                <input value="{{ old('time_awal') }}" type="text"
+                                    class="@error('time_awal') is-invalid
+                                @enderror form-control timepicker"
+                                    id="timepicker" name="time_awal">
+                                @error('time_awal')
+                                    <div class="mt-2 text-danger">{{ $message }}</div>
+                                @enderror
                             </div>
                             <div class="form-group col-md-3">
                                 <label for="time-akhir">Waktu Akhir</label>
-                                <input type="text" class="form-control timepicker" id="timepicker" name="time_akhir">
+                                <input value="{{ old('time_akhir') }}" type="text"
+                                    class="@error('time_akhir') is-invalid
+                                @enderror form-control timepicker"
+                                    id="timepicker" name="time_akhir">
+                                @error('time_akhir')
+                                    <div class="mt-2 text-danger">{{ $message }}</div>
+                                @enderror
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="topic">Topik Rapat</label>
-                            <input type="text" class="form-control" id="topic"
-                                placeholder="Contoh. Kegiatan Meeting Harian" name="topic">
+                            <input value="{{ old('topic') }}" type="text"
+                                class="@error('topic') is-invalid
+                            @enderror form-control"
+                                id="topic" placeholder="Contoh. Kegiatan Meeting Harian" name="topic">
+                            @error('topic')
+                                <div class="mt-2 text-danger">{{ $message }}</div>
+                            @enderror
                         </div>
                         <div class="form-group">
                             <label for="entrant">Jumlah Peserta</label>
-                            <input type="number" class="form-control" id="entrant" name="entrant">
+                            <input value="{{ old('entrant') }}" type="number"
+                                class="@error('entrant') is-invalid
+                            @enderror form-control"
+                                id="entrant" name="entrant">
+                            @error('entrant')
+                                <div class="mt-2 text-danger">{{ $message }}</div>
+                            @enderror
                         </div>
                         <div class="form-row">
                             <div class="form-group col-md-6">
                                 <label for="type_meeting">Jenis Rapat</label>
-                                <select id="type_meeting" class="form-control" name="type_meeting">
+                                <select id="type_meeting"
+                                    class="@error('type_meeting') is-invalid
+                                @enderror form-control"
+                                    name="type_meeting">
                                     <option selected>Pilih...</option>
                                     <option value="Internal">Internal</option>
                                     <option value="Eksternal">Eksternal</option>
                                 </select>
+                                @error('type_meeting')
+                                    <div class="mt-2 text-danger">{{ $message }}</div>
+                                @enderror
                             </div>
                             <div class="form-group col-md-6">
                                 <label for="room_id">Ruangan</label>
-                                <select id="room_id" class="form-control" name="room_id">
+                                <select id="room_id"
+                                    class="@error('room_id') is-invalid
+                                @enderror form-control"
+                                    name="room_id">
                                     <option selected>Pilih...</option>
                                     @foreach ($rooms as $room)
                                         <option value="{{ $room->id }}">{{ $room->name }}</option>
                                     @endforeach
                                 </select>
+                                @error('room_id')
+                                    <div class="mt-2 text-danger">{{ $message }}</div>
+                                @enderror
                             </div>
                         </div>
 
