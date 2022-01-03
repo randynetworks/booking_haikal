@@ -7,8 +7,10 @@
     </div>
     <div class="mb-4 p-3">
         <div class="form-group mt-3">
-            @if ($book->approved)
+            @if ($book->approved == 1)
                 <p class="bg-success text-white p-3">Di Setujui</p>
+            @elseif ($book->approved == 2)
+                <p class="bg-dark text-white p-3">Di Tolak karena: {{ $book->reject_note }}</p>
             @else
                 <p class="bg-danger text-white p-3">Belum Di Setujui</p>
             @endif

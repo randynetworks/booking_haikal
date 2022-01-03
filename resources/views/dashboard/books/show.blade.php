@@ -11,8 +11,10 @@
             <h6 class="m-0 font-weight-bold text-primary">Detail Pengajuan</h6>
         </div>
         <div class="card-body">
-            @if ($book->approved)
+            @if ($book->approved == 1)
                 <p class="bg-success text-white p-3">Di Setujui</p>
+            @elseif ($book->approved == 2)
+                <p class="bg-dark text-white p-3">Di Tolak karena: {{ $book->reject_note }}</p>
             @else
                 <p class="bg-danger text-white p-3">Belum Di Setujui</p>
             @endif
@@ -28,7 +30,7 @@
             <h5>Jumlah Peserta : {{ $book->entrant }}</h5>
             <h5>Jenis Rapat : {{ $book->type_meeting }}</h5>
             <h5>Ruangan Rapat : {{ $book->room->name }}</h5>
-            </h5>
+
             <form action="" method="POST">
                 @csrf
                 @method('DELETE')

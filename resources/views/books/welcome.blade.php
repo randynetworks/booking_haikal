@@ -53,8 +53,10 @@
                             <td>{{ $book->entrant }}</td>
                             <td>{{ $book->room->name }}</td>
                             <td>{{ $book->username }}</td>
-                            @if ($book->approved)
+                            @if ($book->approved == 1)
                                 <td class="bg-success text-white">Di Setujui</td>
+                            @elseif($book->approved == 2)
+                                <td class="bg-dark text-white">Ditolak</td>
                             @else
                                 <td class="bg-danger text-white">Belum Di Setujui</td>
                             @endif

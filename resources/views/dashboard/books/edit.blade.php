@@ -21,8 +21,15 @@
                         <option selected>Pilih...</option>
                         <option value="1">Disetujui</option>
                         <option value="0">Tidak disetujui</option>
+                        <option value="2">Ditolak</option>
                     </select>
                 </div>
+                <div class="form-group">
+                    <label for="name">Informasi Penolakan <span class="text-danger">*</span></label>
+                    <input type="text" class="form-control" id="name" name="reject_note">
+                    <small class="text-danger">*) Isi jika ditolak</small>
+                </div>
+
                 <button type="submit" class="btn btn-primary">Edit Data</button>
                 <a href="/dashboard/books/{{ $book->id }}" class="btn btn-success">Kembali</a>
             </form>

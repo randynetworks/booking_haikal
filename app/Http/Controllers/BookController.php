@@ -115,6 +115,10 @@ class BookController extends Controller
         ]);
 
         $book = Book::find($request->id);
+
+        if ($request->reject_note !== null) {
+            $book->reject_note = $request->reject_note;
+        }
         $book->approved = $request->approved;
         $book->save();
 
