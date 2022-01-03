@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Dec 24, 2021 at 12:00 PM
+-- Generation Time: Jan 03, 2022 at 07:23 AM
 -- Server version: 10.4.18-MariaDB
 -- PHP Version: 7.4.16
 
@@ -40,15 +40,19 @@ CREATE TABLE `books` (
   `room_id` int(11) NOT NULL,
   `approved` tinyint(1) NOT NULL DEFAULT 0,
   `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `reject_note` text COLLATE utf8mb4_unicode_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `books`
 --
 
-INSERT INTO `books` (`id`, `username`, `staff_nip`, `installation`, `date`, `time`, `topic`, `entrant`, `type_meeting`, `room_id`, `approved`, `created_at`, `updated_at`) VALUES
-(1, 'Randy', 231312, 'COE', '2021-12-03', '15:30-22:00', 'oke', 200, 'Internal', 2, 1, '2021-12-24 03:21:06', '2021-12-24 03:32:26');
+INSERT INTO `books` (`id`, `username`, `staff_nip`, `installation`, `date`, `time`, `topic`, `entrant`, `type_meeting`, `room_id`, `approved`, `created_at`, `updated_at`, `reject_note`) VALUES
+(1, 'Randy', 231312, 'COE', '2021-12-03', '15:30-22:00', 'oke', 200, 'Internal', 2, 1, '2021-12-24 03:21:06', '2021-12-24 03:32:26', NULL),
+(2, 'Paul McCartney', 2312312, 'Gawat Darurat', '2021-12-27', '16:30-17:00', 'bebas sih', 100, 'Eksternal', 2, 0, '2021-12-26 17:45:13', '2021-12-26 17:45:13', NULL),
+(3, 'Paul McCartney', 21314, 'OKe', '2021-12-27', '00:30-02:00', 'sfd', 123, 'Eksternal', 2, 0, '2021-12-27 02:37:05', '2021-12-27 02:37:05', NULL),
+(4, 'Paul', 2313, 'Oke', '2022-01-03', '01:00-02:30', '-', 100, 'Internal', 6, 2, '2022-01-02 21:56:41', '2022-01-02 22:54:31', 'Tidak Ada topik pembahasan!');
 
 -- --------------------------------------------------------
 
@@ -88,7 +92,9 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (15, '2019_08_19_000000_create_failed_jobs_table', 1),
 (16, '2019_12_14_000001_create_personal_access_tokens_table', 1),
 (17, '2021_12_23_223847_create_books_tables', 1),
-(18, '2021_12_23_224348_create_rooms_table', 1);
+(18, '2021_12_23_224348_create_rooms_table', 1),
+(19, '2022_01_03_043157_add_img_to_rooms_table', 2),
+(20, '2022_01_03_052910_add_reject_to_books_table', 3);
 
 -- --------------------------------------------------------
 
@@ -130,15 +136,20 @@ CREATE TABLE `rooms` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `img` text COLLATE utf8mb4_unicode_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `rooms`
 --
 
-INSERT INTO `rooms` (`id`, `name`, `created_at`, `updated_at`) VALUES
-(2, 'Cimannuk', '2021-12-24 03:18:45', '2021-12-24 03:18:45');
+INSERT INTO `rooms` (`id`, `name`, `created_at`, `updated_at`, `img`) VALUES
+(2, 'Cimannuk', '2021-12-24 03:18:45', '2021-12-24 03:18:45', NULL),
+(3, 'Papandayan', '2022-01-02 17:56:19', '2022-01-02 17:56:19', NULL),
+(4, 'Manglayang', '2022-01-02 17:56:53', '2022-01-02 17:56:53', NULL),
+(5, 'Cisadea', '2022-01-02 18:13:22', '2022-01-02 18:13:22', NULL),
+(6, 'Cicalengka 2', '2022-01-02 21:42:17', '2022-01-02 21:56:06', '20220103045606.jpg');
 
 -- --------------------------------------------------------
 
@@ -223,7 +234,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `books`
 --
 ALTER TABLE `books`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `failed_jobs`
@@ -235,7 +246,7 @@ ALTER TABLE `failed_jobs`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT for table `personal_access_tokens`
@@ -247,7 +258,7 @@ ALTER TABLE `personal_access_tokens`
 -- AUTO_INCREMENT for table `rooms`
 --
 ALTER TABLE `rooms`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `users`
