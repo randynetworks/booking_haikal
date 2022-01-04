@@ -64,7 +64,7 @@
                     </div>
                     <div class="form-group col-md-6">
                         <label for="room_id">Ruangan</label>
-                        <input type="text" class="form-control" id="room_id" name="room_id" value="{{ $book->room->name }}"
+                        <input type="text" class="form-control" id="room_id" name="room_id" value="{{ $book->room->name ?? 'Ruangan Terhapus' }}"
                             disabled>
                     </div>
                 </div>

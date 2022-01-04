@@ -51,7 +51,7 @@
                             <td>{{ $book->time_start . '-' . $book->time_end }}</td>
                             <td>{{ $book->topic }}</td>
                             <td>{{ $book->entrant }}</td>
-                            <td>{{ $book->room->name }}</td>
+                            <td>{{ $book->room->name ?? 'Ruangan Terhapus' }}</td>
                             <td>{{ $book->username }}</td>
                             @if ($book->approved == 1)
                                 <td class="bg-success text-white">Di Setujui</td>

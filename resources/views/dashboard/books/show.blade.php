@@ -29,7 +29,7 @@
             <h5>Topik Rapat : {{ $book->topic }}</h5>
             <h5>Jumlah Peserta : {{ $book->entrant }}</h5>
             <h5>Jenis Rapat : {{ $book->type_meeting }}</h5>
-            <h5>Ruangan Rapat : {{ $book->room->name }}</h5>
+            <h5>Ruangan Rapat : {{ $book->room->name ?? 'Ruangan Terhapus' }}</h5>
 
             <form action="" method="POST">
                 @csrf
