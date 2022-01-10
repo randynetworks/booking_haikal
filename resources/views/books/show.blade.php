@@ -22,12 +22,13 @@
                 </div>
                 <div class="form-group">
                     <label for="username">Nama Lengkap</label>
-                    <input type="text" class="form-control" id="username" name="username" value="{{ $book->username }}" disabled>
+                    <input type="text" class="form-control" id="username" name="username" value="{{ $book->username }}"
+                        disabled>
                 </div>
                 <div class="form-group">
                     <label for="staff_nip">Nomor Induk Staff</label>
-                    <input type="text" class="form-control" id="staff_nip" name="staff_nip" value="{{ $book->staff_nip }}"
-                        disabled>
+                    <input type="text" class="form-control" id="staff_nip" name="staff_nip"
+                        value="{{ $book->staff_nip }}" disabled>
                 </div>
                 <div class="form-group">
                     <label for="installation">Instalasi</label>
@@ -40,21 +41,24 @@
                 <div class="form-row">
                     <div class="form-group col-md-6">
                         <label for="datepicker">Tanggal</label>
-                        <input type="text" class="form-control" id="datepicker" name="date" value="{{ $book->date }}" disabled>
+                        <input type="text" class="form-control" id="datepicker" name="date" value="{{ $book->date }}"
+                            disabled>
                     </div>
                     <div class="form-group col-md-6">
                         <label for="time">Waktu</label>
-                        <input type="text" class="form-control" id="time" name="time" value="{{ $book->time_start . '-' . $book->time_end }}" disabled>
+                        <input type="text" class="form-control" id="time" name="time"
+                            value="{{ $book->time_start . '-' . $book->time_end }}" disabled>
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="topic">Topik Rapat</label>
-                    <input type="text" class="form-control" id="topic" placeholder="Contoh. Kegiatan Meeting Harian" name="topic"
-                        value="{{ $book->topic }}" disabled>
+                    <input type="text" class="form-control" id="topic" placeholder="Contoh. Kegiatan Meeting Harian"
+                        name="topic" value="{{ $book->topic }}" disabled>
                 </div>
                 <div class="form-group">
                     <label for="entrant">Jumlah Peserta</label>
-                    <input type="text" class="form-control" id="entrant" name="entrant" value="{{ $book->entrant }}" disabled>
+                    <input type="text" class="form-control" id="entrant" name="entrant" value="{{ $book->entrant }}"
+                        disabled>
                 </div>
                 <div class="form-row">
                     <div class="form-group col-md-6">
@@ -64,8 +68,8 @@
                     </div>
                     <div class="form-group col-md-6">
                         <label for="room_id">Ruangan</label>
-                        <input type="text" class="form-control" id="room_id" name="room_id" value="{{ $book->room->name ?? 'Ruangan Terhapus' }}"
-                            disabled>
+                        <input type="text" class="form-control" id="room_id" name="room_id"
+                            value="{{ $book->room->name ?? 'Ruangan Terhapus' }}" disabled>
                     </div>
                 </div>
                 </form>

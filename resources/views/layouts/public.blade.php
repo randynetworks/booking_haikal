@@ -218,6 +218,18 @@
             placeholder: "Pilih...",
             allowClear: true
         });
+
+        $(function() {
+
+            $('[data-toggle="modal"]').hover(function() {
+                var modalId = $(this).data('target');
+                $(modalId).modal('show');
+
+            });
+
+            
+
+        });
     </script>
 
 
