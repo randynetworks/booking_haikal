@@ -5,9 +5,9 @@
         <div class="col-md-8">
             <!-- Page Heading -->
             <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                <h1 class="h3 mb-0 text-gray-800">Form Pengajuan R. Rapat</h1>
+                <h1 class="h3 mb-0 text-gray-800">Form Pengajuan R. Rapat {{ $room->name }}</h1>
             </div>
-            <div class="card shadow mb-4 p-3">
+            <div class="card shadow mb-2 p-3">
                 <form class="p-3" action="/books" method="POST" enctype="multipart/form-data">
                     @csrf
                     <div class="card-header">
@@ -151,6 +151,45 @@
                         </div>
                     </div>
                 </form>
+            </div>
+            <div class="d-sm-flex align-items-center justify-content-between mb-4">
+                <h1 class="h3 mb-0 text-gray-800 mt-3">Daftar Pengajuan R. Rapat {{ $room->name }}</h1>
+            </div>
+            <div class="card shadow mb-4 p-3">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                    <thead class="thead-light">
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Tanggal</th>
+                            <th scope="col">Waktu</th>
+                            <th scope="col">Topik</th>
+                            <th scope="col">Jenis Rapat</th>
+                            <th scope="col">Jumlah Peserta</th>
+                            <th scope="col">Ruangan</th>
+                            <th scope="col">Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach ($books as $book)
+                            <tr title="Pemesan &#9;: {{ $book->username }} &#13;NIP &#9;&#9;: {{ $book->staff_nip }}&#13;Instalasi &#9;: {{ $book->installation }}@if ($book->approved == 2)&#13;Ditolak karena {{ $book->reject_note }}">@else">@endif
+                                                <th scope=" row">{{ $loop->iteration }}</th>
+                                <td>{{ $book->date }}</td>
+                                <td>{{ $book->time_start . '-' . $book->time_end }}</td>
+                                <td>{{ $book->topic }}</td>
+                                <td>{{ $book->type_meeting }}</td>
+                                <td>{{ $book->entrant }}</td>
+                                <td>{{ $book->room->name ?? 'Ruangan Terhapus' }}</td>
+                                @if ($book->approved == 1)
+                                    <td class="bg-success text-white">Di Setujui</td>
+                                @elseif($book->approved == 2)
+                                    <td class="bg-dark text-white">Di Tolak</td>
+                                @else
+                                    <td class="bg-danger text-white">Belum Di Setujui</td>
+                                @endif
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
             </div>
         </div>
     </div>

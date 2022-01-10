@@ -32,8 +32,11 @@ class BookController extends Controller
     public function create(Request $request)
     {
         $room_id = $request->get('room_id');
-        $room = Room::find($room_id);
-        return view('books.create', compact('room'));
+        $data = [
+            'room' => Room::find($room_id),
+            'books' => Book::where('room_id', $room_id)->get()
+        ];
+        return view('books.create', $data);
     }
 
     /**
@@ -83,9 +86,6 @@ class BookController extends Controller
 
             return redirect('/')->with('status', 'Pengajuan Di ajukan!!');
         }
-
-
-
     }
 
     /**
