@@ -30,8 +30,8 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <table class="bg-white table">
-                <thead class="thead-light">
-                    <tr>
+                <thead>
+                    <tr class="bg-primary text-white">
                         <th scope="col">#</th>
                         <th scope="col">Tanggal</th>
                         <th scope="col">Waktu</th>
@@ -43,7 +43,7 @@
                 </thead>
                 <tbody>
                     @foreach ($books as $book)
-                        <tr data-toggle="modal" data-target="#exampleModal{{ $book->id }}"
+                        <tr
                             title="Pemesan &#9;: {{ $book->username }} &#13;NIP &#9;&#9;: {{ $book->staff_nip }}&#13;Instalasi &#9;: {{ $book->installation }}">
                             <td>{{ $loop->iteration }}</td>
                             <td>{{ $book->date }}</td>

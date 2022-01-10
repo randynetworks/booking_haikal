@@ -59,7 +59,7 @@
         html,
         body {
             margin: 0;
-            background-image: url("images/bandung.jpg");
+            background-image: url("images/rs.jpg");
             background-repeat: repeat-y;
             background-size: cover;
             background-attachment: fixed;
@@ -219,17 +219,6 @@
             allowClear: true
         });
 
-        $(function() {
-
-            $('[data-toggle="modal"]').hover(function() {
-                var modalId = $(this).data('target');
-                $(modalId).modal('show');
-
-            });
-
-            
-
-        });
     </script>
 
 
