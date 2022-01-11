@@ -61,10 +61,10 @@ class BookController extends Controller
         ]);
 
 
-        $bookExist = Book::where('room_id', $request->room_id)
-            ->where('date', '=', $request->date)
-            ->orWhere('time_start', '>=', $request->time_awal)
-            ->orWhere('time_end', '<=', $request->time_akhir)->exists();
+        $bookExist = Book::where('room_id', $request->room_id)->whereBetween('time_start', [$request->time_awal,$request->time_akhir])->exists();
+            // ->where('date', '=', $request->date)
+            // ->Where('time_start', '>=', $request->time_awal)
+            // ->orWhere('time_end', '<=', $request->time_akhir)
 
         if ($bookExist) {
             return redirect('/')->with('status-error', 'Pengajuan Gagal diajukan, Jadwal bentrok!!');
