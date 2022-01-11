@@ -28,7 +28,7 @@
         <h2 class="text-white text-center">Daftar Pengajuan R. Rapat</h2>
     </div>
     <div class="row justify-content-center">
-        <div class="col-md-8">
+        <div class="col-md-10">
             <table class="bg-white table">
                 <thead>
                     <tr class="bg-primary text-white">
