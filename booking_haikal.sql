@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Jan 04, 2022 at 12:18 AM
+-- Generation Time: Jan 11, 2022 at 06:12 AM
 -- Server version: 10.4.18-MariaDB
 -- PHP Version: 7.4.16
 
@@ -45,14 +45,6 @@ CREATE TABLE `books` (
   `reject_note` text COLLATE utf8mb4_unicode_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
---
--- Dumping data for table `books`
---
-
-INSERT INTO `books` (`id`, `username`, `staff_nip`, `installation`, `date`, `time_start`, `time_end`, `topic`, `entrant`, `type_meeting`, `room_id`, `approved`, `created_at`, `updated_at`, `reject_note`) VALUES
-(1, 'Udin', 43234, 'rwer', '2022-01-04', '00:00', '00:30', 'oke', 13, 'Internal', 1, 2, '2022-01-03 16:11:58', '2022-01-03 16:15:49', 'ngapain? gabut?'),
-(2, 'fsfs', 34324, 'fs', '2022-01-04', '02:00', '02:30', 'sffs', 343, 'Internal', 1, 0, '2022-01-03 16:14:10', '2022-01-03 16:14:10', NULL);
-
 -- --------------------------------------------------------
 
 --
@@ -86,15 +78,16 @@ CREATE TABLE `migrations` (
 --
 
 INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
-(22, '2014_10_12_000000_create_users_table', 1),
-(23, '2014_10_12_100000_create_password_resets_table', 1),
-(24, '2019_08_19_000000_create_failed_jobs_table', 1),
-(25, '2019_12_14_000001_create_personal_access_tokens_table', 1),
-(26, '2021_12_23_223847_create_books_tables', 1),
-(27, '2021_12_23_224348_create_rooms_table', 1),
-(28, '2022_01_03_043157_add_img_to_rooms_table', 1),
-(29, '2022_01_03_052910_add_reject_to_books_table', 1),
-(30, '2022_01_03_221715_update_date_in_books_table', 1);
+(32, '2014_10_12_000000_create_users_table', 1),
+(33, '2014_10_12_100000_create_password_resets_table', 1),
+(34, '2019_08_19_000000_create_failed_jobs_table', 1),
+(35, '2019_12_14_000001_create_personal_access_tokens_table', 1),
+(36, '2021_12_23_223847_create_books_tables', 1),
+(37, '2021_12_23_224348_create_rooms_table', 1),
+(38, '2022_01_03_043157_add_img_to_rooms_table', 1),
+(39, '2022_01_03_052910_add_reject_to_books_table', 1),
+(40, '2022_01_03_221715_update_date_in_books_table', 1),
+(41, '2022_01_11_033811_add_img2_to_rooms_table', 1);
 
 -- --------------------------------------------------------
 
@@ -137,15 +130,10 @@ CREATE TABLE `rooms` (
   `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
-  `img` text COLLATE utf8mb4_unicode_ci DEFAULT NULL
+  `img` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `img2` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `img3` text COLLATE utf8mb4_unicode_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Dumping data for table `rooms`
---
-
-INSERT INTO `rooms` (`id`, `name`, `created_at`, `updated_at`, `img`) VALUES
-(1, 'Papandayan', '2022-01-03 16:11:18', '2022-01-03 16:11:18', '20220103231118.JPG');
 
 -- --------------------------------------------------------
 
@@ -170,8 +158,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `role`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'Randy Ramadhan', 'randyramadhan1973@gmail.com', NULL, '$2y$10$3OZND1fJRd9y7GnGi9BQzuTxjEXW7Hb4MpjSZc/38DK7AB/c.mhti', 1, NULL, '2022-01-03 16:10:42', '2022-01-03 16:10:42'),
-(2, 'Admin', 'admin@admin.com', NULL, '$2y$10$am9pJfAJ5YVVna19GJYAIemS8qAeUSwuyStC7D3586MY5l4TV3eQ2', 1, NULL, '2022-01-03 16:17:48', '2022-01-03 16:17:48');
+(1, 'Admin', 'admin@admin.com', NULL, '$2y$10$J2MlVlC/YoEIwBg4n9MHwuxLpq7BqcFxT3Q8FBJ4AjuWm5QKWwjxC', 1, NULL, '2022-01-10 22:11:02', '2022-01-10 22:11:02');
 
 --
 -- Indexes for dumped tables
@@ -231,7 +218,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `books`
 --
 ALTER TABLE `books`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `failed_jobs`
@@ -243,7 +230,7 @@ ALTER TABLE `failed_jobs`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
 
 --
 -- AUTO_INCREMENT for table `personal_access_tokens`
@@ -255,13 +242,13 @@ ALTER TABLE `personal_access_tokens`
 -- AUTO_INCREMENT for table `rooms`
 --
 ALTER TABLE `rooms`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
