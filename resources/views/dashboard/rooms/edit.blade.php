@@ -24,12 +24,28 @@
                     <label for="file_upload">Upload File</label>
                     <input type="file" class="form-control-file" id="file" name="img">
                 </div>
+                <div class="form-group">
+                    <label for="file_upload">Gambar 2</label>
+                    <input type="file" class="form-control-file" id="file" name="img2">
+                </div>
+                <div class="form-group">
+                    <label for="file_upload">Gambar 3</label>
+                    <input type="file" class="form-control-file" id="file" name="img3">
+                </div>
 
                 <div class="from-group mb-3">
                     @if ($room->img)
-                        <img width="200px" src="{{ asset('storage/img/' . $room->img) }}" alt="">
+                        <img width="200px" class="rounded" src="{{ asset('storage/img/' . $room->img) }}" alt="">
+                        @if ($room->img2 !== null)
+                            <img class="rounded" width="200px" src="{{ asset('storage/img/' . $room->img2) }}"
+                                alt="">
+                        @endif
+                        @if ($room->img3 !== null)
+                            <img class="rounded" width="200px" src="{{ asset('storage/img/' . $room->img3) }}"
+                                alt="">
+                        @endif
                     @else
-                        <img width="200px" src="{{ asset('images/nocontentyet.jpg') }}" alt="">
+                        <img class="rounded" width="200px" src="{{ asset('images/nocontentyet.jpg') }}" alt="">
                     @endif
                 </div>
                 <button type="submit" class="btn btn-primary">Edit Data</button>

@@ -8,17 +8,23 @@
     </div>
     <div class="row justify-content-center mb-5">
         @foreach ($rooms as $room)
-            <div class="col-md-2">
-                <div class="card card-body text-center">
+            <div class="col-md-2 m-1">
+                <a class="card card-body text-center img-hover-zoom" href="/books/create?room_id={{ $room->id }}">
                     @if ($room->img === null)
-                        <img class="card-img-top rounded" src="{{ asset('images/nocontentyet.jpg') }}">
+                        <img class="rounded h-100" width="100%" style="object-fit:cover;"
+                            src="{{ asset('images/nocontentyet.jpg') }}">
                     @else
-                        <img class="card-img-top rounded" src="{{ asset('storage/img/' . $room->img) }}" alt="">
+                        <img class="rounded h-100" width="100%" style="object-fit:cover;"
+                            src="{{ asset('storage/img/' . $room->img) }}" alt="">
                     @endif
-                    <h5 class="text-dark mt-2">{{ $room->name }}</h5>
-                    <a class="btn btn-success" href="/books/create?room_id={{ $room->id }}">Ajukan Ruangan di
-                        <br>{{ $room->name }}</a>
-                </div>
+                    <div>
+                        <div class="row justify-content-center mt-3">
+                            <div class="col-md-12">
+                                <h5 class="text-center"><b>Ruangan {{ $room->name }}</b></h5>
+                            </div>
+                        </div>
+                    </div>
+                </a>
             </div>
         @endforeach
     </div>

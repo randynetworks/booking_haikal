@@ -12,9 +12,15 @@
         </div>
         <div class="card-body">
             @if ($room->img)
-                <img width="200px" src="{{ asset('storage/img/' . $room->img) }}" alt="">
+                <img width="200px" class="rounded" src="{{ asset('storage/img/' . $room->img) }}" alt="">
+                @if ($room->img2 !== null)
+                    <img class="rounded" width="200px" src="{{ asset('storage/img/' . $room->img2) }}" alt="">
+                @endif
+                @if ($room->img3 !== null)
+                    <img class="rounded" width="200px" src="{{ asset('storage/img/' . $room->img3) }}" alt="">
+                @endif
             @else
-                <img width="200px" src="{{ asset('images/nocontentyet.jpg') }}" alt="">
+                <img class="rounded" width="200px" src="{{ asset('images/nocontentyet.jpg') }}" alt="">
             @endif
 
             <h5 class="mt-3">Nama ruangan : {{ $room->name }}</h5>

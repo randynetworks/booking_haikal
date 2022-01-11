@@ -53,9 +53,27 @@ class RoomController extends Controller
             $destinationPath = public_path('/storage/img'); // upload path unix
             // $destinationPath = public_path('\storage\img'); // upload path windows
             // Upload Orginal Image
-            $fileUpload = date('YmdHis') . "." . $files->getClientOriginalExtension();
+            $fileUpload = date('YmdHis') . "1." . $files->getClientOriginalExtension();
             $files->move($destinationPath, $fileUpload);
             $room->img = $fileUpload;
+        }
+        if ($files = $request->file('img2')) {
+            // Define upload path
+            $destinationPath = public_path('/storage/img'); // upload path unix
+            // $destinationPath = public_path('\storage\img'); // upload path windows
+            // Upload Orginal Image
+            $fileUpload = date('YmdHis') . "2." . $files->getClientOriginalExtension();
+            $files->move($destinationPath, $fileUpload);
+            $room->img2 = $fileUpload;
+        }
+        if ($files = $request->file('img3')) {
+            // Define upload path
+            $destinationPath = public_path('/storage/img'); // upload path unix
+            // $destinationPath = public_path('\storage\img'); // upload path windows
+            // Upload Orginal Image
+            $fileUpload = date('YmdHis') . "3." . $files->getClientOriginalExtension();
+            $files->move($destinationPath, $fileUpload);
+            $room->img3 = $fileUpload;
         }
 
         $room->save();
@@ -105,12 +123,30 @@ class RoomController extends Controller
 
         if ($files = $request->file('img')) {
             // Define upload path
-            // $destinationPath = public_path('/storage/img'); // upload path unix
-            $destinationPath = public_path('\storage\img'); // upload path windows
+            $destinationPath = public_path('/storage/img'); // upload path unix
+            // $destinationPath = public_path('\storage\img'); // upload path windows
             // Upload Orginal Image
-            $fileUpload = date('YmdHis') . "." . $files->getClientOriginalExtension();
+            $fileUpload = date('YmdHis') . "1." . $files->getClientOriginalExtension();
             $files->move($destinationPath, $fileUpload);
             $room->img = $fileUpload;
+        }
+        if ($files = $request->file('img2')) {
+            // Define upload path
+            $destinationPath = public_path('/storage/img'); // upload path unix
+            // $destinationPath = public_path('\storage\img'); // upload path windows
+            // Upload Orginal Image
+            $fileUpload = date('YmdHis') . "2." . $files->getClientOriginalExtension();
+            $files->move($destinationPath, $fileUpload);
+            $room->img2 = $fileUpload;
+        }
+        if ($files = $request->file('img3')) {
+            // Define upload path
+            $destinationPath = public_path('/storage/img'); // upload path unix
+            // $destinationPath = public_path('\storage\img'); // upload path windows
+            // Upload Orginal Image
+            $fileUpload = date('YmdHis') . "3." . $files->getClientOriginalExtension();
+            $files->move($destinationPath, $fileUpload);
+            $room->img3 = $fileUpload;
         }
 
         $room->save();

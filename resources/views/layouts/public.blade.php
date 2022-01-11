@@ -164,6 +164,31 @@
             object-fit: cover;
         }
 
+        /* [1] The container */
+        .img-hover-zoom {
+            height: 300px;
+            /* [1.1] Set it as per your need */
+            overflow: hidden;
+            /* [1.2] Hide the overflowing of child elements */
+            text-decoration: none;
+            color: rgb(36, 36, 36);
+        }
+
+        /* [2] Transition property for smooth transformation of images */
+        .img-hover-zoom img {
+            transition: transform .5s ease;
+        }
+
+        /* [3] Finally, transforming the image when container gets hovered */
+        .img-hover-zoom:hover img {
+            transform: scale(2);
+        }
+
+        .img-hover-zoom:hover {
+            text-decoration: none;
+            color: white;
+        }
+
     </style>
 </head>
 
@@ -228,6 +253,15 @@
         $('.select2').select2({
             placeholder: "Pilih...",
             allowClear: true
+        });
+
+        $(function() {
+            $('[data-toggle="modal"]').onClick(function() {
+                var modalId = $(this).data('target');
+                $(modalId).modal('show');
+
+            });
+
         });
     </script>
 

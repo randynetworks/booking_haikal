@@ -12,12 +12,13 @@
         </div>
         <div class="card-body">
             @if ($book->approved == 1)
-                <p class="bg-success text-white p-3">Di Setujui</p>
-            @elseif ($book->approved == 2)
-                <p class="bg-dark text-white p-3">Di Tolak karena: {{ $book->reject_note }}</p>
+                <p class="align-middle bg-success text-white">Di Setujui</p>
+            @elseif($book->approved == 2)
+                <p class="align-middle bg-danger text-white">Di Tolak karena: {{ $book->reject_note }}</p>
             @else
-                <p class="bg-danger text-white p-3">Belum Di Setujui</p>
+                <p class="align-middle bg-dark text-white">Pending</p>
             @endif
+
             <h3>Pengaju</h3>
             <h5>Nama Lengkap : {{ $book->username }}</h5>
             <h5>NIP : {{ $book->staff_nip }}</h5>

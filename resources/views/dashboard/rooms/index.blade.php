@@ -30,9 +30,19 @@
                                 <td>{{ $room->name }}</td>
                                 <td>
                                     @if ($room->img)
-                                        <img width="100px" src="{{ asset('storage/img/' . $room->img) }}" alt="">
+                                        <img width="200px" class="rounded"
+                                            src="{{ asset('storage/img/' . $room->img) }}" alt="">
+                                        @if ($room->img2 !== null)
+                                            <img class="rounded" width="200px"
+                                                src="{{ asset('storage/img/' . $room->img2) }}" alt="">
+                                        @endif
+                                        @if ($room->img3 !== null)
+                                            <img class="rounded" width="200px"
+                                                src="{{ asset('storage/img/' . $room->img3) }}" alt="">
+                                        @endif
                                     @else
-                                        <img width="100px" src="{{ asset('images/nocontentyet.jpg') }}" alt="">
+                                        <img class="rounded" width="200px"
+                                            src="{{ asset('images/nocontentyet.jpg') }}" alt="">
                                     @endif
                                 </td>
                                 <td>
@@ -65,8 +75,16 @@
                             <input type="text" class="form-control" id="name" name="name">
                         </div>
                         <div class="form-group">
-                            <label for="file_upload">Upload File</label>
+                            <label for="file_upload">Gambar 1</label>
                             <input type="file" class="form-control-file" id="file" name="img">
+                        </div>
+                        <div class="form-group">
+                            <label for="file_upload">Gambar 2</label>
+                            <input type="file" class="form-control-file" id="file" name="img2">
+                        </div>
+                        <div class="form-group">
+                            <label for="file_upload">Gambar 3</label>
+                            <input type="file" class="form-control-file" id="file" name="img3">
                         </div>
                     </div>
                     <div class="modal-footer">

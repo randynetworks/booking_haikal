@@ -38,11 +38,11 @@
                                 <td>{{ $book->entrant }}</td>
                                 <td>{{ $book->room->name ?? 'Ruangan Terhapus' }}</td>
                                 @if ($book->approved == 1)
-                                    <td class="bg-success text-white">Di Setujui</td>
+                                    <td class="align-middle bg-success text-white">Di Setujui</td>
                                 @elseif($book->approved == 2)
-                                    <td class="bg-dark text-white">Di Tolak</td>
+                                    <td class="align-middle bg-danger text-white">Di Tolak</td>
                                 @else
-                                    <td class="bg-danger text-white">Belum Di Setujui</td>
+                                    <td class="align-middle bg-dark text-white">Pending</td>
                                 @endif
                                 <td>
                                     <button data-toggle="modal" data-target="#basicExampleModal{{ $book->id }}"
