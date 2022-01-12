@@ -146,7 +146,7 @@
                                             $namaHari = 'Sabtu';
                                             break;
                                         case 'Sunday':
-                                            $namaHari = 'minggu';
+                                            $namaHari = 'Minggu';
                                             break;
                                     }
                                 @endphp
