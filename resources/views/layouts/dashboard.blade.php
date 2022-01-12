@@ -74,6 +74,11 @@
             z-index: 1151 !important;
         }
 
+        .in-card-scroll {
+            height: 200px;
+            overflow-y: scroll;
+        }
+
     </style>
 
 </head>
@@ -355,8 +360,6 @@
             placeholder: "Pilih...",
             allowClear: true
         });
-
-
     </script>
 
 

@@ -4,9 +4,9 @@
     <!-- Page Heading -->
     <div class="row justify-content-center">
         <div class="col-md-8">
-            <div class="mb-4 p-3 text-dark">
+            <div class="mb-4 p-3 text-white">
                 <div class="align-items-center justify-content-between mb-4">
-                    <h1 class="h3 mb-0 text-gray-800">Detail Pengajuan R. Rapat {{ $book->topic }}</h1>
+                    <h1 class="h3 mb-0 text-white">Detail Pengajuan R. Rapat {{ $book->topic }}</h1>
                 </div>
                 <div class="form-group mt-3">
                     @if ($book->approved == 1)
@@ -73,7 +73,7 @@
                     </div>
                 </div>
                 </form>
-                <a href="/" class="btn btn-success">Kembali</a>
+                <a href="/dashboard" class="btn btn-success">Kembali</a>
             </div>
         </div>
     </div>
