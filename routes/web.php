@@ -24,7 +24,8 @@ use App\Http\Controllers\UserController;
 Route::get('/', function () {
     $data = [
         'rooms' => Room::all(),
-        'books' => Book::where('approved', 1)->where('date', '>=', date("Y-m-d"))->orderBy('date', 'desc')->paginate(5)
+        'books' => Book::where('approved', 1)->where('date', '>=', date("Y-m-d"))->orderBy('date', 'desc')->paginate(5),
+        'ListBooks' => Book::where('approved', 1)->where('date', '>=', date("Y-m-d"))->orderBy('date', 'desc')->get()
     ];
     return view('books.welcome', $data);
 });

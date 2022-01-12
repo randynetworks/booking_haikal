@@ -255,7 +255,9 @@
                     <tbody>
                         @foreach ($books as $book)
                             <tr class="text-center" title="Pemesan &#9;: {{ $book->username }} &#13;NIP &#9;&#9;: {{ $book->staff_nip }}&#13;Instalasi &#9;: {{ $book->installation }}@if ($book->approved == 2)&#13;Ditolak karena {{ $book->reject_note }}">@else">@endif
-                                <td class="align-middle" scope=" row">{{ $books->firstItem() + $loop->index }}</td>
+                                                                        <td class="          align-middle" scope=" row">
+                                {{ $books->firstItem() + $loop->index }}
+                                </td>
                                 <td class="align-middle">{{ $book->date }}</td>
                                 <td class="align-middle">{{ $book->time_start . '-' . $book->time_end }}</td>
                                 <td class="text-left align-middle">{{ $book->topic }}</td>

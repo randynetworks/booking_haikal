@@ -186,8 +186,70 @@
 
         .img-hover-zoom:hover {
             text-decoration: none;
-            color: white;
+            color: transparent;
         }
+
+        .in-card-scroll {
+            height: 150px;
+            overflow-y: scroll;
+        }
+
+        .tooltip-container {
+            position: relative;
+
+            &:hover {
+                .tooltip-content {
+                    visibility: visible;
+                    opacity: 1;
+                    transition: .25s all ease;
+                    transition-delay: 0s;
+                    top: -125px;
+                }
+            }
+        }
+
+
+        /* Support for all WebKit browsers. */
+        -webkit-font-smoothing: antialiased;
+        /* Support for Safari and Chrome. */
+        text-rendering: optimizeLegibility;
+
+        /* Support for Firefox. */
+        -moz-osx-font-smoothing: grayscale;
+
+        /* Support for IE. */
+        font-feature-settings: 'liga';
+
+        .tooltip-container {
+            position: relative;
+        }
+
+        .tooltip-content:hover {
+            visibility: visible;
+            opacity: 1;
+            transition: .25s all ease;
+            transition-delay: 0s;
+            top: -125px;
+        }
+
+        .tooltip-content {
+            visibility: hidden;
+            opacity: 0;
+            position: absolute;
+            background: #000000;
+            left: -38px;
+            top: -130px;
+            padding: 0 15px;
+            margin: 16px;
+            font-size: 15px;
+            width: 250px;
+            transition: .25s all ease;
+            transition-delay: .25s;
+            z-index: 2;
+            color: #FFFFFF;
+        }
+
+        .tooltip-content::after {}
 
     </style>
 </head>

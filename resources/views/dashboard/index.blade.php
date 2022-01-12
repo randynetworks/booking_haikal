@@ -32,11 +32,12 @@
                                     <a class="badge btn-block badge-success" href="/books/{{ $book->id }}">R.
                                         {{ $book->room->name }}<br>
                                         @if (strlen($book->topic) > 15)
-                                        {{ substr($book->topic, 0, 15) . '...' }}
+                                            {{ substr($book->topic, 0, 15) . '...' }}
                                         @else
-                                        {{ $book->topic }}
+                                            {{ $book->topic }}
                                         @endif |
-                                        {{ $book->time_start }}-{{ $book->time_end }}</a>
+                                        {{ $book->time_start }}-{{ $book->time_end }}
+                                    </a>
                                 @endif
                             @endforeach
                         </div>
