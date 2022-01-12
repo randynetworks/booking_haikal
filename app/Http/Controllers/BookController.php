@@ -18,7 +18,7 @@ class BookController extends Controller
     {
         $data = [
             'rooms' => Room::all(),
-            'books' => Book::where('date', '>=', now())->paginate(10)
+            'books' => Book::orderBy('id', 'DESC')->paginate(5)
         ];
 
         return view('dashboard.books.index', $data);
@@ -34,7 +34,7 @@ class BookController extends Controller
         $room_id = $request->get('room_id');
         $data = [
             'room' => Room::find($room_id),
-            'books' => Book::where('room_id', $room_id)->paginate(10)
+            'books' => Book::where('room_id', $room_id)->paginate(5)
         ];
         return view('books.create', $data);
     }

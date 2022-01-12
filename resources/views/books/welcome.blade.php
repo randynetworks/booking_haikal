@@ -34,8 +34,8 @@
         <h2 class="text-white text-center">Daftar Pengajuan R. Rapat</h2>
     </div>
     <div class="row justify-content-center">
-        <div class="col-md-10">
-            <table class="bg-white table">
+        <div class="col-md-10 card shadow mb-4 p-3">
+            <table class="bg-white table text-center">
                 <thead>
                     <tr class="bg-primary text-white">
                         <th scope="col">#</th>
@@ -51,7 +51,7 @@
                     @foreach ($books as $book)
                         <tr
                             title="Pemesan &#9;: {{ $book->username }} &#13;NIP &#9;&#9;: {{ $book->staff_nip }}&#13;Instalasi &#9;: {{ $book->installation }}">
-                            <td>{{ $loop->iteration }}</td>
+                            <td>{{ $books->firstItem() + $loop->index }}</td>
                             <td>{{ $book->date }}</td>
                             <td>{{ $book->time_start . '-' . $book->time_end }}</td>
                             <td>{{ $book->topic }}</td>
@@ -62,7 +62,7 @@
                     @endforeach
                 </tbody>
             </table>
-            {!! $books->links() !!}
+            {!! $books->appends(request()->input())->links() !!}
         </div>
     </div>
 
