@@ -8,32 +8,28 @@
 
     <div class="card shadow mb-4">
         <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-primary">Daftar Ruangan Yang Digunakan</h6>
+            <h6 class="m-0 font-weight-bold text-primary">Kalender Ruangan</h6>
         </div>
         <div class="card-body">
-            <table class="table table-bordered table-wrapper-scroll-y my-custom-scrollbar">
-                <thead class="thead-light">
-                    @foreach ($rooms as $room)
-                        <th>{{ $room->name }}</th>
-                    @endforeach
-                </thead>
-                <tbody>
-                    <tr>
-                        @foreach ($rooms as $room)
-                            <td>
-                                @foreach ($books as $book)
-                                    @if ($book->approved == 1 && $book->room_id == $room->id)
-                                        <a href="/books/{{ $book->id }}">{{ $book->topic }} | {{ $book->date }}
-                                            {{ $book->time }}</a><br>
-                                    @else
-                                    @endif
-                                @endforeach
-                            </td>
+            <div class="row">
+                @for ($i = 1; $i <= 31; $i++)
+                    <div class="m-1 col-md-2 card shadow-sm text-center p-2">
+                        <span>{{ str_pad($i, 2, '0', STR_PAD_LEFT) }}</span>
+                        <hr>
+                        @foreach ($books as $book)
+                            @php
+                                $date = explode('-', $book->date);
+                                $month = $date[1];
+                                $day = $date[2];
+                            @endphp
+                            @if ($month == date('m') && $day == $i && $book->approved == 1)
+                                <a href="/books/{{ $book->id }}">{{ $book->topic }} |
+                                    {{ $book->time_start }}-{{ $book->time_end }}</a><br>
+                            @endif
                         @endforeach
-                    </tr>
-                </tbody>
-            </table>
-
+                    </div>
+                @endfor
+            </div>
         </div>
     </div>
     <div class="row mx-0">
