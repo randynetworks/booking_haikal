@@ -34,7 +34,7 @@ class BookController extends Controller
         $room_id = $request->get('room_id');
         $data = [
             'room' => Room::find($room_id),
-            'books' => Book::where('room_id', $room_id)->paginate(5)
+            'books' => Book::where('room_id', $room_id)->where('date', '>=', date("Y-m-d"))->paginate(5)
         ];
         return view('books.create', $data);
     }

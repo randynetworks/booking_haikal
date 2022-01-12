@@ -59,6 +59,8 @@
                             <td>{{ $book->entrant }}</td>
                             <td>{{ $book->room->name ?? 'Ruangan Terhapus' }}</td>
                         </tr>
+                        {{-- @if ($book->date >= date('Y-m-d'))
+                        @endif --}}
                     @endforeach
                 </tbody>
             </table>
