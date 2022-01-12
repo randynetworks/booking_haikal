@@ -14,7 +14,7 @@
                     <div class="col-md-2 m-1">
                         <a class="card card-body text-center img-hover-zoom"
                             href="/books/create?room_id={{ $room->id }}">
-                            @if ($room->img === null)
+                            @if ($room->img === null && !file_exists(public_path() . 'storage/img/' . $room->img))
                                 <img class="rounded h-100" width="100%" style="object-fit:cover;"
                                     src="{{ asset('images/nocontentyet.jpg') }}">
                             @else

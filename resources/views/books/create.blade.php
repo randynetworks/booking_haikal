@@ -11,7 +11,7 @@
                 <div class="row">
                     <div class="col-md-3 p-3">
                         <h4 class="text-center">Gambar Ruangan</h4>
-                        @if ($room->img === null)
+                        @if ($room->img === null && !file_exists(public_path() . 'storage/img/' . $room->img))
                             <img data-toggle="modal" data-target="#exampleModal" class="rounded" width="100%"
                                 src="{{ asset('images/nocontentyet.jpg') }}">
                         @else
@@ -22,13 +22,13 @@
                                 </div>
                             </div>
                             <div class="row">
-                                @if ($room->img2 !== null)
+                                @if ($room->img2 !== null && file_exists(public_path() . 'storage/img/' . $room->img))
                                     <div class="col-md-6 p-1">
                                         <img data-toggle="modal" data-target="#exampleModal" class="rounded"
                                             width="100%" src="{{ asset('storage/img/' . $room->img2) }}" alt="">
                                     </div>
                                 @endif
-                                @if ($room->img3 !== null)
+                                @if ($room->img3 !== null && file_exists(public_path() . 'storage/img/' . $room->img))
                                     <div class="col-md-6 p-1">
                                         <img data-toggle="modal" data-target="#exampleModal" class="rounded"
                                             width="100%" src="{{ asset('storage/img/' . $room->img3) }}" alt="">
