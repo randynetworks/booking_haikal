@@ -17,7 +17,35 @@
                     <div class="m-1 col-md-2 card shadow-sm in-card-scroll" data-toggle="modal"
                         data-target="#exampleModal{{ $i }}">
                         <div class="mt-2 text-center">
-                            <span class="@if ($i == date('d')) py-2 badge badge-primary badge-pill @endif ">{{ str_pad($i, 2, '0', STR_PAD_LEFT) }}</span>
+                            <span class="@if ($i == date('d')) py-2 badge badge-primary badge-pill @endif ">{{ str_pad($i, 2, '0', STR_PAD_LEFT) }}</span><br>
+                            @php
+                                $date = date('Y') . '-' . date('m') . '-' . str_pad($i, 2, '0', STR_PAD_LEFT);
+
+                                switch (date('l', strtotime($date))) {
+                                    case 'Monday':
+                                        $namaHari = 'Senin';
+                                        break;
+                                    case 'Tuesday':
+                                        $namaHari = 'Selasa';
+                                        break;
+                                    case 'Wednesday':
+                                        $namaHari = 'Rabu';
+                                        break;
+                                    case 'Thursday':
+                                        $namaHari = 'Kamis';
+                                        break;
+                                    case 'Friday':
+                                        $namaHari = "Jum'at";
+                                        break;
+                                    case 'Saturday':
+                                        $namaHari = 'Sabtu';
+                                        break;
+                                    case 'Sunday':
+                                        $namaHari = 'minggu';
+                                        break;
+                                }
+                            @endphp
+                            <span>{{ $namaHari }}</span>
                         </div>
                         <hr>
                         <div class="in-card-scroll pb-1">
