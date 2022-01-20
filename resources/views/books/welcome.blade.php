@@ -43,8 +43,7 @@
                         <thead>
                             <tr class="bg-primary text-white">
                                 <th scope="col">#</th>
-                                <th scope="col">Tanggal</th>
-                                <th scope="col">Waktu</th>
+                                <th scope="col">Tanggal Dan Waktu</th>
                                 <th scope="col">Topik</th>
                                 <th scope="col">Jenis Rapat</th>
                                 <th scope="col">Jumlah Peserta</th>
@@ -56,8 +55,7 @@
                                 <tr
                                     title="Pemesan &#9;: {{ $book->username }} &#13;NIP &#9;&#9;: {{ $book->staff_nip }}&#13;Instalasi &#9;: {{ $book->installation }}">
                                     <td>{{ $books->firstItem() + $loop->index }}</td>
-                                    <td>{{ $book->date }}</td>
-                                    <td>{{ $book->time_start . '-' . $book->time_end }}</td>
+                                    <td>{{ $book->date_start }} - {{ $book->date_finish }}</td>
                                     <td>{{ $book->topic }}</td>
                                     <td>{{ $book->type_meeting }}</td>
                                     <td>{{ $book->entrant }}</td>
@@ -72,52 +70,13 @@
                 </div>
             </div>
             <div id="calender" class="d-sm-flex align-items-center justify-content-between mb-4">
-                <h1 class="h3 mb-0 text-white mt-3">Kalender Pengajuan R. Rapat {{ $room->name }}</h1>
+                <h1 class="h3 mb-0 text-white mt-3">Kalender Pengajuan R. Rapat</h1>
             </div>
             <div class="card shadow mb-4 p-3">
-                <h3 class="text-center my-3">Kalender bulan
-                    @switch(date('m'))
-                        @case(1)
-                            Januari
-                        @break
-                        @case(2)
-                            Februari
-                        @break
-                        @case(3)
-                            Maret
-                        @break
-                        @case(4)
-                            April
-                        @break
-                        @case(5)
-                            Mei
-                        @break
-                        @case(6)
-                            Juni
-                        @break
-                        @case(7)
-                            Juli
-                        @break
-                        @case(8)
-                            Agustus
-                        @break
-                        @case(9)
-                            September
-                        @break
-                        @case(10)
-                            Oktober
-                        @break
-                        @case(11)
-                            November
-                        @break
-                        @case(12)
-                            Desember
-                        @break
-                        @default
-                    @endswitch {{ date('Y') }}
-                </h3>
-                <div class="row justify-content-center">
-                    @for ($i = 1; $i <= 31; $i++)
+                <div class="row justify-content-center p-3">
+                    {!! $calendar->calendar() !!}
+                    {!! $calendar->script() !!}
+                    {{-- @for ($i = 1; $i <= 31; $i++)
                         <div class="m-1 col-md-2 card shadow-sm in-card-scroll" data-toggle="modal"
                             data-target="#exampleModal{{ $i }}">
                             <div class="mt-2 text-center">
@@ -210,7 +169,7 @@
                                 </div>
                             </div>
                         </div>
-                    @endfor
+                    @endfor --}}
                 </div>
             </div>
         </div>

@@ -32,11 +32,16 @@ class BookController extends Controller
     public function create(Request $request)
     {
         $room_id = $request->get('room_id');
-        $data = [
-            'room' => Room::find($room_id),
-            'books' => Book::where('room_id', $room_id)->where('date', '>=', date("Y-m-d"))->paginate(5)
-        ];
-        return view('books.create', $data);
+
+        if ($room_id !== null) {
+            # code...
+            $data = [
+                'room' => Room::find($room_id),
+                'books' => Book::where('room_id', $room_id)->where('date_start', '>=', date("Y-m-d"))->paginate(5)
+            ];
+            return view('books.create', $data);
+        }
+        return redirect('/')->with('status', 'Ruangan Tidak Di pilih, Silahkan pilih ruangan terlebih dahulu');
     }
 
     /**
@@ -51,16 +56,16 @@ class BookController extends Controller
             'username' => 'required',
             'staff_nip' => 'required',
             'installation' => 'required',
-            'date' => 'required|',
-            'time_awal' => 'required',
-            'time_akhir' => 'required',
+            'date_start' => 'required',
+            'date_finish' => 'required',
             'topic' => 'required',
             'entrant' => 'required',
             'type_meeting' => 'required',
             'room_id' => 'required',
+            'color' => 'required',
         ]);
 
-        $bookExist = Book::whereBetween('time_start', [$request->time_awal,$request->time_akhir])->where('room_id', $request->room_id)->where('date', '=', $request->date)->exists();
+        $bookExist = Book::whereBetween('date_start', [$request->date_start, $request->date_finish])->where('room_id', $request->room_id)->where('date_finish', '=', $request->finish)->exists();
 
         if ($bookExist) {
             return redirect('/')->with('status-error', 'Pengajuan Gagal diajukan, Jadwal bentrok!!');
@@ -70,14 +75,14 @@ class BookController extends Controller
             $book->username = $request->username;
             $book->staff_nip = $request->staff_nip;
             $book->installation = $request->installation;
-            $book->date = $request->date;
-            $book->time_start = $request->time_awal;
-            $book->time_end = $request->time_akhir;
+            $book->date_start = $request->date_start;
+            $book->date_finish = $request->date_finish;
             $book->topic = $request->topic;
             $book->entrant = $request->entrant;
             $book->type_meeting = $request->type_meeting;
             $book->room_id = $request->room_id;
             $book->approved = false;
+            $book->color = $request->color;
             $book->save();
 
             return redirect('/')->with('status', 'Pengajuan Di ajukan!!');

@@ -21,14 +21,15 @@ class CreateBooksTables extends Migration
             $table->text('installation');
 
             //book
-            $table->string('date');
-            $table->string('time_start');
-            $table->string('time_end');
+            $table->dateTime('date_start');
+            $table->dateTime('date_finish');
             $table->string('topic');
             $table->integer('entrant');
             $table->string('type_meeting');
             $table->integer('room_id');
             $table->boolean('approved')->default(false);
+            $table->text('reject_note')->nullable();
+            $table->string('color');
             $table->timestamps();
         });
     }

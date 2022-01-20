@@ -16,8 +16,7 @@
                     <thead class="thead-light">
                         <tr>
                             <th scope="col">#</th>
-                            <th scope="col">Tanggal</th>
-                            <th scope="col">Waktu</th>
+                            <th scope="col">Tanggal dan Waktu</th>
                             <th scope="col">Topik</th>
                             <th scope="col">Jenis Rapat</th>
                             <th scope="col">Jumlah Peserta</th>
@@ -31,8 +30,7 @@
                             <tr
                                 title="Pemesan &#9;: {{ $book->username }} &#13;NIP &#9;&#9;: {{ $book->staff_nip }}&#13;Instalasi &#9;: {{ $book->installation }}">
                                 <th scope="row">{{  $books->firstItem() + $loop->index  }}</th>
-                                <td>{{ $book->date }}</td>
-                                <td>{{ $book->time_start . '-' . $book->time_end }}</td>
+                                <td>{{ $book->date_start }} - {{ $book->date_finish }}</td>
                                 <td>{{ $book->topic }}</td>
                                 <td>{{ $book->type_meeting }}</td>
                                 <td>{{ $book->entrant }}</td>

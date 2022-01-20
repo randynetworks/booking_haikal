@@ -30,16 +30,16 @@ class HomeController extends Controller
     public function index()
     {
 
-        $books = Book::all();
+        $books = Book::where('approved', true)->get();
         $book = [];
         foreach ($books as $row) {
             $book[] = Calendar::event(
                 $row->topic,
-                true,
-                new DateTime($row->date),
-                new DateTime($row->date),
+                false,
+                $row->date_start,
+                $row->date_finish,
                 $row->id,
-                ['color' => 'blue',]
+                ['color' => '#' . $row->color,]
             );
         }
 

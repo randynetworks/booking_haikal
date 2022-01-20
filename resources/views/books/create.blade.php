@@ -150,32 +150,22 @@
                                         </div>
                                         <div class="form-row ">
                                             <div class="form-group col-md-6">
-                                                <label for="datepicker">Tanggal</label>
-                                                <input value="{{ old('date') }}" type="text"
-                                                    class="@error('date') is-invalid
-                                        @enderror form-control"
-                                                    id="datepicker" name="date">
-                                                @error('date')
+                                                <label for="datetimepicker">Mulai Pada Tanggal</label>
+                                                <input value="{{ old('date_start') }}" type="text"
+                                                    class="@error('date_start') is-invalid
+                                        @enderror form-control datetimepicker"
+                                                    name="date_start">
+                                                @error('date_start')
                                                     <div class="mt-2 text-danger">{{ $message }}</div>
                                                 @enderror
                                             </div>
-                                            <div class="form-group col-md-3">
-                                                <label for="time-awal">Waktu Awal</label>
-                                                <input value="{{ old('time_awal') }}" type="text"
-                                                    class="@error('time_awal') is-invalid
-                                        @enderror form-control timepicker"
-                                                    id="timepicker" name="time_awal">
-                                                @error('time_awal')
-                                                    <div class="mt-2 text-danger">{{ $message }}</div>
-                                                @enderror
-                                            </div>
-                                            <div class="form-group col-md-3">
-                                                <label for="time-akhir">Waktu Akhir</label>
-                                                <input value="{{ old('time_akhir') }}" type="text"
-                                                    class="@error('time_akhir') is-invalid
-                                        @enderror form-control timepicker"
-                                                    id="timepicker" name="time_akhir">
-                                                @error('time_akhir')
+                                            <div class="form-group col-md-6">
+                                                <label for="date_finish">Selesai Pada Tanggal</label>
+                                                <input value="{{ old('date_finish') }}" type="text"
+                                                    class="@error('date_finish') is-invalid
+                                        @enderror form-control datetimepicker"
+                                                    name="date_finish">
+                                                @error('date_finish')
                                                     <div class="mt-2 text-danger">{{ $message }}</div>
                                                 @enderror
                                             </div>
@@ -227,6 +217,17 @@
                                             </div>
                                         </div>
 
+                                        <div class="form-group">
+                                            <label for="color">Warna</label>
+                                            <input value="{{ old('color') }}" type="text"
+                                                class="@error('color') is-invalid
+                                    @enderror form-control"
+                                                id="colorpicker" name="color">
+                                            @error('color')
+                                                <div class="mt-2 text-danger">{{ $message }}</div>
+                                            @enderror
+                                        </div>
+
                                     </div>
                                     <a href="/" class="btn btn-secondary">Kembali</a>
                                     <button type="submit" class="btn btn-primary">Ajukan</button>
@@ -255,7 +256,8 @@
                     <tbody>
                         @foreach ($books as $book)
                             <tr class="text-center" title="Pemesan &#9;: {{ $book->username }} &#13;NIP &#9;&#9;: {{ $book->staff_nip }}&#13;Instalasi &#9;: {{ $book->installation }}@if ($book->approved == 2)&#13;Ditolak karena {{ $book->reject_note }}">@else">@endif
-                                                                        <td class="          align-middle" scope=" row">
+                                                                                <td class="            align-middle"
+                                scope=" row">
                                 {{ $books->firstItem() + $loop->index }}
                                 </td>
                                 <td class="align-middle">{{ $book->date }}</td>
