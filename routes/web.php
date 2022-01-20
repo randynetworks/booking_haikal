@@ -1,5 +1,6 @@
 <?php
 
+use Acaronlex\LaravelCalendar\Facades\Calendar;
 use App\Models\Book;
 use App\Models\Room;
 use Illuminate\Support\Facades\App;
@@ -9,7 +10,6 @@ use App\Http\Controllers\BookController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\RoomController;
 use App\Http\Controllers\UserController;
-use Acaronlex\LaravelCalendar\Facades\Calendar;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,6 +26,7 @@ Route::get('/', function () {
     $books = Book::where('approved', true)->get();
     $book = [];
     foreach ($books as $row) {
+
         $book[] = Calendar::event(
             $row->topic,
             false,
