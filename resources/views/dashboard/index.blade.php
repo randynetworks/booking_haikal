@@ -11,9 +11,16 @@
         <div class="card-header py-3">
             <h6 class="m-0 font-weight-bold text-primary">Kalender Ruangan</h6>
         </div>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.9.0/moment.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.5.0/main.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.5.0/locales-all.min.js"></script>
+
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fullcalendar@5.5.0/main.css" />
         <div class="card-body">
             <div class="row">
-                @for ($i = 1; $i <= 31; $i++)
+                {!! $calendar->calendar() !!}
+                {!! $calendar->script() !!}
+                {{-- @for ($i = 1; $i <= 31; $i++)
                     <div class="m-1 col-md-2 card shadow-sm in-card-scroll" data-toggle="modal"
                         data-target="#exampleModal{{ $i }}">
                         <div class="mt-2 text-center">
@@ -104,7 +111,7 @@
                             </div>
                         </div>
                     </div>
-                @endfor
+                @endfor --}}
             </div>
         </div>
     </div>

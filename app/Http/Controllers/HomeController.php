@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use Acaronlex\LaravelCalendar\Calendar;
 use App\Models\Book;
 use App\Models\Room;
 use App\Models\User;
+use DateTime;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -27,12 +29,33 @@ class HomeController extends Controller
      */
     public function index()
     {
+
+        $books = Book::all();
+        $book = [];
+        foreach ($books as $row) {
+            $book[] = Calendar::event(
+                $row->topic,
+                true,
+                new DateTime($row->date),
+                new DateTime($row->date),
+                $row->id,
+                ['color' => 'blue',]
+            );
+        }
+
+        $calendar = new Calendar();
+
+
         $data = [
             "title" => "Selamat Datang, " . Auth::user()->name,
             "users" => User::count(),
             "roomsCount" => Room::count(),
             "rooms" => Room::all(),
             "books" => Book::all(),
+            "calendar" => $calendar->addEvents($book)
+                ->setOptions([
+                    'selectable' => true,
+                ]),
             "unapproved" => Book::where('approved', 0)->count(),
             "approved" => Book::where('approved', 1)->count(),
         ];
