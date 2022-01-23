@@ -21,8 +21,8 @@ class CreateBooksTables extends Migration
             $table->text('installation');
 
             //book
-            $table->date('date_start');
-            $table->date('date_finish');
+            $table->datetime('date_start');
+            $table->datetime('date_finish');
             $table->string('topic');
             $table->integer('entrant');
             $table->string('type_meeting');

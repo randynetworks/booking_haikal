@@ -22,43 +22,7 @@ use App\Http\Controllers\UserController;
 |
 */
 
-Route::get('/', function () {
-    $books = Book::where('approved', true)->get();
-    $book = [];
-    foreach ($books as $row) {
-
-        $book[] = Calendar::event(
-            $row->topic,
-            false,
-            $row->date_start,
-            $row->date_finish,
-            $row->id,
-            [
-                'color' => '#' . $row->color,
-                'locale' => 'id',
-            ]
-        );
-    }
-
-    $calendar = Calendar::addEvents($book)->setOptions([
-        'selectable' => true,
-        'displayEventTime' => true,
-        'headerToolbar' => [
-            'left' => 'prev,next today',
-            'center' => 'title',
-            'right' => 'dayGridMonth,timeGridWeek,timeGridDay'
-        ],
-    ]);
-
-    $data = [
-        'rooms' => Room::all(),
-        'books' => Book::where('approved', 1)->where('date_start', '>=', date("Y-m-d "))->orderBy('date_start', 'desc')->paginate(5),
-        'calendar' => $calendar
-    ];
-    // dd($calendar);
-    return view('books.welcome', $data);
-});
-
+Route::get('/', [HomeController::class, 'welcome']);
 ROute::get('books/create', [BookController::class, 'create']);
 Route::post('/books', [BookController::class, 'store']);
 Route::get('/books/{book}', [BookController::class, 'show_visitor']);

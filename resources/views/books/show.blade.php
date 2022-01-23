@@ -38,16 +38,26 @@
                 <div class="from-group mt-3">
                     <h3>Pengajuan Ruangan</h3>
                 </div>
-                <div class="form-row">
+                <div class="form-row ">
                     <div class="form-group col-md-6">
-                        <label for="datepicker">Tanggal</label>
-                        <input type="text" class="form-control" id="datepicker" name="date" value="{{ $book->date }}"
-                            disabled>
+                        <label for="datetimepicker">Mulai Pada Tanggal</label>
+                        <input value="{{ $book->date_start }}" type="text"
+                            class="@error('date_start') is-invalid
+                @enderror form-control datetimepicker"
+                            name="date_start">
+                        @error('date_start')
+                            <div class="mt-2 text-danger">{{ $message }}</div>
+                        @enderror
                     </div>
                     <div class="form-group col-md-6">
-                        <label for="time">Waktu</label>
-                        <input type="text" class="form-control" id="time" name="time"
-                            value="{{ $book->time_start . '-' . $book->time_end }}" disabled>
+                        <label for="date_finish">Selesai Pada Tanggal</label>
+                        <input value="{{ $book->date_finish }}" type="text"
+                            class="@error('date_finish') is-invalid
+                @enderror form-control datetimepicker"
+                            name="date_finish">
+                        @error('date_finish')
+                            <div class="mt-2 text-danger">{{ $message }}</div>
+                        @enderror
                     </div>
                 </div>
                 <div class="form-group">
@@ -73,7 +83,7 @@
                     </div>
                 </div>
                 </form>
-                <a href="/dashboard" class="btn btn-success">Kembali</a>
+                <a href="/" class="btn btn-success">Kembali</a>
             </div>
         </div>
     </div>

@@ -151,9 +151,9 @@
                                         <div class="form-row ">
                                             <div class="form-group col-md-6">
                                                 <label for="datetimepicker">Mulai Pada Tanggal</label>
-                                                <input value="{{ old('date_start') }}" type="datetime-local"
+                                                <input value="{{ old('date_start') }}" type="text"
                                                     class="@error('date_start') is-invalid
-                                        @enderror form-control"
+                                        @enderror form-control datetimepicker"
                                                     name="date_start">
                                                 @error('date_start')
                                                     <div class="mt-2 text-danger">{{ $message }}</div>
@@ -161,9 +161,9 @@
                                             </div>
                                             <div class="form-group col-md-6">
                                                 <label for="date_finish">Selesai Pada Tanggal</label>
-                                                <input value="{{ old('date_finish') }}" type="datetime-local"
+                                                <input value="{{ old('date_finish') }}" type="text"
                                                     class="@error('date_finish') is-invalid
-                                        @enderror form-control"
+                                        @enderror form-control datetimepicker"
                                                     name="date_finish">
                                                 @error('date_finish')
                                                     <div class="mt-2 text-danger">{{ $message }}</div>

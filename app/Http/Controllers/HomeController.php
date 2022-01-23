@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use Acaronlex\LaravelCalendar\Calendar;
+use Acaronlex\LaravelCalendar\Facades\Calendar;
 use App\Models\Book;
 use App\Models\Room;
 use App\Models\User;
@@ -22,6 +22,45 @@ class HomeController extends Controller
         $this->middleware('auth');
     }
 
+    public function welcome()
+    {
+        $books = Book::where('approved', true)->get();
+        $book = [];
+        foreach ($books as $row) {
+
+            $book[] = Calendar::event(
+                $row->topic,
+                true,
+                $row->date_start,
+                $row->date_finish,
+                $row->id,
+                [
+                    'color' => '#' . $row->color,
+                    'locale' => 'id',
+                    'url' => '/books/' . $row->id
+                ]
+            );
+        }
+
+        $calendar = Calendar::addEvents($book)->setOptions([
+            'selectable' => true,
+            'displayEventTime' => true,
+            'headerToolbar' => [
+                'left' => 'prev,next today',
+                'center' => 'title',
+                'right' => 'dayGridMonth,timeGridWeek'
+            ],
+        ]);
+
+        $data = [
+            'rooms' => Room::all(),
+            'books' => Book::where('approved', 1)->where('date_start', '>=', date("Y-m-d "))->orderBy('date_start', 'desc')->paginate(5),
+            'calendar' => $calendar
+        ];
+        // dd($calendar);
+        return view('books.welcome', $data);
+    }
+
     /**
      * Show the application dashboard.
      *
@@ -35,16 +74,16 @@ class HomeController extends Controller
         foreach ($books as $row) {
             $book[] = Calendar::event(
                 $row->topic,
-                false,
+                true,
                 $row->date_start,
                 $row->date_finish,
                 $row->id,
-                ['color' => '#' . $row->color,]
+                [
+                    'color' => '#' . $row->color,
+                    'url' => '/books/' . $row->id
+                ]
             );
         }
-
-        $calendar = new Calendar();
-
 
         $data = [
             "title" => "Selamat Datang, " . Auth::user()->name,
@@ -52,7 +91,7 @@ class HomeController extends Controller
             "roomsCount" => Room::count(),
             "rooms" => Room::all(),
             "books" => Book::all(),
-            "calendar" => $calendar->addEvents($book)
+            "calendar" => Calendar::addEvents($book)
                 ->setOptions([
                     'selectable' => true,
                 ]),
