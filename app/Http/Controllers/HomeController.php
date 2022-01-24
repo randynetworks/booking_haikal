@@ -94,6 +94,12 @@ class HomeController extends Controller
             "calendar" => Calendar::addEvents($book)
                 ->setOptions([
                     'selectable' => true,
+                    'displayEventTime' => true,
+                    'headerToolbar' => [
+                        'left' => 'prev,next today',
+                        'center' => 'title',
+                        'right' => 'dayGridMonth,timeGridWeek'
+                    ],
                 ]),
             "unapproved" => Book::where('approved', 0)->count(),
             "approved" => Book::where('approved', 1)->count(),

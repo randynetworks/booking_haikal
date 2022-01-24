@@ -16,7 +16,8 @@
                     <thead class="thead-light">
                         <tr>
                             <th scope="col">#</th>
-                            <th scope="col">Tanggal dan Waktu</th>
+                            <th scope="col">Tanggal</th>
+                            <th scope="col">Waktu</th>
                             <th scope="col">Topik</th>
                             <th scope="col">Jenis Rapat</th>
                             <th scope="col">Jumlah Peserta</th>
@@ -26,74 +27,139 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($books as $book)
-                            <tr
-                                title="Pemesan &#9;: {{ $book->username }} &#13;NIP &#9;&#9;: {{ $book->staff_nip }}&#13;Instalasi &#9;: {{ $book->installation }}">
-                                <th scope="row">{{  $books->firstItem() + $loop->index  }}</th>
-                                <td>{{ $book->date_start }} - {{ $book->date_finish }}</td>
-                                <td>{{ $book->topic }}</td>
-                                <td>{{ $book->type_meeting }}</td>
-                                <td>{{ $book->entrant }}</td>
-                                <td>{{ $book->room->name ?? 'Ruangan Terhapus' }}</td>
-                                @if ($book->approved == 1)
-                                    <td class="align-middle bg-success text-white">Di Setujui</td>
-                                @elseif($book->approved == 2)
-                                    <td class="align-middle bg-danger text-white">Di Tolak</td>
-                                @else
-                                    <td class="align-middle bg-dark text-white">Pending</td>
-                                @endif
-                                <td>
-                                    <button data-toggle="modal" data-target="#basicExampleModal{{ $book->id }}"
-                                        class="btn btn-sm btn-primary">Aksi</button>
-                                </td>
+                        @if ($books->count() == 0)
+                            <tr>
+                                <td class="pb-4"></td>
+                                <td class="pb-4"></td>
+                                <td class="pb-4"></td>
+                                <td class="pb-4"></td>
+                                <td class="pb-4"></td>
+                                <td class="pb-4"></td>
+                                <td class="pb-4"></td>
+                                <td class="pb-4"></td>
+                                <td class="pb-4"></td>
+                            </tr>
+                            <tr>
+                                <td class="pb-4"></td>
+                                <td class="pb-4"></td>
+                                <td class="pb-4"></td>
+                                <td class="pb-4"></td>
+                                <td class="pb-4"></td>
+                                <td class="pb-4"></td>
+                                <td class="pb-4"></td>
+                                <td class="pb-4"></td>
+                                <td class="pb-4"></td>
+                            </tr>
+                            <tr>
+                                <td class="pb-4"></td>
+                                <td class="pb-4"></td>
+                                <td class="pb-4"></td>
+                                <td class="pb-4"></td>
+                                <td class="pb-4"></td>
+                                <td class="pb-4"></td>
+                                <td class="pb-4"></td>
+                                <td class="pb-4"></td>
+                                <td class="pb-4"></td>
+                            </tr>
+                            <tr>
+                                <td class="pb-4"></td>
+                                <td class="pb-4"></td>
+                                <td class="pb-4"></td>
+                                <td class="pb-4"></td>
+                                <td class="pb-4"></td>
+                                <td class="pb-4"></td>
+                                <td class="pb-4"></td>
+                                <td class="pb-4"></td>
+                                <td class="pb-4"></td>
+                            </tr>
+                            <tr>
+                                <td class="pb-4"></td>
+                                <td class="pb-4"></td>
+                                <td class="pb-4"></td>
+                                <td class="pb-4"></td>
+                                <td class="pb-4"></td>
+                                <td class="pb-4"></td>
+                                <td class="pb-4"></td>
+                                <td class="pb-4"></td>
+                                <td class="pb-4"></td>
+                            </tr>
 
-                                {{-- modal --}}
-                                <!-- Modal -->
-                                <div class="modal fade" id="basicExampleModal{{ $book->id }}" tabindex="-1"
-                                    role="dialog" aria-labelledby="basicExampleModal{{ $book->id }}"
-                                    aria-hidden="true">
-                                    <div class="modal-dialog" role="document">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <h5 class="modal-title" id="exampleModalLabel">Pengesahan Peengajuan</h5>
-                                                <button type="button" class="close" data-dismiss="modal"
-                                                    aria-label="Close">
-                                                    <span aria-hidden="true">&times;</span>
-                                                </button>
-                                            </div>
-                                            <div class="card-body">
-                                                <form action="/dashboard/books/{{ $book->id }}" method="POST">
-                                                    @csrf
-                                                    @method('PUT')
-                                                    <div class="form-group">
-                                                        <label for="name">Disetujui?</label>
-                                                        <input type="hidden" class="form-control" id="name" name="id"
-                                                            value="{{ $book->id }}">
-                                                        <select id="approved" class="form-control" name="approved">
-                                                            <option selected>Pilih...</option>
-                                                            <option value="1">Disetujui</option>
-                                                            <option value="0">Tidak disetujui</option>
-                                                            <option value="2">Ditolak</option>
-                                                        </select>
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label for="name">Informasi Penolakan <span
-                                                                class="text-danger">*</span></label>
-                                                        <input type="text" class="form-control" id="name"
-                                                            name="reject_note">
-                                                        <small class="text-danger">*) Isi jika ditolak</small>
-                                                    </div>
+                        @else
+                            @foreach ($books as $book)
+                                <tr
+                                    title="Pemesan &#9;: {{ $book->username }} &#13;NIP &#9;&#9;: {{ $book->staff_nip }}&#13;Instalasi &#9;: {{ $book->installation }}">
+                                    <th scope="row">{{ $books->firstItem() + $loop->index }}</th>
+                                    @if ($book->date_start === $book->date_finish)
+                                        <td>{{ $book->date_start }}</td>
+                                    @else
+                                        <td>{{ $book->date_start }} - {{ $book->date_finish }}</td>
+                                    @endif
+                                    <td>{{ $book->time_start }} - {{ $book->time_finish }}</td>
+                                    <td>{{ $book->topic }}</td>
+                                    <td>{{ $book->type_meeting }}</td>
+                                    <td>{{ $book->entrant }}</td>
+                                    <td>{{ $book->room->name ?? 'Ruangan Terhapus' }}</td>
+                                    @if ($book->approved == 1)
+                                        <td class="align-middle bg-success text-white">Di Setujui</td>
+                                    @elseif($book->approved == 2)
+                                        <td class="align-middle bg-danger text-white">Di Tolak</td>
+                                    @else
+                                        <td class="align-middle bg-dark text-white">Pending</td>
+                                    @endif
+                                    <td>
+                                        <button data-toggle="modal" data-target="#basicExampleModal{{ $book->id }}"
+                                            class="btn btn-sm btn-primary">Aksi</button>
+                                    </td>
 
-                                                    <button type="submit" class="btn btn-primary">Edit Data</button> <button
-                                                        type="button" class="btn btn-secondary"
-                                                        data-dismiss="modal">Close</button>
-                                                </form>
+                                    {{-- modal --}}
+                                    <!-- Modal -->
+                                    <div class="modal fade" id="basicExampleModal{{ $book->id }}" tabindex="-1"
+                                        role="dialog" aria-labelledby="basicExampleModal{{ $book->id }}"
+                                        aria-hidden="true">
+                                        <div class="modal-dialog" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="exampleModalLabel">Pengesahan Peengajuan
+                                                    </h5>
+                                                    <button type="button" class="close" data-dismiss="modal"
+                                                        aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                </div>
+                                                <div class="card-body">
+                                                    <form action="/dashboard/books/{{ $book->id }}" method="POST">
+                                                        @csrf
+                                                        @method('PUT')
+                                                        <div class="form-group">
+                                                            <label for="name">Disetujui?</label>
+                                                            <input type="hidden" class="form-control" id="name" name="id"
+                                                                value="{{ $book->id }}">
+                                                            <select id="approved" class="form-control" name="approved">
+                                                                <option selected>Pilih...</option>
+                                                                <option value="1">Disetujui</option>
+                                                                <option value="0">Tidak disetujui</option>
+                                                                <option value="2">Ditolak</option>
+                                                            </select>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label for="name">Informasi Penolakan <span
+                                                                    class="text-danger">*</span></label>
+                                                            <input type="text" class="form-control" id="name"
+                                                                name="reject_note">
+                                                            <small class="text-danger">*) Isi jika ditolak</small>
+                                                        </div>
+
+                                                        <button type="submit" class="btn btn-primary">Edit Data</button>
+                                                        <button type="button" class="btn btn-secondary"
+                                                            data-dismiss="modal">Close</button>
+                                                    </form>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                            </tr>
-                        @endforeach
+                                </tr>
+                            @endforeach
+                        @endif
                     </tbody>
                 </table>
                 {!! $books->appends(request()->input())->links() !!}
