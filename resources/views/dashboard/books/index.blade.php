@@ -86,8 +86,11 @@
 
                         @else
                             @foreach ($books as $book)
-                                <tr
-                                    title="Pemesan &#9;: {{ $book->username }} &#13;NIP &#9;&#9;: {{ $book->staff_nip }}&#13;Instalasi &#9;: {{ $book->installation }}">
+
+                                <tr data-toggle="popover" data-trigger="hover" title="Informasi Detail" data-html="true"
+                                    data-content="Pemesan &#9;: {{ $book->username }}<br/>
+                                    NIP &#9;&#9;: {{ $book->staff_nip }}<br/>
+                                    Instalasi &#9;: {{ $book->installation }}">
                                     <th scope="row">{{ $books->firstItem() + $loop->index }}</th>
                                     @if ($book->date_start === $book->date_finish)
                                         <td>{{ $book->date_start }}</td>

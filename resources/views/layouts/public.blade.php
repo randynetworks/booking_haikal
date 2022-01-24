@@ -125,7 +125,7 @@
             background-attachment: fixed; */
 
             background-color: #e4e4e4;
-            animation: fadeInAnimation ease 3s;
+            animation: fadeInAnimation ease 2s;
             animation-iteration-count: 1;
             animation-fill-mode: forwards;
         }
@@ -257,7 +257,7 @@
 
         /* [3] Finally, transforming the image when container gets hovered */
         .img-hover-zoom:hover img {
-            transform: scale(2);
+            transform: scale(1.4);
         }
 
         .img-hover-zoom:hover {
@@ -459,7 +459,7 @@
         @endif
     </div>
     @yield('content')
-    <footer class="text-dark pb-5 text-center">&copy;Copyright 2022 Sistem Informasi Booking Sistem
+    <footer class="text-dark py-5 text-center">&copy;Copyright 2022 Sistem Informasi Booking Sistem
     </footer>
 
 
@@ -489,6 +489,9 @@
             });
 
         });
+
+
+        $('[data-toggle="popover"]').popover({})
     </script>
 
 
