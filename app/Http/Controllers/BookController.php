@@ -33,7 +33,7 @@ class BookController extends Controller
     {
         $room_id = $request->get('room_id');
 
-        if ($room_id !== null) {
+        if ($room_id != null) {
             # code...
             $data = [
                 'room' => Room::find($room_id),
@@ -58,14 +58,18 @@ class BookController extends Controller
             'installation' => 'required',
             'date_start' => 'required',
             'date_finish' => 'required',
+            'time_start' => 'required',
+            'time_finish' => 'required',
             'topic' => 'required',
             'entrant' => 'required',
             'type_meeting' => 'required',
             'room_id' => 'required',
             'color' => 'required',
         ]);
-
-        $bookExist = Book::whereBetween('date_start', [$request->date_start, $request->date_finish])->where('room_id', $request->room_id)->where('date_finish', '=', $request->finish)->exists();
+        $bookExist = Book::where('room_id', $request->room_id)
+            ->whereBetween('date_start', [$request->date_start, $request->date_finish])
+            ->whereBetween('time_start', [$request->time_start, date('h:i', strtotime("-1 minutes", strtotime($request->time_finish)))])
+            ->exists();
 
         if ($bookExist) {
             return redirect('/')->with('status-error', 'Pengajuan Gagal diajukan, Jadwal bentrok!!');
@@ -77,6 +81,8 @@ class BookController extends Controller
             $book->installation = $request->installation;
             $book->date_start = $request->date_start;
             $book->date_finish = $request->date_finish;
+            $book->time_start = $request->time_start;
+            $book->time_finish = $request->time_finish;
             $book->topic = $request->topic;
             $book->entrant = $request->entrant;
             $book->type_meeting = $request->type_meeting;

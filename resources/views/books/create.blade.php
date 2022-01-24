@@ -22,13 +22,13 @@
                                 </div>
                             </div>
                             <div class="row">
-                                @if ($room->img2 !== null && file_exists(public_path() . 'storage/img/' . $room->img))
+                                @if ($room->img2 !== null)
                                     <div class="col-md-6 p-1">
                                         <img data-toggle="modal" data-target="#exampleModal" class="rounded"
                                             width="100%" src="{{ asset('storage/img/' . $room->img2) }}" alt="">
                                     </div>
                                 @endif
-                                @if ($room->img3 !== null && file_exists(public_path() . 'storage/img/' . $room->img))
+                                @if ($room->img3 !== null)
                                     <div class="col-md-6 p-1">
                                         <img data-toggle="modal" data-target="#exampleModal" class="rounded"
                                             width="100%" src="{{ asset('storage/img/' . $room->img3) }}" alt="">
@@ -148,24 +148,48 @@
                                         <div class="from-group mt-3">
                                             <h3>Pengajuan Ruangan</h3>
                                         </div>
-                                        <div class="form-row ">
+                                        <div class="form-row">
                                             <div class="form-group col-md-6">
-                                                <label for="datetimepicker">Mulai Pada Tanggal</label>
-                                                <input value="{{ old('date_start') }}" type="text"
+                                                <label for="datepicker_start">Mulai Pada Tanggal</label>
+                                                <input id="datepicker_start" value="{{ old('date_start') }}" type="text"
                                                     class="@error('date_start') is-invalid
-                                        @enderror form-control datetimepicker"
+                                        @enderror form-control"
                                                     name="date_start">
                                                 @error('date_start')
                                                     <div class="mt-2 text-danger">{{ $message }}</div>
                                                 @enderror
                                             </div>
                                             <div class="form-group col-md-6">
-                                                <label for="date_finish">Selesai Pada Tanggal</label>
-                                                <input value="{{ old('date_finish') }}" type="text"
+                                                <label for="datepicker_finish">Selesai Pada Tanggal</label>
+                                                <input id="datepicker_finish" value="{{ old('date_finish') }}"
+                                                    type="text"
                                                     class="@error('date_finish') is-invalid
-                                        @enderror form-control datetimepicker"
+                                        @enderror form-control"
                                                     name="date_finish">
                                                 @error('date_finish')
+                                                    <div class="mt-2 text-danger">{{ $message }}</div>
+                                                @enderror
+                                            </div>
+                                        </div>
+                                        <div class="form-row">
+                                            <div class="form-group col-md-6">
+                                                <label for="timepicker_start">Mulai Pada Jam</label>
+                                                <input id="timepicker_start" value="{{ old('time_start') }}" type="text"
+                                                    class="@error('time_start') is-invalid
+                                        @enderror form-control timepicker"
+                                                    name="time_start">
+                                                @error('time_start')
+                                                    <div class="mt-2 text-danger">{{ $message }}</div>
+                                                @enderror
+                                            </div>
+                                            <div class="form-group col-md-6">
+                                                <label for="timepicker_finish">Selesai Pada Jam</label>
+                                                <input id="timepicker_finish" value="{{ old('time_finish') }}"
+                                                    type="text"
+                                                    class="@error('time_finish') is-invalid
+                                        @enderror form-control timepicker"
+                                                    name="time_finish">
+                                                @error('time_finish')
                                                     <div class="mt-2 text-danger">{{ $message }}</div>
                                                 @enderror
                                             </div>
@@ -242,38 +266,84 @@
             </div>
             <div class="card shadow mb-4 p-3">
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                    <thead class="thead-light">
-                        <tr class="text-center">
-                            <th class="align-middle" scope="col">#</th>
-                            <th class="align-middle" scope="col">Tanggal</th>
-                            <th class="align-middle" scope="col">Waktu</th>
-                            <th class="align-middle" scope="col">Topik</th>
-                            <th class="align-middle" scope="col">Jenis Rapat</th>
-                            <th class="align-middle" scope="col">Jumlah Peserta</th>
-                            <th class="align-middle" scope="col">Status</th>
+                    <thead>
+                        <tr class="bg-primary text-white">
+                            <th scope="col">#</th>
+                            <th scope="col">Tanggal</th>
+                            <th scope="col">Waktu</th>
+                            <th scope="col">Topik</th>
+                            <th scope="col">Jenis Rapat</th>
+                            <th scope="col">Jumlah Peserta</th>
+                            <th scope="col">Ruangan</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($books as $book)
-                            <tr class="text-center" title="Pemesan &#9;: {{ $book->username }} &#13;NIP &#9;&#9;: {{ $book->staff_nip }}&#13;Instalasi &#9;: {{ $book->installation }}@if ($book->approved == 2)&#13;Ditolak karena {{ $book->reject_note }}">@else">@endif
-                                                                                <td class="            align-middle"
-                                scope=" row">
-                                {{ $books->firstItem() + $loop->index }}
-                                </td>
-                                <td class="align-middle">{{ $book->date }}</td>
-                                <td class="align-middle">{{ $book->time_start . '-' . $book->time_end }}</td>
-                                <td class="text-left align-middle">{{ $book->topic }}</td>
-                                <td class="align-middle">{{ $book->type_meeting }}</td>
-                                <td class="align-middle">{{ $book->entrant }}</td>
-                                @if ($book->approved == 1)
-                                    <td class="align-middle bg-success text-white">Di Setujui</td>
-                                @elseif($book->approved == 2)
-                                    <td class="align-middle bg-danger text-white">Di Tolak</td>
-                                @else
-                                    <td class="align-middle bg-dark text-white">Pending</td>
-                                @endif
+                        @if ($books->count() == 0)
+                            <tr>
+                                <td class="pb-4"></td>
+                                <td class="pb-4"></td>
+                                <td class="pb-4"></td>
+                                <td class="pb-4"></td>
+                                <td class="pb-4"></td>
+                                <td class="pb-4"></td>
+                                <td class="pb-4"></td>
                             </tr>
-                        @endforeach
+                            <tr>
+                                <td class="pb-4"></td>
+                                <td class="pb-4"></td>
+                                <td class="pb-4"></td>
+                                <td class="pb-4"></td>
+                                <td class="pb-4"></td>
+                                <td class="pb-4"></td>
+                                <td class="pb-4"></td>
+                            </tr>
+                            <tr>
+                                <td class="pb-4"></td>
+                                <td class="pb-4"></td>
+                                <td class="pb-4"></td>
+                                <td class="pb-4"></td>
+                                <td class="pb-4"></td>
+                                <td class="pb-4"></td>
+                                <td class="pb-4"></td>
+                            </tr>
+                            <tr>
+                                <td class="pb-4"></td>
+                                <td class="pb-4"></td>
+                                <td class="pb-4"></td>
+                                <td class="pb-4"></td>
+                                <td class="pb-4"></td>
+                                <td class="pb-4"></td>
+                                <td class="pb-4"></td>
+                            </tr>
+                            <tr>
+                                <td class="pb-4"></td>
+                                <td class="pb-4"></td>
+                                <td class="pb-4"></td>
+                                <td class="pb-4"></td>
+                                <td class="pb-4"></td>
+                                <td class="pb-4"></td>
+                                <td class="pb-4"></td>
+                            </tr>
+                        @else
+                            @foreach ($books as $book)
+                                <tr
+                                    title="Pemesan &#9;: {{ $book->username }} &#13;NIP &#9;&#9;: {{ $book->staff_nip }}&#13;Instalasi &#9;: {{ $book->installation }}">
+                                    <td>{{ $books->firstItem() + $loop->index }}</td>
+                                    @if ($book->date_start === $book->date_finish)
+                                        <td>{{ $book->date_start }}</td>
+                                    @else
+                                        <td>{{ $book->date_start }} - {{ $book->date_finish }}</td>
+                                    @endif
+                                    <td>{{ $book->time_start }} - {{ $book->time_finish }}</td>
+                                    <td>{{ $book->topic }}</td>
+                                    <td>{{ $book->type_meeting }}</td>
+                                    <td>{{ $book->entrant }}</td>
+                                    <td>{{ $book->room->name ?? 'Ruangan Terhapus' }}</td>
+                                </tr>
+                                {{-- @if ($book->date >= date('Y-m-d'))
+                    @endif --}}
+                            @endforeach
+                        @endif
                     </tbody>
                 </table>
                 {!! $books->appends(request()->input())->links() !!}

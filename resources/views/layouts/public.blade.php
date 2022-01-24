@@ -57,12 +57,36 @@
     <script>
         $(function() {
             $('#colorpicker').wheelColorPicker();
-            $(".datetimepicker").datetimepicker();
-            $('.timepicker').timepicker({
-                timeFormat: 'HH:mm',
-                dynamic: true,
-                dropdown: true,
-                scrollbar: true
+            $("#datepicker_start").datetimepicker({
+                timepicker: false,
+                format: 'Y-m-d',
+                onShow: function(ct) {
+                    this.setOptions({
+                        minDate: 0,
+                        maxDate: jQuery('#datepicker_finish').val() ? jQuery(
+                            '#datepicker_finish').val() : false
+                    })
+                },
+            });
+            $("#datepicker_finish").datetimepicker({
+                timepicker: false,
+                format: 'Y-m-d',
+                onShow: function(ct) {
+                    this.setOptions({
+                        minDate: jQuery('#datepicker_start').val() ? jQuery(
+                            '#datepicker_start').val() : false
+                    })
+                },
+            });
+            $("#timepicker_start").datetimepicker({
+                datepicker: false,
+                format: 'h:i',
+                step: 5,
+            });
+            $("#timepicker_finish").datetimepicker({
+                datepicker: false,
+                format: 'h:i',
+                step: 5,
             });
         });
     </script>

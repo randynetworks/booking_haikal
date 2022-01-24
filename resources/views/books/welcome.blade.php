@@ -43,7 +43,8 @@
                         <thead>
                             <tr class="bg-primary text-white">
                                 <th scope="col">#</th>
-                                <th scope="col">Tanggal Dan Waktu</th>
+                                <th scope="col">Tanggal</th>
+                                <th scope="col">Waktu</th>
                                 <th scope="col">Topik</th>
                                 <th scope="col">Jenis Rapat</th>
                                 <th scope="col">Jumlah Peserta</th>
@@ -51,19 +52,72 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($books as $book)
-                                <tr
-                                    title="Pemesan &#9;: {{ $book->username }} &#13;NIP &#9;&#9;: {{ $book->staff_nip }}&#13;Instalasi &#9;: {{ $book->installation }}">
-                                    <td>{{ $books->firstItem() + $loop->index }}</td>
-                                    <td>{{ $book->date_start }} - {{ $book->date_finish }}</td>
-                                    <td>{{ $book->topic }}</td>
-                                    <td>{{ $book->type_meeting }}</td>
-                                    <td>{{ $book->entrant }}</td>
-                                    <td>{{ $book->room->name ?? 'Ruangan Terhapus' }}</td>
+                            @if ($books->count() == 0)
+                                <tr>
+                                    <td class="pb-4"></td>
+                                    <td class="pb-4"></td>
+                                    <td class="pb-4"></td>
+                                    <td class="pb-4"></td>
+                                    <td class="pb-4"></td>
+                                    <td class="pb-4"></td>
+                                    <td class="pb-4"></td>
                                 </tr>
-                                {{-- @if ($book->date >= date('Y-m-d'))
+                                <tr>
+                                    <td class="pb-4"></td>
+                                    <td class="pb-4"></td>
+                                    <td class="pb-4"></td>
+                                    <td class="pb-4"></td>
+                                    <td class="pb-4"></td>
+                                    <td class="pb-4"></td>
+                                    <td class="pb-4"></td>
+                                </tr>
+                                <tr>
+                                    <td class="pb-4"></td>
+                                    <td class="pb-4"></td>
+                                    <td class="pb-4"></td>
+                                    <td class="pb-4"></td>
+                                    <td class="pb-4"></td>
+                                    <td class="pb-4"></td>
+                                    <td class="pb-4"></td>
+                                </tr>
+                                <tr>
+                                    <td class="pb-4"></td>
+                                    <td class="pb-4"></td>
+                                    <td class="pb-4"></td>
+                                    <td class="pb-4"></td>
+                                    <td class="pb-4"></td>
+                                    <td class="pb-4"></td>
+                                    <td class="pb-4"></td>
+                                </tr>
+                                <tr>
+                                    <td class="pb-4"></td>
+                                    <td class="pb-4"></td>
+                                    <td class="pb-4"></td>
+                                    <td class="pb-4"></td>
+                                    <td class="pb-4"></td>
+                                    <td class="pb-4"></td>
+                                    <td class="pb-4"></td>
+                                </tr>
+                            @else
+                                @foreach ($books as $book)
+                                    <tr
+                                        title="Pemesan &#9;: {{ $book->username }} &#13;NIP &#9;&#9;: {{ $book->staff_nip }}&#13;Instalasi &#9;: {{ $book->installation }}">
+                                        <td>{{ $books->firstItem() + $loop->index }}</td>
+                                        @if ($book->date_start === $book->date_finish)
+                                            <td>{{ $book->date_start }}</td>
+                                        @else
+                                            <td>{{ $book->date_start }} - {{ $book->date_finish }}</td>
+                                        @endif
+                                        <td>{{ $book->time_start }} - {{ $book->time_finish }}</td>
+                                        <td>{{ $book->topic }}</td>
+                                        <td>{{ $book->type_meeting }}</td>
+                                        <td>{{ $book->entrant }}</td>
+                                        <td>{{ $book->room->name ?? 'Ruangan Terhapus' }}</td>
+                                    </tr>
+                                    {{-- @if ($book->date >= date('Y-m-d'))
                         @endif --}}
-                            @endforeach
+                                @endforeach
+                            @endif
                         </tbody>
                     </table>
                     {!! $books->appends(request()->input())->links() !!}

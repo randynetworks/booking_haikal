@@ -57,7 +57,7 @@ class HomeController extends Controller
             'books' => Book::where('approved', 1)->where('date_start', '>=', date("Y-m-d "))->orderBy('date_start', 'desc')->paginate(5),
             'calendar' => $calendar
         ];
-        // dd($calendar);
+
         return view('books.welcome', $data);
     }
 
@@ -90,7 +90,7 @@ class HomeController extends Controller
             "users" => User::count(),
             "roomsCount" => Room::count(),
             "rooms" => Room::all(),
-            "books" => Book::all(),
+            "books" => $books,
             "calendar" => Calendar::addEvents($book)
                 ->setOptions([
                     'selectable' => true,

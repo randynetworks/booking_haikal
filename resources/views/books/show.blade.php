@@ -44,7 +44,7 @@
                         <input value="{{ $book->date_start }}" type="text"
                             class="@error('date_start') is-invalid
                 @enderror form-control datetimepicker"
-                            name="date_start">
+                            name="date_start" disabled>
                         @error('date_start')
                             <div class="mt-2 text-danger">{{ $message }}</div>
                         @enderror
@@ -54,8 +54,30 @@
                         <input value="{{ $book->date_finish }}" type="text"
                             class="@error('date_finish') is-invalid
                 @enderror form-control datetimepicker"
-                            name="date_finish">
+                            name="date_finish" disabled>
                         @error('date_finish')
+                            <div class="mt-2 text-danger">{{ $message }}</div>
+                        @enderror
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="timepicker_start">Mulai Pada Jam</label>
+                        <input id="timepicker_start" value="{{ $book->time_start}}" type="text"
+                            class="@error('time_start') is-invalid
+                @enderror form-control timepicker"
+                            name="time_start" disabled>
+                        @error('time_start')
+                            <div class="mt-2 text-danger">{{ $message }}</div>
+                        @enderror
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="timepicker_finish">Selesai Pada Jam</label>
+                        <input id="timepicker_finish" value="{{ $book->time_finish }}" type="text"
+                            class="@error('time_finish') is-invalid
+                @enderror form-control timepicker"
+                            name="time_finish" disabled>
+                        @error('time_finish')
                             <div class="mt-2 text-danger">{{ $message }}</div>
                         @enderror
                     </div>
