@@ -3,7 +3,7 @@
 @section('content')
     <div class="cover jumbotron jumbotron-fluid">
         <div class="container py-5">
-            <div id="calender" class="text-center mb-5">
+            <div class="text-center mb-5">
                 <h1 class="h3 mb-0 text-white">Daftar Pengajuan R. Rapat</h1>
             </div>
             <div class="row justify-content-center py-5">
