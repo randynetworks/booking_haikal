@@ -302,6 +302,7 @@
                                 <th scope="col">Jenis Rapat</th>
                                 <th scope="col">Jumlah Peserta</th>
                                 <th scope="col">Ruangan</th>
+                                <th scope="col">Status</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -314,14 +315,6 @@
                                     <td class="pb-4"></td>
                                     <td class="pb-4"></td>
                                     <td class="pb-4"></td>
-                                </tr>
-                                <tr>
-                                    <td class="pb-4"></td>
-                                    <td class="pb-4"></td>
-                                    <td class="pb-4"></td>
-                                    <td class="pb-4"></td>
-                                    <td class="pb-4"></td>
-                                    <td class="pb-4"></td>
                                     <td class="pb-4"></td>
                                 </tr>
                                 <tr>
@@ -332,6 +325,17 @@
                                     <td class="pb-4"></td>
                                     <td class="pb-4"></td>
                                     <td class="pb-4"></td>
+                                    <td class="pb-4"></td>
+                                </tr>
+                                <tr>
+                                    <td class="pb-4"></td>
+                                    <td class="pb-4"></td>
+                                    <td class="pb-4"></td>
+                                    <td class="pb-4"></td>
+                                    <td class="pb-4"></td>
+                                    <td class="pb-4"></td>
+                                    <td class="pb-4"></td>
+                                    <td class="pb-4"></td>
                                 </tr>
                                 <tr>
                                     <td class="pb-4"></td>
@@ -341,8 +345,10 @@
                                     <td class="pb-4"></td>
                                     <td class="pb-4"></td>
                                     <td class="pb-4"></td>
+                                    <td class="pb-4"></td>
                                 </tr>
                                 <tr>
+                                    <td class="pb-4"></td>
                                     <td class="pb-4"></td>
                                     <td class="pb-4"></td>
                                     <td class="pb-4"></td>
@@ -356,8 +362,8 @@
 
                                     <tr data-toggle="popover" data-trigger="hover" title="Informasi Detail" data-html="true"
                                         data-content="Pemesan &#9;: {{ $book->username }}<br/>
-                                        NIP &#9;&#9;: {{ $book->staff_nip }}<br/>
-                                        Instalasi &#9;: {{ $book->installation }}">
+                                            NIP &#9;&#9;: {{ $book->staff_nip }}<br/>
+                                            Instalasi &#9;: {{ $book->installation }}">
                                         <td>{{ $books->firstItem() + $loop->index }}</td>
                                         @if ($book->date_start === $book->date_finish)
                                             <td>{{ $book->date_start }}</td>
@@ -369,6 +375,13 @@
                                         <td>{{ $book->type_meeting }}</td>
                                         <td>{{ $book->entrant }}</td>
                                         <td>{{ $book->room->name ?? 'Ruangan Terhapus' }}</td>
+                                        @if ($book->approved === 1)
+                                            <td>Di Setujui</td>
+                                        @elseif ($book->approved === 2)
+                                            <td>Di Tolak</td>
+                                        @else
+                                            <td>Pending</td>
+                                        @endif
                                     </tr>
                                     {{-- @if ($book->date >= date('Y-m-d'))
                         @endif --}}
