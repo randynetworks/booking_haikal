@@ -15,6 +15,16 @@
 
     <div class="create pt-5">
         <div class="container-xl">
+            @if (session('status'))
+                <div class="alert alert-success" role="alert">
+                    {{ session('status') }}
+                </div>
+            @endif
+            @if (session('status-error'))
+                <div class="alert alert-danger" role="alert">
+                    {{ session('status-error') }}
+                </div>
+            @endif
             <div class="row justify-content-center">
                 <div class="col-md-10">
                     <!-- Page Heading -->
@@ -362,8 +372,8 @@
 
                                     <tr data-toggle="popover" data-trigger="hover" title="Informasi Detail" data-html="true"
                                         data-content="Pemesan &#9;: {{ $book->username }}<br/>
-                                            NIP &#9;&#9;: {{ $book->staff_nip }}<br/>
-                                            Instalasi &#9;: {{ $book->installation }}">
+                                                    NIP &#9;&#9;: {{ $book->staff_nip }}<br/>
+                                                    Instalasi &#9;: {{ $book->installation }}">
                                         <td>{{ $books->firstItem() + $loop->index }}</td>
                                         @if ($book->date_start === $book->date_finish)
                                             <td>{{ $book->date_start }}</td>

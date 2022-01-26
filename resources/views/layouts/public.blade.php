@@ -434,18 +434,6 @@
             </form>
         </div>
     </nav>
-    <div class="container">
-        @if (session('status'))
-            <div class="alert alert-success" role="alert">
-                {{ session('status') }}
-            </div>
-        @endif
-        @if (session('status-error'))
-            <div class="alert alert-danger" role="alert">
-                {{ session('status-error') }}
-            </div>
-        @endif
-    </div>
     @yield('content')
     <footer class="text-dark py-5 text-center">&copy;Copyright 2022 Sistem Informasi Booking Sistem
     </footer>

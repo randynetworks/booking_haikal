@@ -72,7 +72,7 @@ class BookController extends Controller
             ->exists();
 
         if ($bookExist) {
-            return redirect('/')->with('status-error', 'Pengajuan Gagal diajukan, Jadwal bentrok!!');
+            return redirect('/books/create?room_id=' . $request->room_id)->with('status-error', 'Pengajuan Gagal diajukan, Jadwal bentrok!!');
         } else {
 
             $book = new Book;
@@ -91,7 +91,7 @@ class BookController extends Controller
             $book->color = $request->color;
             $book->save();
 
-            return redirect('/')->with('status', 'Pengajuan Di ajukan!!');
+            return redirect('/books/create?room_id=' . $request->room_id)->with('status', 'Pengajuan Di ajukan!!');
         }
     }
 
