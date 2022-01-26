@@ -275,66 +275,64 @@
         <div class="text-center mb-4">
             <h1 class="h3 mb-0 text-white mt-3">Daftar Pengajuan R. Rapat {{ $room->name }}</h1>
         </div>
-        <div class="row justify-content-center">
-            <div class="col-md-8">
-                <div class="card shadow mb-4 p-3">
-                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                        <thead>
-                            <tr class="bg-primary text-white text-center">
-                                <th scope="col">#</th>
-                                <th scope="col">Tanggal</th>
-                                <th scope="col">Waktu</th>
-                                <th scope="col">Topik</th>
-                                <th scope="col">Jenis Rapat</th>
-                                <th scope="col">Jumlah Peserta</th>
-                                <th scope="col">Ruangan</th>
-                                <th scope="col">Status</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach ($books as $book)
-                                <tr data-toggle="popover" data-trigger="hover" title="Informasi Detail" data-html="true"
-                                    data-content="Pemesan &#9;: {{ $book->username }}<br/>
-                                NIP &#9;&#9;: {{ $book->staff_nip }}<br/>
-                                Instalasi &#9;: {{ $book->installation }}<br/>
-                                 @if ($book->approved == 2 && $book->reject_note !== null)
-                                    Info Ditolak : {{ $book->reject_note }}
-                            @endif
-                            ">
-                            <td>{{ $books->firstItem() + $loop->index }}</td>
-                            <td>{{ $book->date_start }}</td>
-                            <td>{{ $book->time_start }} - {{ $book->time_finish }}</td>
-                            <td>{{ $book->topic }}</td>
-                            <td>{{ $book->type_meeting }}</td>
-                            <td>{{ $book->entrant }}</td>
-                            <td>{{ $book->room->name ?? 'Ruangan Terhapus' }}</td>
-                            @if ($book->approved === 1)
-                                <td class="bg-success text-white">Di Setujui</td>
-                            @elseif ($book->approved === 2)
-                                <td class="bg-danger text-white">Di Tolak</td>
-                            @else
-                                <td class="bg-secondary text-white">Pending</td>
-                            @endif
-                            </tr>
-                            @endforeach
-                            @if ($books->count() <= 5)
-                                @for ($i = 1; $i <= 5 - $books->count(); $i++)
-                                    <tr>
-                                        <td class="pb-4"></td>
-                                        <td class="pb-4"></td>
-                                        <td class="pb-4"></td>
-                                        <td class="pb-4"></td>
-                                        <td class="pb-4"></td>
-                                        <td class="pb-4"></td>
-                                        <td class="pb-4"></td>
-                                        <td class="pb-4"></td>
-                                    </tr>
-                                @endfor
-                            @endif
-                        </tbody>
-                    </table>
-                    {!! $books->appends(request()->input())->links() !!}
-                </div>
+        <div class="container pb-5">
+            <div class="card shadow mb-4 p-3">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                    <thead>
+                        <tr class="bg-primary text-white text-center">
+                            <th scope="col">#</th>
+                            <th scope="col">Tanggal</th>
+                            <th scope="col">Waktu</th>
+                            <th scope="col">Topik</th>
+                            <th scope="col">Jenis Rapat</th>
+                            <th scope="col">Jumlah Peserta</th>
+                            <th scope="col">Ruangan</th>
+                            <th scope="col">Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach ($books as $book)
+                            <tr data-toggle="popover" data-trigger="hover" title="Informasi Detail" data-html="true"
+                                data-content="Pemesan &#9;: {{ $book->username }}<br/>
+                            NIP &#9;&#9;: {{ $book->staff_nip }}<br/>
+                            Instalasi &#9;: {{ $book->installation }}<br/>
+                              @if ($book->approved == 2 && $book->reject_note !== null)
+                                Info Ditolak : {{ $book->reject_note }}
+                        @endif
+                        ">
+                        <td>{{ $books->firstItem() + $loop->index }}</td>
+                        <td>{{ $book->date_start }}</td>
+                        <td>{{ $book->time_start }} - {{ $book->time_finish }}</td>
+                        <td>{{ $book->topic }}</td>
+                        <td>{{ $book->type_meeting }}</td>
+                        <td>{{ $book->entrant }}</td>
+                        <td>{{ $book->room->name ?? 'Ruangan Terhapus' }}</td>
+                        @if ($book->approved === 1)
+                            <td class="bg-success text-white">Di Setujui</td>
+                        @elseif ($book->approved === 2)
+                            <td class="bg-danger text-white">Di Tolak</td>
+                        @else
+                            <td class="bg-secondary text-white">Pending</td>
+                        @endif
+                        </tr>
+                        @endforeach
+                        @if ($books->count() <= 5)
+                            @for ($i = 1; $i <= 5 - $books->count(); $i++)
+                                <tr>
+                                    <td class="pb-4"></td>
+                                    <td class="pb-4"></td>
+                                    <td class="pb-4"></td>
+                                    <td class="pb-4"></td>
+                                    <td class="pb-4"></td>
+                                    <td class="pb-4"></td>
+                                    <td class="pb-4"></td>
+                                    <td class="pb-4"></td>
+                                </tr>
+                            @endfor
+                        @endif
+                    </tbody>
+                </table>
+                {!! $books->appends(request()->input())->links() !!}
             </div>
         </div>
     </div>
