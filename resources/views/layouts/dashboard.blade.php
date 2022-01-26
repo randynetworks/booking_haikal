@@ -142,18 +142,11 @@
                 @endif
 
                 <!-- Nav Item - Utilities Collapse Menu -->
+
                 <li class="nav-item">
-                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
-                        aria-expanded="true" aria-controls="collapseUtilities">
+                    <a class="nav-link" href="/dashboard/books">
                         <i class="fas fa-fw fa-book"></i>
-                        <span>Pengajuan Ruangan</span>
-                    </a>
-                    <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
-                        data-parent="#accordionSidebar">
-                        <div class="bg-white py-2 collapse-inner rounded">
-                            <a class="collapse-item" href="/dashboard/books">Daftar Pengajuan <br>Ruangan</a>
-                        </div>
-                    </div>
+                        <span>Daftar Pengajuan Ruangan</span></a>
                 </li>
             @endif
             <li class="nav-item">
