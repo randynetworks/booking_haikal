@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Jan 24, 2022 at 05:24 AM
+-- Generation Time: Jan 26, 2022 at 03:26 AM
 -- Server version: 10.4.18-MariaDB
 -- PHP Version: 7.4.16
 
@@ -33,7 +33,6 @@ CREATE TABLE `books` (
   `staff_nip` int(11) NOT NULL,
   `installation` text COLLATE utf8mb4_unicode_ci NOT NULL,
   `date_start` date NOT NULL,
-  `date_finish` date NOT NULL,
   `time_start` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `time_finish` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `topic` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -51,8 +50,8 @@ CREATE TABLE `books` (
 -- Dumping data for table `books`
 --
 
-INSERT INTO `books` (`id`, `username`, `staff_nip`, `installation`, `date_start`, `date_finish`, `time_start`, `time_finish`, `topic`, `entrant`, `type_meeting`, `room_id`, `approved`, `reject_note`, `color`, `created_at`, `updated_at`) VALUES
-(6, 'John', 1312312, 'Oke', '2022-01-24', '2022-01-24', '11:30', '12:00', 'okee mau tidur', 100, 'Internal', 2, 1, NULL, 'fff649', '2022-01-23 21:08:41', '2022-01-23 21:08:41');
+INSERT INTO `books` (`id`, `username`, `staff_nip`, `installation`, `date_start`, `time_start`, `time_finish`, `topic`, `entrant`, `type_meeting`, `room_id`, `approved`, `reject_note`, `color`, `created_at`, `updated_at`) VALUES
+(2, 'Jun', 12313, 'OKe', '2022-01-27', '08:45', '08:55', 'santuy', 100, 'Internal', 1, 0, NULL, '2d09d7', '2022-01-25 18:29:21', '2022-01-25 18:29:21');
 
 -- --------------------------------------------------------
 
@@ -88,14 +87,14 @@ CREATE TABLE `migrations` (
 
 INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (49, '2022_01_03_052910_add_reject_to_books_table', 1),
-(90, '2014_10_12_000000_create_users_table', 2),
-(91, '2014_10_12_100000_create_password_resets_table', 2),
-(92, '2019_08_19_000000_create_failed_jobs_table', 2),
-(93, '2019_12_14_000001_create_personal_access_tokens_table', 2),
-(94, '2021_12_23_223847_create_books_tables', 2),
-(95, '2021_12_23_224348_create_rooms_table', 2),
-(96, '2022_01_03_043157_add_img_to_rooms_table', 2),
-(97, '2022_01_11_033811_add_img2_to_rooms_table', 2);
+(98, '2014_10_12_000000_create_users_table', 2),
+(99, '2014_10_12_100000_create_password_resets_table', 2),
+(100, '2019_08_19_000000_create_failed_jobs_table', 2),
+(101, '2019_12_14_000001_create_personal_access_tokens_table', 2),
+(102, '2021_12_23_223847_create_books_tables', 2),
+(103, '2021_12_23_224348_create_rooms_table', 2),
+(104, '2022_01_03_043157_add_img_to_rooms_table', 2),
+(105, '2022_01_11_033811_add_img2_to_rooms_table', 2);
 
 -- --------------------------------------------------------
 
@@ -148,8 +147,7 @@ CREATE TABLE `rooms` (
 --
 
 INSERT INTO `rooms` (`id`, `name`, `created_at`, `updated_at`, `img`, `img2`, `img3`) VALUES
-(1, 'Papandayan', '2022-01-23 16:29:21', '2022-01-23 16:29:21', '202201232329211.jpg', '202201232329212.jpg', '202201232329213.png'),
-(2, 'Manglayang', '2022-01-23 19:35:53', '2022-01-23 19:35:53', '202201240235531.jpg', NULL, NULL);
+(1, 'Papandayan', '2022-01-25 17:15:12', '2022-01-25 17:15:12', '202201260015121.jpg', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -174,7 +172,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `role`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'Admin', 'admin@admin.com', NULL, '$2y$10$r6xSIM1/gBpRpsAA1pzkE.wmdFFyigNDU/jXK4meKUu81IGN6f3ya', 1, NULL, '2022-01-23 16:28:35', '2022-01-23 16:28:35');
+(1, 'Admin', 'admin@admin.com', NULL, '$2y$10$ACiPxANbo1qff25P.AanQuqkVjFkHbyOdOgp4i/T3CeGC3graonHm', 1, NULL, '2022-01-25 17:14:39', '2022-01-25 17:14:39');
 
 --
 -- Indexes for dumped tables
@@ -234,7 +232,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `books`
 --
 ALTER TABLE `books`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `failed_jobs`
@@ -246,7 +244,7 @@ ALTER TABLE `failed_jobs`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=98;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=106;
 
 --
 -- AUTO_INCREMENT for table `personal_access_tokens`
@@ -258,7 +256,7 @@ ALTER TABLE `personal_access_tokens`
 -- AUTO_INCREMENT for table `rooms`
 --
 ALTER TABLE `rooms`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `users`
