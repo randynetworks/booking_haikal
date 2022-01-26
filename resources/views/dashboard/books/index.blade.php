@@ -87,76 +87,78 @@
                         @else
                             @foreach ($books as $book)
 
-                                <tr class="text-center" data-toggle="popover" data-trigger="hover"
-                                    title="Informasi Detail" data-html="true" data-content="Pemesan &#9;: {{ $book->username }}<br/>
-                                            NIP &#9;&#9;: {{ $book->staff_nip }}<br/>
-                                            Instalasi &#9;: {{ $book->installation }}">
-                                    <th scope="row">{{ $books->firstItem() + $loop->index }}</th>
-                                    <td>{{ $book->date_start }}</td>
-                                    <td>{{ $book->time_start }} - {{ $book->time_finish }}</td>
-                                    <td>{{ $book->topic }}</td>
-                                    <td>{{ $book->type_meeting }}</td>
-                                    <td>{{ $book->entrant }}</td>
-                                    <td>{{ $book->room->name ?? 'Ruangan Terhapus' }}</td>
-                                    @if ($book->approved == 1)
-                                        <td class="align-middle bg-success text-white">Di Setujui</td>
-                                    @elseif($book->approved == 2)
-                                        <td class="align-middle bg-danger text-white">Di Tolak</td>
-                                    @else
-                                        <td class="align-middle bg-dark text-white">Pending</td>
-                                    @endif
-                                    <td>
-                                        <button data-toggle="modal" data-target="#basicExampleModal{{ $book->id }}"
-                                            class="btn btn-sm btn-primary">Aksi</button>
-                                    </td>
+                                <tr class="text-center" data-toggle="popover" data-trigger="hover" title="Informasi Detail" data-html="true"
+                                    data-content="Pemesan &#9;: {{ $book->username }}<br/>
+                                                NIP &#9;&#9;: {{ $book->staff_nip }}<br/>
+                                                Instalasi &#9;: {{ $book->installation }}<br/>
+                                                    @if ($book->reject_note !== null)
+                                    Info Ditolak : {{ $book->reject_note }}
+                            @endif
+                            ">
+                            <th scope="row">{{ $books->firstItem() + $loop->index }}</th>
+                            <td>{{ $book->date_start }}</td>
+                            <td>{{ $book->time_start }} - {{ $book->time_finish }}</td>
+                            <td>{{ $book->topic }}</td>
+                            <td>{{ $book->type_meeting }}</td>
+                            <td>{{ $book->entrant }}</td>
+                            <td>{{ $book->room->name ?? 'Ruangan Terhapus' }}</td>
+                            @if ($book->approved == 1)
+                                <td class="align-middle bg-success text-white">Di Setujui</td>
+                            @elseif($book->approved == 2)
+                                <td class="align-middle bg-danger text-white">Di Tolak</td>
+                            @else
+                                <td class="align-middle bg-dark text-white">Pending</td>
+                            @endif
+                            <td>
+                                <button data-toggle="modal" data-target="#basicExampleModal{{ $book->id }}"
+                                    class="btn btn-sm btn-primary">Aksi</button>
+                            </td>
 
-                                    {{-- modal --}}
-                                    <!-- Modal -->
-                                    <div class="modal fade" id="basicExampleModal{{ $book->id }}" tabindex="-1"
-                                        role="dialog" aria-labelledby="basicExampleModal{{ $book->id }}"
-                                        aria-hidden="true">
-                                        <div class="modal-dialog" role="document">
-                                            <div class="modal-content">
-                                                <div class="modal-header">
-                                                    <h5 class="modal-title" id="exampleModalLabel">Pengesahan Peengajuan
-                                                    </h5>
-                                                    <button type="button" class="close" data-dismiss="modal"
-                                                        aria-label="Close">
-                                                        <span aria-hidden="true">&times;</span>
-                                                    </button>
+                            {{-- modal --}}
+                            <!-- Modal -->
+                            <div class="modal fade" id="basicExampleModal{{ $book->id }}" tabindex="-1"
+                                role="dialog" aria-labelledby="basicExampleModal{{ $book->id }}" aria-hidden="true">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLabel">Pengesahan Peengajuan
+                                            </h5>
+                                            <button type="button" class="close" data-dismiss="modal"
+                                                aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="card-body">
+                                            <form action="/dashboard/books/{{ $book->id }}" method="POST">
+                                                @csrf
+                                                @method('PUT')
+                                                <div class="form-group">
+                                                    <label for="name">Disetujui?</label>
+                                                    <input type="hidden" class="form-control" id="name" name="id"
+                                                        value="{{ $book->id }}">
+                                                    <select id="approved" class="form-control" name="approved">
+                                                        <option selected>Pilih...</option>
+                                                        <option value="1">Di Setujui</option>
+                                                        <option value="2">Di Tolak</option>
+                                                    </select>
                                                 </div>
-                                                <div class="card-body">
-                                                    <form action="/dashboard/books/{{ $book->id }}" method="POST">
-                                                        @csrf
-                                                        @method('PUT')
-                                                        <div class="form-group">
-                                                            <label for="name">Disetujui?</label>
-                                                            <input type="hidden" class="form-control" id="name" name="id"
-                                                                value="{{ $book->id }}">
-                                                            <select id="approved" class="form-control" name="approved">
-                                                                <option selected>Pilih...</option>
-                                                                <option value="1">Di Setujui</option>
-                                                                <option value="2">Di Tolak</option>
-                                                            </select>
-                                                        </div>
-                                                        <div class="form-group">
-                                                            <label for="name">Informasi Penolakan <span
-                                                                    class="text-danger">*</span></label>
-                                                            <input type="text" class="form-control" id="name"
-                                                                name="reject_note">
-                                                            <small class="text-danger">*) Isi jika ditolak</small>
-                                                        </div>
+                                                <div class="form-group">
+                                                    <label for="name">Informasi Penolakan <span
+                                                            class="text-danger">*</span></label>
+                                                    <input type="text" class="form-control" id="name" name="reject_note">
+                                                    <small class="text-danger">*) Isi jika ditolak</small>
+                                                </div>
 
-                                                        <button type="submit" class="btn btn-primary">Edit Data</button>
-                                                        <button type="button" class="btn btn-secondary"
-                                                            data-dismiss="modal">Close</button>
-                                                    </form>
-                                                </div>
-                                            </div>
+                                                <button type="submit" class="btn btn-primary">Edit Data</button>
+                                                <button type="button" class="btn btn-secondary"
+                                                    data-dismiss="modal">Close</button>
+                                            </form>
                                         </div>
                                     </div>
-                                </tr>
-                            @endforeach
+                                </div>
+                            </div>
+                            </tr>
+                        @endforeach
                         @endif
                     </tbody>
                 </table>

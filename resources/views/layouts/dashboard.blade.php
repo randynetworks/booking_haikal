@@ -86,6 +86,10 @@
             overflow-y: scroll;
         }
 
+        .popover-header {
+            background: #3b3b3b;
+            color: white;
+        }
     </style>
 
 </head>
@@ -360,6 +364,10 @@
             placeholder: "Pilih...",
             allowClear: true
         });
+
+        $('[data-toggle="popover"]').popover({
+            template: '<div class="popover" role="tooltip"><div class="arrow"></div><h3 class="popover-header"></h3><div class="popover-body"></div></div>'
+        })
     </script>
 
 

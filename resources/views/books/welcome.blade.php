@@ -71,23 +71,23 @@
                                 @foreach ($books as $book)
                                     <tr data-toggle="popover" data-trigger="hover" title="Informasi Detail" data-html="true"
                                         data-content="Pemesan &#9;: {{ $book->username }}<br/>
-                                                    NIP &#9;&#9;: {{ $book->staff_nip }}<br/>
-                                                    Instalasi &#9;: {{ $book->installation }}">
-                                        <td>{{ $books->firstItem() + $loop->index }}</td>
-                                        @if ($book->date_start === $book->date_finish)
-                                            <td>{{ $book->date_start }}</td>
-                                        @else
-                                            <td>{{ $book->date_start }} - {{ $book->date_finish }}</td>
-                                        @endif
-                                        <td>{{ $book->time_start }} </td>
-                                        <td>{{ $book->topic }}</td>
-                                        <td>{{ $book->type_meeting }}</td>
-                                        <td>{{ $book->entrant }}</td>
-                                        <td>{{ $book->room->name ?? 'Ruangan Terhapus' }}</td>
-                                    </tr>
-                                    {{-- @if ($book->date >= date('Y-m-d'))
+                                                NIP &#9;&#9;: {{ $book->staff_nip }}<br/>
+                                                Instalasi &#9;: {{ $book->installation }}<br/>
+                                                   @if ($book->reject_note !== null)
+                                        Info Ditolak : {{ $book->reject_note }}
+                                @endif
+                                ">
+                                <td>{{ $books->firstItem() + $loop->index }}</td>
+                                <td>{{ $book->date_start }}</td>
+                                <td>{{ $book->time_start }} - {{ $book->time_finish }} </td>
+                                <td>{{ $book->topic }}</td>
+                                <td>{{ $book->type_meeting }}</td>
+                                <td>{{ $book->entrant }}</td>
+                                <td>{{ $book->room->name ?? 'Ruangan Terhapus' }}</td>
+                                </tr>
+                                {{-- @if ($book->date >= date('Y-m-d'))
                         @endif --}}
-                                @endforeach
+                            @endforeach
                             @endif
                         </tbody>
                     </table>

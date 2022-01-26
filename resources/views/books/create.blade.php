@@ -346,28 +346,32 @@
                             @else
                                 @foreach ($books as $book)
 
-                                    <tr class="text-center" data-toggle="popover" data-trigger="hover" title="Informasi Detail" data-html="true"
+                                    <tr data-toggle="popover" data-trigger="hover" title="Informasi Detail" data-html="true"
                                         data-content="Pemesan &#9;: {{ $book->username }}<br/>
-                                                        NIP &#9;&#9;: {{ $book->staff_nip }}<br/>
-                                                        Instalasi &#9;: {{ $book->installation }}">
-                                        <td>{{ $books->firstItem() + $loop->index }}</td>
-                                        <td>{{ $book->date_start }}</td>
-                                        <td>{{ $book->time_start }} - {{ $book->time_finish }}</td>
-                                        <td>{{ $book->topic }}</td>
-                                        <td>{{ $book->type_meeting }}</td>
-                                        <td>{{ $book->entrant }}</td>
-                                        <td>{{ $book->room->name ?? 'Ruangan Terhapus' }}</td>
-                                        @if ($book->approved === 1)
-                                            <td>Di Setujui</td>
-                                        @elseif ($book->approved === 2)
-                                            <td>Di Tolak</td>
-                                        @else
-                                            <td>Pending</td>
-                                        @endif
-                                    </tr>
-                                    {{-- @if ($book->date >= date('Y-m-d'))
+                                                    NIP &#9;&#9;: {{ $book->staff_nip }}<br/>
+                                                    Instalasi &#9;: {{ $book->installation }}<br/>
+                                                      @if ($book->reject_note !== null)
+                                        Info Ditolak : {{ $book->reject_note }}
+                                @endif
+                                ">
+                                <td>{{ $books->firstItem() + $loop->index }}</td>
+                                <td>{{ $book->date_start }}</td>
+                                <td>{{ $book->time_start }} - {{ $book->time_finish }}</td>
+                                <td>{{ $book->topic }}</td>
+                                <td>{{ $book->type_meeting }}</td>
+                                <td>{{ $book->entrant }}</td>
+                                <td>{{ $book->room->name ?? 'Ruangan Terhapus' }}</td>
+                                @if ($book->approved === 1)
+                                    <td>Di Setujui</td>
+                                @elseif ($book->approved === 2)
+                                    <td>Di Tolak</td>
+                                @else
+                                    <td>Pending</td>
+                                @endif
+                                </tr>
+                                {{-- @if ($book->date >= date('Y-m-d'))
                         @endif --}}
-                                @endforeach
+                            @endforeach
                             @endif
                         </tbody>
                     </table>
