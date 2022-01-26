@@ -83,7 +83,17 @@
                                 <td class="pb-4"></td>
                                 <td class="pb-4"></td>
                             </tr>
-
+                            <tr>
+                                <td class="pb-4"></td>
+                                <td class="pb-4"></td>
+                                <td class="pb-4"></td>
+                                <td class="pb-4"></td>
+                                <td class="pb-4"></td>
+                                <td class="pb-4"></td>
+                                <td class="pb-4"></td>
+                                <td class="pb-4"></td>
+                                <td class="pb-4"></td>
+                            </tr>
                         @else
                             @foreach ($books as $book)
 
