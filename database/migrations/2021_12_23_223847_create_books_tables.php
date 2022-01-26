@@ -22,7 +22,6 @@ class CreateBooksTables extends Migration
 
             //book
             $table->date('date_start');
-            $table->date('date_finish');
             $table->string('time_start');
             $table->string('time_finish');
             $table->string('topic');

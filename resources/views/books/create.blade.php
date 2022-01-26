@@ -178,7 +178,7 @@
                                                     <h3>Pengajuan Ruangan</h3>
                                                 </div>
                                                 <div class="form-row">
-                                                    <div class="form-group col-md-6">
+                                                    <div class="form-group col-md-4">
                                                         <label for="datepicker_start">Mulai Pada Tanggal</label>
                                                         <input id="datepicker_start" value="{{ old('date_start') }}"
                                                             type="text"
@@ -189,20 +189,7 @@
                                                             <div class="mt-2 text-danger">{{ $message }}</div>
                                                         @enderror
                                                     </div>
-                                                    <div class="form-group col-md-6">
-                                                        <label for="datepicker_finish">Selesai Pada Tanggal</label>
-                                                        <input id="datepicker_finish" value="{{ old('date_finish') }}"
-                                                            type="text"
-                                                            class="@error('date_finish') is-invalid
-                                                @enderror form-control"
-                                                            name="date_finish">
-                                                        @error('date_finish')
-                                                            <div class="mt-2 text-danger">{{ $message }}</div>
-                                                        @enderror
-                                                    </div>
-                                                </div>
-                                                <div class="form-row">
-                                                    <div class="form-group col-md-6">
+                                                    <div class="form-group col-md-4">
                                                         <label for="timepicker_start">Mulai Pada Jam</label>
                                                         <input id="timepicker_start" value="{{ old('time_start') }}"
                                                             type="text"
@@ -213,7 +200,7 @@
                                                             <div class="mt-2 text-danger">{{ $message }}</div>
                                                         @enderror
                                                     </div>
-                                                    <div class="form-group col-md-6">
+                                                    <div class="form-group col-md-4">
                                                         <label for="timepicker_finish">Selesai Pada Jam</label>
                                                         <input id="timepicker_finish" value="{{ old('time_finish') }}"
                                                             type="text"
@@ -271,17 +258,6 @@
                                                             <div class="mt-2 text-danger">{{ $message }}</div>
                                                         @enderror
                                                     </div>
-                                                </div>
-
-                                                <div class="form-group">
-                                                    <label for="color">Warna</label>
-                                                    <input value="{{ old('color') }}" type="text"
-                                                        class="@error('color') is-invalid
-                                            @enderror form-control"
-                                                        id="colorpicker" name="color">
-                                                    @error('color')
-                                                        <div class="mt-2 text-danger">{{ $message }}</div>
-                                                    @enderror
                                                 </div>
 
                                             </div>

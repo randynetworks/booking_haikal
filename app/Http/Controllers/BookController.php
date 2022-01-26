@@ -57,14 +57,12 @@ class BookController extends Controller
             'staff_nip' => 'required',
             'installation' => 'required',
             'date_start' => 'required',
-            'date_finish' => 'required',
             'time_start' => 'required',
             'time_finish' => 'required',
             'topic' => 'required',
             'entrant' => 'required',
             'type_meeting' => 'required',
             'room_id' => 'required',
-            'color' => 'required',
         ]);
         $bookExist = Book::where('room_id', $request->room_id)
             ->whereBetween('date_start', [$request->date_start, $request->date_finish])
@@ -74,13 +72,12 @@ class BookController extends Controller
         if ($bookExist) {
             return redirect('/books/create?room_id=' . $request->room_id)->with('status-error', 'Pengajuan Gagal diajukan, Jadwal bentrok!!');
         } else {
-
+            $rand = str_pad(dechex(rand(0x000000, 0xFFFFFF)), 6, 0, STR_PAD_LEFT);
             $book = new Book;
             $book->username = $request->username;
             $book->staff_nip = $request->staff_nip;
             $book->installation = $request->installation;
             $book->date_start = $request->date_start;
-            $book->date_finish = $request->date_finish;
             $book->time_start = $request->time_start;
             $book->time_finish = $request->time_finish;
             $book->topic = $request->topic;
@@ -88,7 +85,7 @@ class BookController extends Controller
             $book->type_meeting = $request->type_meeting;
             $book->room_id = $request->room_id;
             $book->approved = false;
-            $book->color = $request->color;
+            $book->color = $rand;
             $book->save();
 
             return redirect('/books/create?room_id=' . $request->room_id)->with('status', 'Pengajuan Di ajukan!!');
