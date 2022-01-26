@@ -29,7 +29,7 @@ class BookController extends Controller
                 $books;
                 break;
             case 'export-excel':
-                return Excel::download(new BookExport($books, $firstDate, $lastDate, 'excel'), 'books.xlsx');
+                return Excel::download(new BookExport($books->get(), $firstDate, $lastDate, 'excel'), 'books.xlsx');
                 break;
 
             case 'export-pdf':
@@ -42,7 +42,7 @@ class BookController extends Controller
                 ]);
 
                 $data = [
-                    "books" => $books,
+                    "books" => $books->get(),
                     'firstDate' => $firstDate,
                     'lastDate' => $lastDate,
                     'label' => 'pdf',
@@ -55,7 +55,7 @@ class BookController extends Controller
         }
         $data = [
             'rooms' => Room::all(),
-            'books' => Book::orderBy('id', 'DESC')->paginate(5)
+            'books' => $books->paginate(5)
         ];
 
         return view('dashboard.books.index', $data);
@@ -65,13 +65,13 @@ class BookController extends Controller
     {
         if ($firstDate !== null && $lastDate !== null) {
             $firstAndLastDate = Book::where('date_start', ">=", $firstDate)->where('date_start', "<=", $lastDate);
-            return  $firstAndLastDate->get();
+            return  $firstAndLastDate;
         } elseif ($firstDate !== null) {
-            return Book::where('date_start', ">=", $firstDate)->get();
+            return Book::where('date_start', ">=", $firstDate);
         } else if ($lastDate !== null) {
-            return Book::where('date_start', "<=", $lastDate)->get();
+            return Book::where('date_start', "<=", $lastDate);
         } else {
-            return Book::latest()->get();
+            return Book::latest();
         }
     }
 
