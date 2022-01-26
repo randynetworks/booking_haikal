@@ -43,21 +43,48 @@
     <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.5.0/locales-all.min.js"></script>
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fullcalendar@5.5.0/main.css" />
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.css"
+        integrity="sha512-bYPO5jmStZ9WI2602V2zaivdAnbAhtfzmxnEGh9RwtlI00I9s8ulGe4oBa5XxiC6tCITJH/QG70jswBhbLkxPw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.full.js"
+        integrity="sha512-+UiyfI4KyV1uypmEqz9cOIJNwye+u+S58/hSwKEAeUMViTTqM9/L4lqu8UxJzhmzGpms8PzFJDzEqXL9niHyjA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
     <script src="https://kit.fontawesome.com/86937c1494.js" crossorigin="anonymous"></script>
 
     <script>
         $(function() {
-            $("#datepicker").datepicker({
-                dateFormat: "yy-mm-dd",
-                changeMonth: true,
-                changeYear: true
+            $("#datepicker_start").datetimepicker({
+                timepicker: false,
+                format: 'Y-m-d',
+                onShow: function(ct) {
+                    this.setOptions({
+                        minDate: 0,
+                        maxDate: jQuery('#datepicker_finish').val() ? jQuery(
+                            '#datepicker_finish').val() : false
+                    })
+                },
             });
-            $('.timepicker').timepicker({
-                timeFormat: 'HH:mm',
-                dynamic: true,
-                dropdown: true,
-                scrollbar: true
+            $("#datepicker_finish").datetimepicker({
+                timepicker: false,
+                format: 'Y-m-d',
+                onShow: function(ct) {
+                    this.setOptions({
+                        minDate: jQuery('#datepicker_start').val() ? jQuery(
+                            '#datepicker_start').val() : false
+                    })
+                },
+            });
+            $("#timepicker_start").datetimepicker({
+                datepicker: false,
+                format: 'h:i',
+                step: 5,
+            });
+            $("#timepicker_finish").datetimepicker({
+                datepicker: false,
+                format: 'h:i',
+                step: 5,
             });
         });
     </script>
@@ -90,6 +117,7 @@
             background: #3b3b3b;
             color: white;
         }
+
     </style>
 
 </head>

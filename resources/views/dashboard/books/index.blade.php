@@ -5,6 +5,29 @@
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
         <h1 class="h3 mb-0 text-gray-800">Pengajuan Ruangan</h1>
     </div>
+    <h5>Filter & Report</h5>
+    <form class="mb-3" action="/dashboard/books" method="GET">
+        <div class="row mb-3">
+            <div class="col-md-3">
+                <label for="datepicker_start">Tanggal Awal</label>
+                <input type="text" class="form-control" name="first_date" placeholder="Contoh. 2021-11-14"
+                    id="datepicker_start">
+            </div>
+            <div class="col-md-3">
+                <label for="datepicker_finish">Tanggal Akhir</label>
+                <input type="text" class="form-control" name="last_date" placeholder="Contoh. 2021-11-15"
+                    id="datepicker_finish">
+            </div>
+        </div>
+        <button type="submit" class="btn btn-sm btn-primary" name="action" value="filter"
+            onclick="return confirm('Yakin untuk melanjutkan aksi ini?');">Filter Data</button>
+        <button type="submit" class="btn btn-sm btn-success" name="action" value="export-excel"
+            onclick="return confirm('Yakin untuk melanjutkan aksi ini?');">Export Excel</button>
+        <button type="submit" class="btn btn-sm btn-danger" name="action" value="export-pdf"
+            onclick="return confirm('Yakin untuk melanjutkan aksi ini?');">Export PDF</button>
+        <a href="/dashboard/books" class="btn btn-sm btn-info"
+            onclick="return confirm('Yakin untuk melanjutkan aksi ini?');">clear</a>
+    </form>
 
     <div class="card shadow mb-4">
         <div class="card-header py-3">
@@ -99,9 +122,9 @@
 
                                 <tr class="text-center" data-toggle="popover" data-trigger="hover"
                                     title="Informasi Detail" data-html="true" data-content="Pemesan &#9;: {{ $book->username }}<br/>
-                                                            NIP &#9;&#9;: {{ $book->staff_nip }}<br/>
-                                                            Instalasi &#9;: {{ $book->installation }}<br/>
-                                                                   @if ($book->approved == 2 && $book->reject_note !== null)
+                                                                        NIP &#9;&#9;: {{ $book->staff_nip }}<br/>
+                                                                        Instalasi &#9;: {{ $book->installation }}<br/>
+                                                                                  @if ($book->approved == 2 && $book->reject_note !== null)
                                     Info Ditolak : {{ $book->reject_note }}
                             @endif
                             ">

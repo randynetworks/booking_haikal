@@ -6,6 +6,9 @@ use App\Models\Book;
 use App\Models\Room;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Maatwebsite\Excel\Facades\Excel;
+use Barryvdh\DomPDF\Facade as PDF;
+use App\Exports\BookExport;
 
 class BookController extends Controller
 {
@@ -14,14 +17,62 @@ class BookController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
+
+        $firstDate = $request->input('first_date');
+        $lastDate = $request->input('last_date');
+
+        $books = $this->getDataWithConditional($firstDate, $lastDate);
+        switch ($request->input('action')) {
+            case 'filter':
+                $books;
+                break;
+            case 'export-excel':
+                return Excel::download(new BookExport($books, $firstDate, $lastDate, 'excel'), 'books.xlsx');
+                break;
+
+            case 'export-pdf':
+                $contxt = stream_context_create([
+                    'ssl' => [
+                        'verify_peer' => FALSE,
+                        'verify_peer_name' => FALSE,
+                        'allow_self_signed' => TRUE,
+                    ]
+                ]);
+
+                $data = [
+                    "books" => $books,
+                    'firstDate' => $firstDate,
+                    'lastDate' => $lastDate,
+                    'label' => 'pdf',
+                ];
+
+                $pdf = PDF::loadView('dashboard.books.export', $data)->setPaper('f4', 'landscape');
+                $pdf->getDomPDF()->setHttpContext($contxt);
+                return $pdf->download('books.pdf');
+                break;
+        }
         $data = [
             'rooms' => Room::all(),
             'books' => Book::orderBy('id', 'DESC')->paginate(5)
         ];
 
         return view('dashboard.books.index', $data);
+    }
+
+    protected function getDataWithConditional($firstDate, $lastDate)
+    {
+        if ($firstDate !== null && $lastDate !== null) {
+            $firstAndLastDate = Book::where('date_start', ">=", $firstDate)->where('date_start', "<=", $lastDate);
+            return  $firstAndLastDate->get();
+        } elseif ($firstDate !== null) {
+            return Book::where('date_start', ">=", $firstDate)->get();
+        } else if ($lastDate !== null) {
+            return Book::where('date_start', "<=", $lastDate)->get();
+        } else {
+            return Book::latest()->get();
+        }
     }
 
     /**

@@ -50,15 +50,9 @@
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="https://kit.fontawesome.com/86937c1494.js" crossorigin="anonymous"></script>
 
-    <script src="https://cdn.jsdelivr.net/npm/jquery-wheelcolorpicker@3.0.9/jquery.wheelcolorpicker.js"
-        integrity="sha256-8dYZ99OPPugUM2hAxYZNogunuSB0rpCkxBdIiym4/Hg=" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/jquery-wheelcolorpicker@3.0.9/css/wheelcolorpicker.css"
-        integrity="sha256-yKSeHdzREUWuAU5I+d0v220+R8qd0/LL0WPICWMIjTI=" crossorigin="anonymous">
-
 
     <script>
         $(function() {
-            $('#colorpicker').wheelColorPicker();
             $("#datepicker_start").datetimepicker({
                 timepicker: false,
                 format: 'Y-m-d',
