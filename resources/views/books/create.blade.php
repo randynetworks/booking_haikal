@@ -272,6 +272,10 @@
                 </div>
             </div>
         </div>
+
+        <div class="container-sm my-5">
+            <hr class="separator separator--dots-white" />
+        </div>
         <div class="text-center mb-4">
             <h1 class="h3 mb-0 text-white mt-3">Daftar Pengajuan R. Rapat {{ $room->name }}</h1>
         </div>
@@ -294,9 +298,9 @@
                         @foreach ($books as $book)
                             <tr data-toggle="popover" data-trigger="hover" title="Informasi Detail" data-html="true"
                                 data-content="Pemesan &#9;: {{ $book->username }}<br/>
-                            NIP &#9;&#9;: {{ $book->staff_nip }}<br/>
-                            Instalasi &#9;: {{ $book->installation }}<br/>
-                              @if ($book->approved == 2 && $book->reject_note !== null)
+                                NIP &#9;&#9;: {{ $book->staff_nip }}<br/>
+                                Instalasi &#9;: {{ $book->installation }}<br/>
+                                   @if ($book->approved == 2 && $book->reject_note !== null)
                                 Info Ditolak : {{ $book->reject_note }}
                         @endif
                         ">

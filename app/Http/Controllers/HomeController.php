@@ -54,7 +54,7 @@ class HomeController extends Controller
 
         $data = [
             'rooms' => Room::all(),
-            'books' => Book::where('approved', 1)->where('date_start', '>=', date("Y-m-d "))->orderBy('date_start', 'desc')->paginate(5),
+            'books' => Book::where('approved', 1)->where('date_start', '>=', date("Y-m-d"))->orderBy('date_start', 'desc')->paginate(5),
             'calendar' => $calendar
         ];
 

@@ -71,7 +71,7 @@ class BookController extends Controller
         } else if ($lastDate !== null) {
             return Book::where('date_start', "<=", $lastDate);
         } else {
-            return Book::latest();
+            return Book::where('date_start', ">=", date('Y-m-d'));
         }
     }
 

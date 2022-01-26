@@ -60,7 +60,6 @@
                 format: 'Y-m-d',
                 onShow: function(ct) {
                     this.setOptions({
-                        minDate: 0,
                         maxDate: jQuery('#datepicker_finish').val() ? jQuery(
                             '#datepicker_finish').val() : false
                     })
