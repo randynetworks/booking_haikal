@@ -139,9 +139,8 @@
                                                                 value="{{ $book->id }}">
                                                             <select id="approved" class="form-control" name="approved">
                                                                 <option selected>Pilih...</option>
-                                                                <option value="1">Disetujui</option>
-                                                                <option value="0">Tidak disetujui</option>
-                                                                <option value="2">Ditolak</option>
+                                                                <option value="1">Di Setujui</option>
+                                                                <option value="2">Di Tolak</option>
                                                             </select>
                                                         </div>
                                                         <div class="form-group">
