@@ -348,9 +348,9 @@
 
                                     <tr data-toggle="popover" data-trigger="hover" title="Informasi Detail" data-html="true"
                                         data-content="Pemesan &#9;: {{ $book->username }}<br/>
-                                                    NIP &#9;&#9;: {{ $book->staff_nip }}<br/>
-                                                    Instalasi &#9;: {{ $book->installation }}<br/>
-                                                      @if ($book->reject_note !== null)
+                                                                NIP &#9;&#9;: {{ $book->staff_nip }}<br/>
+                                                                Instalasi &#9;: {{ $book->installation }}<br/>
+                                                                     @if ($book->approved == 2 && $book->reject_note !== null)
                                         Info Ditolak : {{ $book->reject_note }}
                                 @endif
                                 ">
