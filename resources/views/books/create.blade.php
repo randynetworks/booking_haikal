@@ -280,7 +280,7 @@
                 <div class="card shadow mb-4 p-3">
                     <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                         <thead>
-                            <tr class="bg-primary text-white">
+                            <tr class="bg-primary text-white text-center">
                                 <th scope="col">#</th>
                                 <th scope="col">Tanggal</th>
                                 <th scope="col">Waktu</th>
@@ -346,16 +346,12 @@
                             @else
                                 @foreach ($books as $book)
 
-                                    <tr data-toggle="popover" data-trigger="hover" title="Informasi Detail" data-html="true"
+                                    <tr class="text-center" data-toggle="popover" data-trigger="hover" title="Informasi Detail" data-html="true"
                                         data-content="Pemesan &#9;: {{ $book->username }}<br/>
-                                                    NIP &#9;&#9;: {{ $book->staff_nip }}<br/>
-                                                    Instalasi &#9;: {{ $book->installation }}">
+                                                        NIP &#9;&#9;: {{ $book->staff_nip }}<br/>
+                                                        Instalasi &#9;: {{ $book->installation }}">
                                         <td>{{ $books->firstItem() + $loop->index }}</td>
-                                        @if ($book->date_start === $book->date_finish)
-                                            <td>{{ $book->date_start }}</td>
-                                        @else
-                                            <td>{{ $book->date_start }} - {{ $book->date_finish }}</td>
-                                        @endif
+                                        <td>{{ $book->date_start }}</td>
                                         <td>{{ $book->time_start }} - {{ $book->time_finish }}</td>
                                         <td>{{ $book->topic }}</td>
                                         <td>{{ $book->type_meeting }}</td>

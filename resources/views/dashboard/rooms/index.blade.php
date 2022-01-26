@@ -15,7 +15,7 @@
             <div class="table-responsive">
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                     <thead>
-                        <tr>
+                        <tr class="text-center">
                             <th>#</th>
                             <th>Nama</th>
                             <th>Gambar</th>
@@ -26,8 +26,8 @@
                     <tbody>
                         @foreach ($rooms as $room)
                             <tr>
-                                <td>{{ $loop->iteration }}</td>
-                                <td>{{ $room->name }}</td>
+                                <td class="text-center">{{ $loop->iteration }}</td>
+                                <td class="text-center">{{ $room->name }}</td>
                                 <td>
                                     @if ($room->img)
                                         <img width="200px" class="rounded"
@@ -45,7 +45,7 @@
                                             src="{{ asset('images/nocontentyet.jpg') }}" alt="">
                                     @endif
                                 </td>
-                                <td>
+                                <td class="text-center">
                                     <a href="/dashboard/rooms/{{ $room->id }}" class="badge badge-primary">Detail</a>
                                 </td>
                             </tr>

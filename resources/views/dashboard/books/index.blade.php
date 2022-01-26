@@ -13,7 +13,7 @@
         <div class="card-body">
             <div class="table-responsive">
                 <table class="table" id="dataTable" width="100%" cellspacing="0">
-                    <thead class="thead-light">
+                    <thead class="thead-light text-center">
                         <tr>
                             <th scope="col">#</th>
                             <th scope="col">Tanggal</th>
@@ -87,16 +87,12 @@
                         @else
                             @foreach ($books as $book)
 
-                                <tr data-toggle="popover" data-trigger="hover" title="Informasi Detail" data-html="true"
-                                    data-content="Pemesan &#9;: {{ $book->username }}<br/>
-                                    NIP &#9;&#9;: {{ $book->staff_nip }}<br/>
-                                    Instalasi &#9;: {{ $book->installation }}">
+                                <tr class="text-center" data-toggle="popover" data-trigger="hover"
+                                    title="Informasi Detail" data-html="true" data-content="Pemesan &#9;: {{ $book->username }}<br/>
+                                            NIP &#9;&#9;: {{ $book->staff_nip }}<br/>
+                                            Instalasi &#9;: {{ $book->installation }}">
                                     <th scope="row">{{ $books->firstItem() + $loop->index }}</th>
-                                    @if ($book->date_start === $book->date_finish)
-                                        <td>{{ $book->date_start }}</td>
-                                    @else
-                                        <td>{{ $book->date_start }} - {{ $book->date_finish }}</td>
-                                    @endif
+                                    <td>{{ $book->date_start }}</td>
                                     <td>{{ $book->time_start }} - {{ $book->time_finish }}</td>
                                     <td>{{ $book->topic }}</td>
                                     <td>{{ $book->type_meeting }}</td>

@@ -14,7 +14,7 @@
             <div class="table-responsive">
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                     <thead>
-                        <tr>
+                        <tr class="text-center">
                             <th>#</th>
                             <th>Email</th>
                             <th>Nama</th>
@@ -25,7 +25,7 @@
 
                     <tbody>
                         @foreach ($users as $user)
-                            <tr>
+                            <tr class="text-center">
                                 <td>{{ $loop->iteration }}</td>
                                 <td>{{ $user->email }}</td>
                                 <td>{{ $user->name }}</td>
