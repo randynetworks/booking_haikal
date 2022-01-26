@@ -1,8 +1,8 @@
 @extends('layouts.public')
 
 @section('content')
-    <div class="cover jumbotron jumbotron-fluid">
-        <div class="container py-5">
+    <div class="cover py-5">
+        <div class="container">
             <div class="text-center mb-5">
                 <h1 class="h3 mb-0 text-white">Daftar Pengajuan R. Rapat</h1>
             </div>
@@ -71,8 +71,8 @@
                                 @foreach ($books as $book)
                                     <tr data-toggle="popover" data-trigger="hover" title="Informasi Detail" data-html="true"
                                         data-content="Pemesan &#9;: {{ $book->username }}<br/>
-                                                NIP &#9;&#9;: {{ $book->staff_nip }}<br/>
-                                                Instalasi &#9;: {{ $book->installation }}">
+                                                    NIP &#9;&#9;: {{ $book->staff_nip }}<br/>
+                                                    Instalasi &#9;: {{ $book->installation }}">
                                         <td>{{ $books->firstItem() + $loop->index }}</td>
                                         @if ($book->date_start === $book->date_finish)
                                             <td>{{ $book->date_start }}</td>
@@ -132,14 +132,14 @@
         <hr class="separator separator--dots" />
     </div>
 
-    <div class="kalender jumbotron jumbotron-fluid">
+    <div class="kalender py-5">
         <div class="container">
             <div id="calender" class="text-center mb-5">
                 <h1 class="h3 mb-0 text-white">Kalender Pengajuan R. Rapat</h1>
             </div>
             <div class="container justify-content-center">
                 <div class="col-md-12">
-                    <div class="card shadow mb-4 p-3">
+                    <div class="card shadow p-3">
                         <div class="row justify-content-center p-3">
                             {!! $calendar->calendar() !!}
                             {!! $calendar->script() !!}

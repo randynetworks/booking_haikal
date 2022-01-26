@@ -52,7 +52,7 @@
                         <h3>Pengajuan Ruangan</h3>
                     </div>
                     <div class="form-row ">
-                        <div class="form-group col-md-6">
+                        <div class="form-group col-md-4">
                             <label for="datetimepicker">Mulai Pada Tanggal</label>
                             <input value="{{ $book->date_start }}" type="text"
                                 class="@error('date_start') is-invalid
@@ -62,19 +62,7 @@
                                 <div class="mt-2 text-danger">{{ $message }}</div>
                             @enderror
                         </div>
-                        <div class="form-group col-md-6">
-                            <label for="date_finish">Selesai Pada Tanggal</label>
-                            <input value="{{ $book->date_finish }}" type="text"
-                                class="@error('date_finish') is-invalid
-                @enderror form-control datetimepicker"
-                                name="date_finish" disabled>
-                            @error('date_finish')
-                                <div class="mt-2 text-danger">{{ $message }}</div>
-                            @enderror
-                        </div>
-                    </div>
-                    <div class="form-row">
-                        <div class="form-group col-md-6">
+                        <div class="form-group col-md-4">
                             <label for="timepicker_start">Mulai Pada Jam</label>
                             <input id="timepicker_start" value="{{ $book->time_start }}" type="text"
                                 class="@error('time_start') is-invalid
@@ -84,7 +72,7 @@
                                 <div class="mt-2 text-danger">{{ $message }}</div>
                             @enderror
                         </div>
-                        <div class="form-group col-md-6">
+                        <div class="form-group col-md-4">
                             <label for="timepicker_finish">Selesai Pada Jam</label>
                             <input id="timepicker_finish" value="{{ $book->time_finish }}" type="text"
                                 class="@error('time_finish') is-invalid

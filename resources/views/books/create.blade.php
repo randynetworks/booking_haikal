@@ -275,7 +275,7 @@
         <div class="text-center mb-4">
             <h1 class="h3 mb-0 text-white mt-3">Daftar Pengajuan R. Rapat {{ $room->name }}</h1>
         </div>
-        <div class="mb-5 row justify-content-center">
+        <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card shadow mb-4 p-3">
                     <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
