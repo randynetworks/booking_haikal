@@ -80,7 +80,7 @@ class HomeController extends Controller
                 $row->id,
                 [
                     'color' => '#' . $row->color,
-                    'url' => '/books/' . $row->id
+                    'url' => '/dashboard/books/' . $row->id
                 ]
             );
         }

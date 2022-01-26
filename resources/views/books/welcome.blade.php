@@ -21,82 +21,36 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @if ($books->count() == 0)
-                                <tr>
-                                    <td class="pb-4"></td>
-                                    <td class="pb-4"></td>
-                                    <td class="pb-4"></td>
-                                    <td class="pb-4"></td>
-                                    <td class="pb-4"></td>
-                                    <td class="pb-4"></td>
-                                    <td class="pb-4"></td>
-                                </tr>
-                                <tr>
-                                    <td class="pb-4"></td>
-                                    <td class="pb-4"></td>
-                                    <td class="pb-4"></td>
-                                    <td class="pb-4"></td>
-                                    <td class="pb-4"></td>
-                                    <td class="pb-4"></td>
-                                    <td class="pb-4"></td>
-                                </tr>
-                                <tr>
-                                    <td class="pb-4"></td>
-                                    <td class="pb-4"></td>
-                                    <td class="pb-4"></td>
-                                    <td class="pb-4"></td>
-                                    <td class="pb-4"></td>
-                                    <td class="pb-4"></td>
-                                    <td class="pb-4"></td>
-                                </tr>
-                                <tr>
-                                    <td class="pb-4"></td>
-                                    <td class="pb-4"></td>
-                                    <td class="pb-4"></td>
-                                    <td class="pb-4"></td>
-                                    <td class="pb-4"></td>
-                                    <td class="pb-4"></td>
-                                    <td class="pb-4"></td>
-                                </tr>
-                                <tr>
-                                    <td class="pb-4"></td>
-                                    <td class="pb-4"></td>
-                                    <td class="pb-4"></td>
-                                    <td class="pb-4"></td>
-                                    <td class="pb-4"></td>
-                                    <td class="pb-4"></td>
-                                    <td class="pb-4"></td>
-                                </tr>
-                                <tr>
-                                    <td class="pb-4"></td>
-                                    <td class="pb-4"></td>
-                                    <td class="pb-4"></td>
-                                    <td class="pb-4"></td>
-                                    <td class="pb-4"></td>
-                                    <td class="pb-4"></td>
-                                    <td class="pb-4"></td>
-                                </tr>
-                            @else
-                                @foreach ($books as $book)
-                                    <tr data-toggle="popover" data-trigger="hover" title="Informasi Detail" data-html="true"
-                                        data-content="Pemesan &#9;: {{ $book->username }}<br/>
-                                                            NIP &#9;&#9;: {{ $book->staff_nip }}<br/>
-                                                            Instalasi &#9;: {{ $book->installation }}<br/>
-                                                                  @if ($book->approved == 2 && $book->reject_note !== null)
-                                        Info Ditolak : {{ $book->reject_note }}
-                                @endif
-                                ">
-                                <td>{{ $books->firstItem() + $loop->index }}</td>
-                                <td>{{ $book->date_start }}</td>
-                                <td>{{ $book->time_start }} - {{ $book->time_finish }} </td>
-                                <td>{{ $book->topic }}</td>
-                                <td>{{ $book->type_meeting }}</td>
-                                <td>{{ $book->entrant }}</td>
-                                <td>{{ $book->room->name ?? 'Ruangan Terhapus' }}</td>
-                                </tr>
-                                {{-- @if ($book->date >= date('Y-m-d'))
-                        @endif --}}
+                            @foreach ($books as $book)
+                                <tr data-toggle="popover" data-trigger="hover" title="Informasi Detail" data-html="true"
+                                    data-content="Pemesan &#9;: {{ $book->username }}<br/>
+                                                                    NIP &#9;&#9;: {{ $book->staff_nip }}<br/>
+                                                                    Instalasi &#9;: {{ $book->installation }}<br/>
+                                                                            @if ($book->approved == 2 && $book->reject_note !== null)
+                                    Info Ditolak : {{ $book->reject_note }}
+                            @endif
+                            ">
+                            <td>{{ $books->firstItem() + $loop->index }}</td>
+                            <td>{{ $book->date_start }}</td>
+                            <td>{{ $book->time_start }} - {{ $book->time_finish }} </td>
+                            <td>{{ $book->topic }}</td>
+                            <td>{{ $book->type_meeting }}</td>
+                            <td>{{ $book->entrant }}</td>
+                            <td>{{ $book->room->name ?? 'Ruangan Terhapus' }}</td>
+                            </tr>
                             @endforeach
+                            @if ($books->count() <= 5)
+                                @for ($i = 1; $i <= 5 - $books->count(); $i++)
+                                    <tr>
+                                        <td class="pb-4"></td>
+                                        <td class="pb-4"></td>
+                                        <td class="pb-4"></td>
+                                        <td class="pb-4"></td>
+                                        <td class="pb-4"></td>
+                                        <td class="pb-4"></td>
+                                        <td class="pb-4"></td>
+                                    </tr>
+                                @endfor
                             @endif
                         </tbody>
                     </table>

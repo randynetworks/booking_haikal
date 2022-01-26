@@ -151,7 +151,7 @@ class BookController extends Controller
      */
     public function show(Book $book)
     {
-        return view('dashboard.books.show', compact('book'));
+        return view('books.show-admin', compact('book'));
     }
 
     public function show_visitor(Book $book)

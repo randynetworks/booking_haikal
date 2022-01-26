@@ -76,12 +76,14 @@
             });
             $("#timepicker_start").datetimepicker({
                 datepicker: false,
-                format: 'h:i',
+                format: 'H:i',
                 step: 5,
+                pickSeconds: false,
+                pick12HourFormat: false
             });
             $("#timepicker_finish").datetimepicker({
                 datepicker: false,
-                format: 'h:i',
+                format: 'H:i',
                 step: 5,
             });
         });
