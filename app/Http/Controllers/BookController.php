@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Auth;
 use Maatwebsite\Excel\Facades\Excel;
 use Barryvdh\DomPDF\Facade as PDF;
 use App\Exports\BookExport;
+use Carbon\Carbon;
 
 class BookController extends Controller
 {
@@ -103,22 +104,22 @@ class BookController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
-            'username' => 'required',
-            'staff_nip' => 'required',
-            'installation' => 'required',
-            'date_start' => 'required',
-            'time_start' => 'required',
-            'time_finish' => 'required',
-            'topic' => 'required',
-            'entrant' => 'required',
-            'type_meeting' => 'required',
-            'room_id' => 'required',
-        ]);
-        $bookExist = Book::where('room_id', $request->room_id)
-            ->whereBetween('date_start', [$request->date_start, $request->date_finish])
-            ->whereBetween('time_start', [$request->time_start, date('h:i', strtotime("-1 minutes", strtotime($request->time_finish)))])
+        // $request->validate([
+        //     'username' => 'required',
+        //     'staff_nip' => 'required',
+        //     'installation' => 'required',
+        //     'date_start' => 'required',
+        //     'time_start' => 'required',
+        //     'time_finish' => 'required',
+        //     'topic' => 'required',
+        //     'entrant' => 'required',
+        //     'type_meeting' => 'required',
+        //     'room_id' => 'required',
+        // ]);
+        $bookExist = Book::where('room_id', $request->room_id)->where('date_start', "=", $request->date_start)
+            ->whereBetween('time_start', [$request->time_start, date('H:i', strtotime("-1 minutes", strtotime($request->time_finish)))])
             ->exists();
+        dd($bookExist);
 
         if ($bookExist) {
             return redirect('/books/create?room_id=' . $request->room_id)->with('status-error', 'Pengajuan Gagal diajukan, Jadwal bentrok!!');

@@ -20,7 +20,7 @@
 <body>
     <div>
         @if ($label == 'pdf')
-            <img src="https://64.media.tumblr.com/37d8aee3aadc7f494dc56a55c455fd75/25da4cb2e4a0b9c5-6b/s400x600/a8ef909f8270b894ee14a3416ad286b08f145f89.jpg"
+            <img src="https://64.media.tumblr.com/cd71a7d63fb28e2fd0b1949b74d661d4/44cb82153bcae8a9-bd/s1280x1920/b84f0be2550eaf9e49be3542948c63591ca4675e.jpg"
                 alt="" srcset="" width="100%">
             <hr>
         @endif
@@ -72,7 +72,7 @@
                     data-html="true" data-content="Pemesan &#9;: {{ $book->username }}<br/>
                                                             NIP &#9;&#9;: {{ $book->staff_nip }}<br/>
                                                             Instalasi &#9;: {{ $book->installation }}<br/>
-                                                                               @if ($book->approved == 2 && $book->reject_note !== null)
+                                                                                @if ($book->approved == 2 && $book->reject_note !== null)
                     Info Ditolak : {{ $book->reject_note }}
             @endif
             ">
