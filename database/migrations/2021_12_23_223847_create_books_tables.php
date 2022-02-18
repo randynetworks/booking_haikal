@@ -17,7 +17,7 @@ class CreateBooksTables extends Migration
             $table->id();
             //staff
             $table->string('username');
-            $table->integer('staff_nip');
+            $table->integer('staff_nip', 20);
             $table->text('installation');
 
             //book

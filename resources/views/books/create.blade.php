@@ -123,14 +123,14 @@
                                 <form action="/books" method="POST" enctype="multipart/form-data">
                                     @csrf
                                     <div class="card-header">
-                                        <ul class="nav nav-tabs card-header-tabs" id="menu-list" role="tablist">
+                                        <ul class="nav nav-tabs card-header-tabs menu-list" id="menu-list" role="tablist">
                                             <li class="nav-item">
                                                 <a class="nav-link active" href="#data-diri" role="tab"
                                                     aria-controls="data-diri" aria-selected="true">Data Diri</a>
                                             </li>
                                             <li class="nav-item">
                                                 <a class="nav-link" href="#pengajuan" role="tab"
-                                                    aria-controls="pengajuan" aria-selected="false">Pengajuan</a>
+                                                    aria-controls="pengajuan" aria-selected="true">Pengajuan</a>
                                             </li>
                                         </ul>
                                     </div>
@@ -143,8 +143,7 @@
                                                 <div class="form-group">
                                                     <label for="username">Nama Lengkap</label>
                                                     <input value="{{ old('username') }}" type="text"
-                                                        class="@error('username') is-invalid
-                                            @enderror form-control"
+                                                        class="@error('username') is-invalid @enderror form-control"
                                                         id="username" name="username">
                                                     @error('username')
                                                         <div class="mt-2 text-danger">{{ $message }}</div>
@@ -153,8 +152,7 @@
                                                 <div class="form-group">
                                                     <label for="staff_nip">Nomor Induk Staff</label>
                                                     <input value="{{ old('staff_nip') }}" type="text"
-                                                        class="@error('staff_nip') is-invalid
-                                            @enderror form-control"
+                                                        class="@error('staff_nip') is-invalid @enderror form-control"
                                                         id="staff_nip" name="staff_nip">
                                                     @error('staff_nip')
                                                         <div class="mt-2 text-danger">{{ $message }}</div>
@@ -163,12 +161,15 @@
                                                 <div class="form-group">
                                                     <label for="installation">Instalasi</label>
                                                     <input value="{{ old('installation') }}" type="text"
-                                                        class="@error('installation') is-invalid
-                                            @enderror form-control"
+                                                        class="@error('installation') is-invalid @enderror form-control"
                                                         id="installation" name="installation">
                                                     @error('installation')
                                                         <div class="mt-2 text-danger">{{ $message }}</div>
                                                     @enderror
+                                                </div>
+                                                <div class="form-group menu-list" role="tablist">
+                                                    <a href="/" class="btn btn-secondary">Kembali</a>
+                                                    <a href="#pengajuan" role="tab" aria-controls="pengajuan" class="btn btn-success">>></a>
                                                 </div>
                                             </div>
 
@@ -182,8 +183,7 @@
                                                         <label for="datepicker_start">Mulai Pada Tanggal</label>
                                                         <input id="datepicker_start" value="{{ old('date_start') }}"
                                                             type="text"
-                                                            class="@error('date_start') is-invalid
-                                                @enderror form-control"
+                                                            class="@error('date_start') is-invalid @enderror form-control"
                                                             name="date_start">
                                                         @error('date_start')
                                                             <div class="mt-2 text-danger">{{ $message }}</div>
@@ -193,8 +193,7 @@
                                                         <label for="timepicker_start">Mulai Pada Jam</label>
                                                         <input id="timepicker_start" value="{{ old('time_start') }}"
                                                             type="text"
-                                                            class="@error('time_start') is-invalid
-                                                @enderror form-control timepicker"
+                                                            class="@error('time_start') is-invalid @enderror form-control timepicker"
                                                             name="time_start">
                                                         @error('time_start')
                                                             <div class="mt-2 text-danger">{{ $message }}</div>
@@ -204,8 +203,7 @@
                                                         <label for="timepicker_finish">Selesai Pada Jam</label>
                                                         <input id="timepicker_finish" value="{{ old('time_finish') }}"
                                                             type="text"
-                                                            class="@error('time_finish') is-invalid
-                                                @enderror form-control timepicker"
+                                                            class="@error('time_finish') is-invalid @enderror form-control timepicker"
                                                             name="time_finish">
                                                         @error('time_finish')
                                                             <div class="mt-2 text-danger">{{ $message }}</div>
@@ -215,10 +213,8 @@
                                                 <div class="form-group">
                                                     <label for="topic">Topik Rapat</label>
                                                     <input value="{{ old('topic') }}" type="text"
-                                                        class="@error('topic') is-invalid
-                                            @enderror form-control"
-                                                        id="topic" placeholder="Contoh. Kegiatan Meeting Harian"
-                                                        name="topic">
+                                                        class="@error('topic') is-invalid @enderror form-control" id="topic"
+                                                        placeholder="Contoh. Kegiatan Meeting Harian" name="topic">
                                                     @error('topic')
                                                         <div class="mt-2 text-danger">{{ $message }}</div>
                                                     @enderror
@@ -227,8 +223,7 @@
                                                     <div class="form-group col-md-4">
                                                         <label for="entrant">Jumlah Peserta</label>
                                                         <input value="{{ old('entrant') }}" type="number"
-                                                            class="@error('entrant') is-invalid
-                                            @enderror form-control"
+                                                            class="@error('entrant') is-invalid @enderror form-control"
                                                             id="entrant" name="entrant">
                                                         @error('entrant')
                                                             <div class="mt-2 text-danger">{{ $message }}</div>
@@ -237,8 +232,7 @@
                                                     <div class="form-group col-md-4">
                                                         <label for="type_meeting">Jenis Rapat</label>
                                                         <select id="type_meeting"
-                                                            class="@error('type_meeting') is-invalid
-                                                @enderror form-control"
+                                                            class="@error('type_meeting') is-invalid @enderror form-control"
                                                             name="type_meeting">
                                                             <option selected>Pilih...</option>
                                                             <option value="Internal">Internal</option>
@@ -259,10 +253,14 @@
                                                         @enderror
                                                     </div>
                                                 </div>
+                                                <div class="form-group menu-list" role="tablist">
+                                                    <a href="/" class="btn btn-secondary">Kembali</a>
+                                                    <a href="#data-diri" role="tab" aria-controls="data-diri" class="btn btn-success">
+                                                        << </a>
+                                                            <button type="submit" class="btn btn-primary">Ajukan</button>
+                                                </div>
 
                                             </div>
-                                            <a href="/" class="btn btn-secondary">Kembali</a>
-                                            <button type="submit" class="btn btn-primary">Ajukan</button>
                                         </div>
                                     </div>
                                 </form>
@@ -298,9 +296,9 @@
                         @foreach ($books as $book)
                             <tr data-toggle="popover" data-trigger="hover" title="Informasi Detail" data-html="true"
                                 data-content="Pemesan &#9;: {{ $book->username }}<br/>
-                                NIP &#9;&#9;: {{ $book->staff_nip }}<br/>
-                                Instalasi &#9;: {{ $book->installation }}<br/>
-                                   @if ($book->approved == 2 && $book->reject_note !== null)
+                                                                    NIP &#9;&#9;: {{ $book->staff_nip }}<br/>
+                                                                    Instalasi &#9;: {{ $book->installation }}<br/>
+                                                                                @if ($book->approved == 2 && $book->reject_note !== null)
                                 Info Ditolak : {{ $book->reject_note }}
                         @endif
                         ">
@@ -342,7 +340,7 @@
     </div>
 
     <script>
-        $('#menu-list a').on('click', function(e) {
+        $('.menu-list a').on('click', function(e) {
             e.preventDefault()
             $(this).tab('show')
         })
