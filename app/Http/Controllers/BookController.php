@@ -21,8 +21,8 @@ class BookController extends Controller
     public function index(Request $request)
     {
 
-        $firstDate = $request->input('first_date');
-        $lastDate = $request->input('last_date');
+        $firstDate = $request->input('first_date') ?? '';
+        $lastDate = $request->input('last_date') ?? '';
 
         $books = $this->getDataWithConditional($firstDate, $lastDate);
         switch ($request->input('action')) {
@@ -56,7 +56,9 @@ class BookController extends Controller
         }
         $data = [
             'rooms' => Room::all(),
-            'books' => $books->paginate(5)
+            'books' => $books->paginate(5),
+            'firstDate' => $firstDate,
+            'lastDate' => $lastDate,
         ];
 
         return view('dashboard.books.index', $data);
@@ -104,18 +106,18 @@ class BookController extends Controller
      */
     public function store(Request $request)
     {
-        // $request->validate([
-        //     'username' => 'required',
-        //     'staff_nip' => 'required',
-        //     'installation' => 'required',
-        //     'date_start' => 'required',
-        //     'time_start' => 'required',
-        //     'time_finish' => 'required',
-        //     'topic' => 'required',
-        //     'entrant' => 'required',
-        //     'type_meeting' => 'required',
-        //     'room_id' => 'required',
-        // ]);
+        $request->validate([
+            'username' => 'required',
+            'staff_nip' => 'required:min:18',
+            'installation' => 'required',
+            'date_start' => 'required',
+            'time_start' => 'required',
+            'time_finish' => 'required',
+            'topic' => 'required',
+            'entrant' => 'required',
+            'type_meeting' => 'required',
+            'room_id' => 'required',
+        ]);
         $bookExist = Book::where('room_id', $request->room_id)->where('date_start', "=", $request->date_start)
             ->whereBetween('time_start', [$request->time_start, date('H:i', strtotime("-1 minutes", strtotime($request->time_finish)))])
             ->exists();

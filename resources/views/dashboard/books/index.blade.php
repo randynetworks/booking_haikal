@@ -10,13 +10,13 @@
         <div class="row mb-3">
             <div class="col-md-3">
                 <label for="datepicker_start">Tanggal Awal</label>
-                <input type="text" class="form-control" name="first_date" placeholder="Contoh. 2021-11-14"
-                    id="datepicker_start">
+                <input type="text" class="form-control" value="{{ $firstDate ?? '' }}" name="first_date"
+                    placeholder="Contoh. 2021-11-14" id="datepicker_start">
             </div>
             <div class="col-md-3">
                 <label for="datepicker_finish">Tanggal Akhir</label>
-                <input type="text" class="form-control" name="last_date" placeholder="Contoh. 2021-11-15"
-                    id="datepicker_finish">
+                <input type="text" class="form-control" value="{{ $lastDate ?? '' }}" name="last_date"
+                    placeholder="Contoh. 2021-11-15" id="datepicker_finish">
             </div>
         </div>
         <button type="submit" class="btn btn-sm btn-primary" name="action" value="filter"
@@ -51,12 +51,11 @@
                     </thead>
                     <tbody>
                         @foreach ($books as $book)
-
                             <tr class="text-center" data-toggle="popover" data-trigger="hover" title="Informasi Detail"
                                 data-html="true" data-content="Pemesan &#9;: {{ $book->username }}<br/>
-                                                                            NIP &#9;&#9;: {{ $book->staff_nip }}<br/>
-                                                                            Instalasi &#9;: {{ $book->installation }}<br/>
-                                                                                       @if ($book->approved == 2 && $book->reject_note !== null)
+                                                                                NIP &#9;&#9;: {{ $book->staff_nip }}<br/>
+                                                                                Instalasi &#9;: {{ $book->installation }}<br/>
+                                                                                            @if ($book->approved == 2 && $book->reject_note !== null)
                                 Info Ditolak : {{ $book->reject_note }}
                         @endif
                         ">
